@@ -10,4 +10,5 @@ Plugin
 - recode match and queue managers,
 - switch from aether to assemble,
 - switch from foxspigot to regular spigot,
+- recode player data system,
 - make configurable
