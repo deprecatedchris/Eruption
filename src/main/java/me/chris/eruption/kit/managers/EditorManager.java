@@ -21,7 +21,6 @@ public class EditorManager {
 		this.plugin.getInventoryManager().addEditingKitInventory(player, kit);
 
 		PlayerUtil.clearPlayer(player);
-		player.teleport(this.plugin.getSpawnManager().getEditorLocation().toBukkitLocation());
 		player.getInventory().setContents(kit.getContents());
 		player.sendMessage(ChatColor.GREEN + "You are editing kit " + ChatColor.RED + kit.getName() + ChatColor.GREEN + ".");
 	}

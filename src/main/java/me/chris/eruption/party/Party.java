@@ -11,6 +11,8 @@ import java.util.UUID;
 import java.util.stream.Stream;
 import lombok.Getter;
 import lombok.Setter;
+import me.chris.eruption.util.CC;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 @Getter
@@ -23,6 +25,7 @@ public class Party {
 	private final Set<UUID> members = new HashSet<>();
 	private int limit = 50;
 	private boolean open;
+	private boolean allInvite;
 
 	public Party(UUID leader) {
 		this.leader = leader;
@@ -61,6 +64,20 @@ public class Party {
 
 	public Stream<Player> members() {
 		return this.members.stream().map(this.plugin.getServer()::getPlayer).filter(Objects::nonNull);
+	}
+
+	public void messageAllMembers(String message){
+		for(UUID uuid : members){
+			Player player = Bukkit.getPlayer(uuid);
+
+			if(player == null){
+				return;
+			}
+
+			//no CC.translate()
+			player.sendMessage(CC.translate(message));
+
+		}
 	}
 
 }

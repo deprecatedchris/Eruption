@@ -6,6 +6,7 @@ import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.util.random.Clickable;
 import me.chris.eruption.util.random.StringUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -42,6 +43,8 @@ public class PartyCommand extends Command {
 		this.setAliases(Collections.singletonList("p"));
 	}
 
+	//TODO: FUCK ME BRO I HAVE TO DO ALL THESE CMDS AGAIN??
+
 	@Override
 	public boolean execute(CommandSender sender, String alias, String[] args) {
 		if (!(sender instanceof Player)) {
@@ -54,16 +57,17 @@ public class PartyCommand extends Command {
 		String subCommand = args.length < 1 ? "help" : args[0];
 
 		switch (subCommand.toLowerCase()) {
-			case "create":
-				if (party != null) {
-					player.sendMessage(ChatColor.RED + "You are already in a party.");
-				} else if (playerData.getPlayerState() != PlayerState.SPAWN) {
-					player.sendMessage(ChatColor.RED + "Cannot execute this command in your current state.");
-				} else {
-					this.plugin.getPartyManager().createParty(player);
-				}
-				break;
-			case "leave":
+//			case "create": {
+//				if (party != null) {
+//					player.sendMessage(ChatColor.RED + "You are already in a party.");
+//				} else if (playerData.getPlayerState() != PlayerState.SPAWN) {
+//					player.sendMessage(ChatColor.RED + "Cannot execute this command in your current state.");
+//				} else {
+//					this.plugin.getPartyManager().createParty(player);
+//				}
+//				break;
+//			}
+			case "leave": {
 				if (party == null) {
 					player.sendMessage(ChatColor.RED + "You are not in a party.");
 				} else if (playerData.getPlayerState() != PlayerState.SPAWN) {
@@ -72,6 +76,7 @@ public class PartyCommand extends Command {
 					this.plugin.getPartyManager().leaveParty(player);
 				}
 				break;
+			}
 			case "inv":
 			case "invite":
 				if (party == null) {
@@ -100,6 +105,8 @@ public class PartyCommand extends Command {
 
 					PlayerData targetData = this.plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 
+					//pov: no UUIDUtils to get name from UUID lol;
+
 					if (target.getUniqueId() == player.getUniqueId()) {
 						player.sendMessage(ChatColor.RED + "You can't invite yourself.");
 					} else if (this.plugin.getPartyManager().getParty(target.getUniqueId()) != null) {
@@ -110,6 +117,8 @@ public class PartyCommand extends Command {
 						player.sendMessage(ChatColor.RED + "That player has the party invites disabled.");
 					} else if (this.plugin.getPartyManager().hasPartyInvite(target.getUniqueId(), player.getUniqueId())) {
 						player.sendMessage(ChatColor.RED + "You have already sent a party invitation to that player, please wait.");
+					} else if (!party.isAllInvite() && !player.getUniqueId().equals(party.getLeader())) {
+						player.sendMessage(ChatColor.RED + "All invite isn't enabled, ask " + ChatColor.RED + ChatColor.BOLD.toString() + Bukkit.getPlayer(party.getLeader()).getName() + ChatColor.RED + " to invite " + target.getName() + ".");
 					} else {
 						this.plugin.getPartyManager().createPartyInvite(player.getUniqueId(), target.getUniqueId());
 
@@ -122,6 +131,7 @@ public class PartyCommand extends Command {
 						party.broadcast(ChatColor.GREEN.toString() + ChatColor.BOLD + "[*] " + ChatColor.YELLOW + target.getName() + " has been invited to the party.");
 
 					}
+
 				}
 				break;
 			case "accept":
@@ -235,7 +245,7 @@ public class PartyCommand extends Command {
 					party.broadcast(ChatColor.GREEN.toString() + ChatColor.BOLD + "[*] " + ChatColor.YELLOW + "Your party is now " + ChatColor.BOLD + (party.isOpen() ? "OPEN" : "LOCKED"));
 				}
 				break;
-			case "info":
+			case "info": {
 				if (party == null) {
 					player.sendMessage(ChatColor.RED + "You are not in a party.");
 				} else {
@@ -243,15 +253,16 @@ public class PartyCommand extends Command {
 					List<UUID> members = new ArrayList<>(party.getMembers());
 					members.remove(party.getLeader());
 
-					StringBuilder builder = new StringBuilder(ChatColor.WHITE.toString() + "Party Members§8" + ChatColor.GRAY  + " ("  + ChatColor.YELLOW + ((party.getMembers().size() - 1) + ChatColor.GRAY.toString() + ")§7:§f "));
+					StringBuilder builder = new StringBuilder(ChatColor.WHITE.toString() + "Party Members§8" + ChatColor.GRAY + " (" + ChatColor.YELLOW + ((party.getMembers().size() - 1) + ChatColor.GRAY.toString() + ")§7:§f "));
 					members.stream().map(this.plugin.getServer()::getPlayer).filter(Objects::nonNull).forEach(member -> builder.append(ChatColor.WHITE).append(member.getName()).append(","));
 
-					String[] information = new String[] {
+					String[] information = new String[]{
 							ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------------------------------------------",
 							ChatColor.BLUE.toString() + ChatColor.BOLD + "Party Information§8:",
 							ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------------------------------------------",
-							ChatColor.WHITE + "Leader: " + ChatColor.RED + this.plugin.getServer().getPlayer(party.getLeader()).getName(),
-							ChatColor.WHITE + "Party State§7: " + ChatColor.RED + (party.isOpen() ? "Open" : "Locked"),
+							ChatColor.WHITE + "Leader&7: " + ChatColor.RED + this.plugin.getServer().getPlayer(party.getLeader()).getName(),
+							ChatColor.WHITE + "Party State&7: " + ChatColor.RED + (party.isOpen() ? "Open" : "Locked"),
+							ChatColor.WHITE + "All Invite&7: " + ChatColor.RED + (party.isAllInvite() ? ChatColor.GREEN + "Enabled" : ChatColor.RED + "Disabled"),
 							ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------------------------------------------",
 							ChatColor.WHITE + builder.toString(),
 							ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------------------------------------------"
@@ -260,6 +271,19 @@ public class PartyCommand extends Command {
 					player.sendMessage(information);
 				}
 				break;
+			}
+
+			case "allinvite": {
+				if(party == null){
+					player.sendMessage(ChatColor.RED + "You are not in a party.");
+				} else if (!party.getLeader().equals(player.getUniqueId())) {
+					player.sendMessage(NOT_LEADER);
+				}
+
+				party.messageAllMembers("");
+
+
+			}
 			default:
 				player.sendMessage(PartyCommand.HELP_MESSAGE);
 				break;

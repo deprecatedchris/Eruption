@@ -232,9 +232,10 @@ public class KitCommand extends Command {
                     sender.sendMessage(KitCommand.NO_KIT);
                 }
                 break;
+                //todo: fix displayName and shit :)
             case "setdisplayname":
                 String displayName = StringUtils.join(args, ' ', 2, args.length);
-                kit.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
+//                kit.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
                 sender.sendMessage(ChatColor.GREEN + "Successfully set the display name as \"" + ChatColor.translateAlternateColorCodes('&', displayName) + ChatColor.GREEN + "\"");
                 break;
             case "seteditinv":

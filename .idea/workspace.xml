@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45a4c81b-a60e-4a29-a645-10ad5a095ad4" name="Changes" comment="" />
+    <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/commands/PartyCommands.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/CC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/Kit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/Kit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/commands/KitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/commands/KitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/editor/KitManagementMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/editor/KitManagementMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/managers/EditorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/managers/EditorManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/managers/KitManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/managers/KitManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/Party.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/Party.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/commands/PartyCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/commands/PartyCommand.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +35,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -24,29 +45,49 @@
   "customColor": "",
   "associatedIndex": 3
 }]]></component>
-  <component name="ProjectId" id="2Uu5wczokz4e2m9k8UDgzxKaXOj" />
+  <component name="ProjectId" id="2UxLFBHl2554CLNircP4bo9taDF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/jhuggins/Desktop/Minecraft Code/Eruption-Real/src/main/java/me/chris/eruption/util",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "settings.sync",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/me/chris/eruption/util" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="45a4c81b-a60e-4a29-a645-10ad5a095ad4" name="Changes" comment="" />
-      <created>1693776903336</created>
+      <changelist id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="" />
+      <created>1693876181727</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1693776903336</updated>
+      <updated>1693876181727</updated>
+      <workItem from="1693876184180" duration="3010000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

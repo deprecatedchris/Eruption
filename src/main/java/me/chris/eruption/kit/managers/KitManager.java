@@ -50,7 +50,10 @@ public class KitManager {
 			final int q = kitSection.getInt(name + ".queue", 0);
 			final Flag kitFlag = Flag.valueOf(kitSection.getString(name + ".flag", "DEFAULT"));
 
-			Kit kit = new Kit(name, contents, armor, kitEditContents, icon, excludedArenas, arenaWhiteList, enabled, ranked, q, kitFlag);
+			//u forgot displayColor lol
+			//u need leaderboard icon
+			//fixed :)
+			Kit kit = new Kit(name, contents, armor, kitEditContents, icon, icon, excludedArenas, arenaWhiteList, enabled, ranked, q, kitFlag);
 			this.kits.put(name, kit);
 		});
 	}
@@ -62,7 +65,7 @@ public class KitManager {
 
 		this.kits.forEach((kitName, kit) -> {
 			if (kit.getIcon() != null && kit.getContents() != null && kit.getArmor() != null) {
-				fileConfig.set("kits." + kitName + ".displayName", kit.getDisplayName());
+//				fileConfig.set("kits." + kitName + ".displayName", kit.getDisplayName());
 				fileConfig.set("kits." + kitName + ".contents", kit.getContents());
 				fileConfig.set("kits." + kitName + ".armor", kit.getArmor());
 				fileConfig.set("kits." + kitName + ".kitEditContents", kit.getKitEditContents());

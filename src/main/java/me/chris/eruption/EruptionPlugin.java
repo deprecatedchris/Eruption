@@ -36,6 +36,8 @@ import me.chris.eruption.setup.managers.ChunkManager;
 import me.chris.eruption.setup.managers.SpawnManager;
 import me.chris.eruption.tournament.commands.TournamentCommand;
 import me.chris.eruption.tournament.managers.TournamentManager;
+import me.vaperion.blade.Blade;
+import me.vaperion.blade.bukkit.BladeBukkitPlatform;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -126,6 +128,11 @@ public class EruptionPlugin extends JavaPlugin {
         this.registerCommands();
         this.registerListeners();
         this.registerManagers();
+
+        Blade.forPlatform(new BladeBukkitPlatform(this))
+                .build()
+                .registerPackage(EruptionPlugin.class, "me.chris.eruption");
+        //nvm not as bad as i thought LOL
 
 
         new Aether(this, new ScoreboardAdapter());
@@ -242,6 +249,7 @@ public class EruptionPlugin extends JavaPlugin {
     public void registerCommand(Command cmd, String fallbackPrefix) {
         MinecraftServer.getServer().server.getCommandMap().register(cmd.getName(), fallbackPrefix, cmd);
     }
+
 
     private void registerCommand(Command cmd) {
         this.registerCommand(cmd, this.getName());

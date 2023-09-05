@@ -19,6 +19,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+
+//what menus?
 public class KitManagementMenu extends Menu {
 
     private static Button PLACEHOLDER = Button.placeholder(Material.STAINED_GLASS_PANE, (byte) 7, " ");
