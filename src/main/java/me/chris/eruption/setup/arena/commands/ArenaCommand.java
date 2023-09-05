@@ -11,6 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+//TODO: recode this to blade
 public class ArenaCommand extends Command {
 
     private static final String NO_ARENA = ChatColor.RED + "That arena doesn't exist!";

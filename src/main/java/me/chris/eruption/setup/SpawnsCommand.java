@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+//TODO: Recode this command to blade.
 public class SpawnsCommand extends Command {
 	private final EruptionPlugin plugin = EruptionPlugin.getInstance();
 

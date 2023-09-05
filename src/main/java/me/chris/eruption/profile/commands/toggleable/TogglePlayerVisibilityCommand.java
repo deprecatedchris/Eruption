@@ -4,38 +4,37 @@ import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.settings.SettingsInfo;
+import me.vaperion.blade.annotation.argument.Sender;
+import me.vaperion.blade.annotation.command.Command;
+import me.vaperion.blade.annotation.command.Description;
+import me.vaperion.blade.annotation.command.UsageAlias;
+import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class TogglePlayerVisibilityCommand extends Command {
+public class TogglePlayerVisibilityCommand {
+   //Hopefully this works lol
 
-    public TogglePlayerVisibilityCommand() {
-        super("toggleplayervisibility");
-    }
-
-    private final EruptionPlugin plugin = EruptionPlugin.getInstance();
-
-    @Override
-    public boolean execute(CommandSender sender, String s, String[] args) {
-        if (!(sender instanceof Player)) {
-            return true;
-        }
-        Player player = (Player) sender;
+    @Command({"TogglePlayerVisibility", "tpv"})
+    @Description("Toggle whether you want to see players or not.")
+    public static void togglePlayerVisibility(@Sender Player player) throws BladeExitMessage {
         PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+
         if (playerData.getPlayerState() != PlayerState.SPAWN) {
-            player.sendMessage(ChatColor.RED + "You are not allowed to change this settings in your current state.");
-            return false;
+            throw new BladeExitMessage(ChatColor.RED + "You are not allowed to change this setting in your current state.");
         }
+
         SettingsInfo settings = playerData.getSettings();
         settings.setPlayerVisibility(!settings.isPlayerVisibility());
         if (!settings.isPlayerVisibility()) {
-            this.plugin.getServer().getOnlinePlayers().forEach(player::hidePlayer);
+            EruptionPlugin.getInstance().getServer().getOnlinePlayers().forEach(player::hidePlayer);
         } else {
-            this.plugin.getServer().getOnlinePlayers().forEach(player::showPlayer);
+            EruptionPlugin.getInstance().getServer().getOnlinePlayers().forEach(player::showPlayer);
         }
-        return true;
     }
 
 }
+
+
+

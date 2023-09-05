@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
+//TODO: Recode this command to blade.
 public class StatusEventCommand extends Command {
 
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();

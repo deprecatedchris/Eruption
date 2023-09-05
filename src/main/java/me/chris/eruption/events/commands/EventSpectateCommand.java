@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 
+//TODO: Recode this command to blade.
 public class EventSpectateCommand extends Command {
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();
 

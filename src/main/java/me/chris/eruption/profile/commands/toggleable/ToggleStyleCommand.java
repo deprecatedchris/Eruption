@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ToggleStyleCommand extends Command {
-
+//TODO: implement Scoreboard States for different options on scoreboard.
     public ToggleStyleCommand() {
         super("togglestyle");
     }

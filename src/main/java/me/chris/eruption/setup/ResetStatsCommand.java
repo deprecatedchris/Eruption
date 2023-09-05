@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+//TODO: Recode this command to blade.
 public class ResetStatsCommand extends Command {
 
 	private final EruptionPlugin plugin = EruptionPlugin.getInstance();

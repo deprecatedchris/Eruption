@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
+//TODO: Recode this command to blade.
 public class InvCommand extends Command {
 	private static final Pattern UUID_PATTERN;
 	private static final String INVENTORY_NOT_FOUND;

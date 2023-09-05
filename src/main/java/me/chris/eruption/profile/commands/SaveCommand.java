@@ -2,46 +2,26 @@ package me.chris.eruption.profile.commands;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;
+import me.vaperion.blade.annotation.argument.Sender;
+import me.vaperion.blade.annotation.command.Command;
+import me.vaperion.blade.annotation.command.Description;
+import me.vaperion.blade.annotation.command.Permission;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 
-public class SaveCommand extends Command {
-
-    private final EruptionPlugin plugin = EruptionPlugin.getInstance();
-
-    public SaveCommand() {
-        super("save");
-        this.setDescription("Saves All Data.");
-        this.setUsage(ChatColor.RED + "Usage: /save");
-        this.setAliases(Arrays.asList("practicesave"));
+public class SaveCommand {
+    @Command({"save"})
+    @Description("Saves all data within practice")
+    @Permission("practice.admin")
+    public static void saveCommand(@Sender Player player) {
+        for (PlayerData playerData : EruptionPlugin.getInstance().getPlayerManager().getAllData())
+            EruptionPlugin.getInstance().getPlayerManager().saveData(playerData);
+        EruptionPlugin.getInstance().getArenaManager().saveArenas();
+        EruptionPlugin.getInstance().getSpawnManager().saveConfig();
+        EruptionPlugin.getInstance().getKitManager().saveKits();
+        EruptionPlugin.getInstance().getMainConfig().save();
     }
-
-    @Override
-    public boolean execute(CommandSender sender, String alias, String[] args) {
-
-        if (!(sender instanceof Player)) {
-            return true;
-        }
-
-        final Player player = (Player)sender;
-        if (!player.hasPermission("practice.staff")) {
-            player.sendMessage (ChatColor.RED + "You don't have permission to use this command.");
-            return true;
-        }
-
-        if (args.length == 0) {
-            for (PlayerData playerData : this.plugin.getPlayerManager().getAllData())
-                this.plugin.getPlayerManager().saveData(playerData);
-            this.plugin.getArenaManager().saveArenas();
-            this.plugin.getSpawnManager().saveConfig();
-            this.plugin.getKitManager().saveKits();
-            this.plugin.getMainConfig().save();
-        }
-        return true;
-    }
-
 }

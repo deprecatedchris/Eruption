@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+//TODO: Make this into the same kit command.
 public class KitHelpCommand implements CommandExecutor {
 
     @Override

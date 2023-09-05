@@ -51,8 +51,6 @@ import me.chris.eruption.scoreboard.ScoreboardAdapter;
 import me.chris.eruption.profile.commands.duel.AcceptCommand;
 import me.chris.eruption.profile.commands.duel.DuelCommand;
 import me.chris.eruption.profile.commands.duel.SpectateCommand;
-import me.chris.eruption.profile.commands.time.DayCommand;
-import me.chris.eruption.profile.commands.time.NightCommand;
 import me.chris.eruption.setup.WarpCommand;
 import me.chris.eruption.util.config.Config;
 import me.chris.eruption.util.CustomMovementListener;
@@ -66,8 +64,6 @@ import me.chris.eruption.util.timer.TimerManager;
 import me.chris.eruption.util.timer.impl.EnderpearlTimer;
 
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Getter
 public class EruptionPlugin extends JavaPlugin {

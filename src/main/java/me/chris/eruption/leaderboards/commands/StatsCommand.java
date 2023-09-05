@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import java.util.Arrays;
 
-
+//TODO: Make this a menu & recode to blade.
 public class StatsCommand extends Command {
     
         private final EruptionPlugin plugin = EruptionPlugin.getInstance();

@@ -1,6 +1,7 @@
 package me.chris.eruption.settings;
 
 import lombok.Data;
+import me.chris.eruption.scoreboard.ScoreboardState;
 
 @Data
 public class SettingsInfo {
@@ -11,4 +12,6 @@ public class SettingsInfo {
     private boolean spectatorsAllowed = true;
     private boolean playerVisibility = true;
     public boolean isPartyInvites = true;
+
+    private ScoreboardState scoreboardState = ScoreboardState.DURATION;
 }

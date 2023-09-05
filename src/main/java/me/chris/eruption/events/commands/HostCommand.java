@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+//TODO: Make this into a menu.
 public class HostCommand extends Command {
 
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();

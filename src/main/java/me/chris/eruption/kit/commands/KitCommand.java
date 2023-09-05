@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+//TODO: Recode this command to blade.
 public class KitCommand extends Command {
     private static final String NO_KIT = ChatColor.RED + "That kit doesn't exist!";
     private static final String NO_ARENA = ChatColor.RED + "That arena doesn't exist!";

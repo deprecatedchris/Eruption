@@ -10,11 +10,13 @@ import me.vaperion.blade.annotation.argument.Name;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
+import me.vaperion.blade.annotation.command.UsageAlias;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class PartyCommands {
-    @Command("party create")
+    @Command({"party create"})
+    @UsageAlias("p create")
     @Description("Create a party")
     public static void partyCreate(@Sender Player player) {
         Party party = EruptionPlugin.getInstance().getPartyManager().getParty(player.getUniqueId());
@@ -35,7 +37,8 @@ public class PartyCommands {
 
     }
 
-    @Command("party leave")
+    @Command({"party leave"})
+    @UsageAlias("p leave")
     @Description("Leave your current party")
     public static void partyLeave(@Sender Player player) {
         Party party = EruptionPlugin.getInstance().getPartyManager().getParty(player.getUniqueId());
