@@ -6,9 +6,12 @@ import me.chris.eruption.match.Match;
 import me.chris.eruption.match.MatchState;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
+import me.chris.eruption.kit.Flag;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
+import me.chris.eruption.util.runnable.BlockRemoveRunnable;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -44,11 +47,11 @@ public class WorldListener implements Listener {
 		}
 		if (playerData.getPlayerState() == PlayerState.FIGHTING) {
 			Match match = this.plugin.getMatchManager().getMatch(player.getUniqueId());
-			if (match.getKit().isBuild()) {
+			if (match.getKit().getFlag().equals(Flag.BUILD)) {
 				if (!match.getPlacedBlockLocations().contains(event.getBlock().getLocation())) {
 					event.setCancelled(true);
 				}
-			} else if (match.getKit().isSpleef()) {
+			} else if (match.getKit().getFlag().equals(Flag.SPLEEF)) {
 				double minX = match.getStandaloneArena().getMin().getX();
 				double minZ = match.getStandaloneArena().getMin().getZ();
 				double maxX = match.getStandaloneArena().getMax().getX();
@@ -72,7 +75,6 @@ public class WorldListener implements Listener {
 						&& player.getLocation().getZ() >= minZ && player.getLocation().getZ() <= maxZ) {
 					if (event.getBlock().getType() == Material.SNOW_BLOCK && player.getItemInHand().getType() == Material.DIAMOND_SPADE) {
 						Location blockLocation = event.getBlock().getLocation();
-
 						event.setCancelled(true);
 						match.addOriginalBlockChange(event.getBlock().getState());
 						Set<Item> items = new HashSet<>();
@@ -115,7 +117,14 @@ public class WorldListener implements Listener {
 				return;
 			}
 
-			if (!match.getKit().isBuild()) {
+			if (!match.getKit().getFlag().equals(Flag.BUILD)) {
+				if (match.getKit().getFlag().equals(Flag.STICK_FIGHT)) {
+					event.setCancelled(false);
+
+					new BlockRemoveRunnable(event.getBlock().getLocation());
+					return;
+				}
+
 				event.setCancelled(true);
 			} else {
 				double minX = match.getStandaloneArena().getMin().getX();
@@ -164,7 +173,7 @@ public class WorldListener implements Listener {
 		}
 		if (playerData.getPlayerState() == PlayerState.FIGHTING) {
 			Match match = this.plugin.getMatchManager().getMatch(player.getUniqueId());
-			if (!match.getKit().isBuild()) {
+			if (!match.getKit().getFlag().equals(Flag.BUILD)) {
 				event.setCancelled(true);
 			} else {
 				double minX = match.getStandaloneArena().getMin().getX();

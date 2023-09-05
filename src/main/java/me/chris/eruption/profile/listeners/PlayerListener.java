@@ -1,6 +1,7 @@
 package me.chris.eruption.profile.listeners;
 
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.kit.Flag;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -103,7 +104,7 @@ public class PlayerListener implements Listener {
         PlayerData playerData = this.plugin.getPlayerManager().getPlayerData(player.getUniqueId());
         if (playerData.getPlayerState() == PlayerState.FIGHTING) {
             Match match = this.plugin.getMatchManager().getMatch(player.getUniqueId());
-            if (match.getKit().isBuild()) {
+            if (match.getKit().getFlag().equals(Flag.BUILD)) {
                 event.setCancelled(true);
             }
         }
@@ -629,7 +630,7 @@ public class PlayerListener implements Listener {
         if (playerData.getPlayerState() == PlayerState.FIGHTING) {
             Match match = this.plugin.getMatchManager().getMatch(player.getUniqueId());
 
-            if (match.getKit().isSumo() || this.plugin.getEventManager().getEventPlaying(player) != null) {
+            if (match.getKit().getFlag().equals(Flag.SUMO) || this.plugin.getEventManager().getEventPlaying(player) != null) {
                 event.setCancelled(true);
             }
         } else {

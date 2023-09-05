@@ -12,21 +12,18 @@ public class KitHelpCommand implements CommandExecutor {
         Player player = (Player) sender;
         if (cmd.getName().equalsIgnoreCase("kithelp")) {
             if (player.hasPermission("practice.staff")) {
-                player.sendMessage("§7§m---------------------------");
-                player.sendMessage("§bEruption §7» Kit Help§8 ");
-                player.sendMessage("§7§m---------------------------");
-                player.sendMessage(" §b» §7/kit create <namekit> ");
-                player.sendMessage(" §b» §7/kit setinv <namekit>");
-                player.sendMessage(" §b» §7/kit whitelistarena <namekit> <namearena>");
-                player.sendMessage(" §b» §7/kit excludearena <namekit> <namearena>");
-                player.sendMessage(" §b» §7/kit excludearenafromallkitsbut <namekit> <namearena>");
-                player.sendMessage(" §b» §7/kit icon <namekit> <namearena>");
-                player.sendMessage(" §b» §7/kit seteditinv <namekit> <namearena>");
-                player.sendMessage(" §b» §7/kit spleef <namekit> <namearena>");
-                player.sendMessage(" §b» §7/kit combo <namekit> <namearena>");
-                player.sendMessage(" §b» §7/kit build <namekit> <namearena>");
-                player.sendMessage(" §b» §7/kit sumo <namekit> <namearena>");
-                player.sendMessage("§7§m---------------------------");
+                player.sendMessage("&7&m---------------------------");
+                player.sendMessage("&cEruption &7» Kit Help&8 ");
+                player.sendMessage("&7&m---------------------------");
+                player.sendMessage(" &c* &7/kit create <namekit> ");
+                player.sendMessage(" &c* &7/kit setinv <namekit>");
+                player.sendMessage(" &c* &7/kit whitelistarena <namekit> <namearena>");
+                player.sendMessage(" &c* &7/kit excludearena <namekit> <namearena>");
+                player.sendMessage(" &c* &7/kit excludearenafromallkitsbut <namekit> <namearena>");
+                player.sendMessage(" &c* &7/kit icon <namekit> <namearena>");
+                player.sendMessage(" &c* &7/kit seteditinv <namekit> <namearena>");
+                player.sendMessage(" &c* &7/kit flag <kit> <flag>");
+                player.sendMessage("&7&m---------------------------");
                 return true;
             }
         }

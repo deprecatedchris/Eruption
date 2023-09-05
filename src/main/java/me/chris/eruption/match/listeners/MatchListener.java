@@ -26,8 +26,7 @@ import me.chris.eruption.queue.QueueType;
 import me.chris.eruption.util.random.Clickable;
 import me.chris.eruption.util.random.EloUtil;
 import me.chris.eruption.util.random.PlayerUtil;
-import pt.foxspigot.jar.knockback.KnockbackModule;
-import pt.foxspigot.jar.knockback.KnockbackProfile;
+
 
 
 import java.util.*;
@@ -35,10 +34,6 @@ import java.util.*;
 public class MatchListener implements Listener {
 
 	private final EruptionPlugin plugin = EruptionPlugin.getInstance();
-	KnockbackProfile comboProfile = (KnockbackProfile) KnockbackModule.INSTANCE.profiles.get("combo");
-	KnockbackProfile normalProfle = (KnockbackProfile) KnockbackModule.INSTANCE.profiles.get("new");
-	KnockbackProfile sumoProfile = (KnockbackProfile) KnockbackModule.INSTANCE.profiles.get("sumo");
-	KnockbackProfile nodebuffProfile = (KnockbackProfile) KnockbackModule.INSTANCE.profiles.get("no-debuff");
 
 	@EventHandler
 	public void onMatchStart(MatchStartEvent event) {
@@ -83,9 +78,7 @@ public class MatchListener implements Listener {
 			playerData.setCombo(0);
 			playerData.setHits(0);
 
-			if (!kit.isCombo() || !kit.isSumo() || !kit.isNodebuff()) {
-				((CraftPlayer) player).getHandle().setKnockback(normalProfle);
-			}
+
 			PlayerUtil.clearPlayer(player);
 
 			LocationUtil locationA = match.getStandaloneArena() != null ? match.getStandaloneArena().getA() : match.getArena().getA();
@@ -94,14 +87,8 @@ public class MatchListener implements Listener {
 
 			if (kit.isCombo()) {
 				player.setMaximumNoDamageTicks(2);
-				((CraftPlayer)player).getHandle().setKnockback(comboProfile);
 			}
-			if (kit.isSumo()) {
-				((CraftPlayer)player).getHandle().setKnockback(sumoProfile);
-			}
-			if(kit.isNodebuff()) {
-				((CraftPlayer)player).getHandle().setKnockback(nodebuffProfile);
-			}
+
 
 			if (!match.isRedrover()) {
 				for (ItemStack itemStack : this.plugin.getMatchManager().getKitItems(player, match.getKit(), match)) {
@@ -190,7 +177,6 @@ public class MatchListener implements Listener {
 						"/_ " + match.getSnapshot(player.getUniqueId()).getSnapshotId());
 
 				player.setMaximumNoDamageTicks(19); // Double checking the damage ticks.
-				((CraftPlayer)player).getHandle().setKnockback(normalProfle);
 
 				// NameTag start
 				// TODO: make sure too remove nametag after end

@@ -1,6 +1,7 @@
 package me.chris.eruption.util.runnable;
 
 import lombok.RequiredArgsConstructor;
+import me.chris.eruption.kit.Flag;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
@@ -19,7 +20,7 @@ public class MatchResetRunnable extends BukkitRunnable {
     public void run() {
         int count = 0;
 
-        if (this.match.getKit().isBuild()) {
+        if (this.match.getKit().getFlag().equals(Flag.BUILD)) {
             for (Location location : this.match.getPlacedBlockLocations()) {
                 if (++count <= 15) {
                     location.getBlock().setType(Material.AIR);

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -32,35 +31,16 @@ public class Kit {
 
     private boolean enabled;
     private boolean ranked;
-    private boolean combo;
-    private boolean sumo;
-    private boolean build;
-    private boolean spleef;
-    private boolean nodebuff;
+    private int queueMenu = 0;
+
+    private Flag flag = Flag.DEFAULT;
 
     public void applyToPlayer(Player player) {
         player.getInventory().setContents(contents);
         player.getInventory().setArmorContents(armor);
         player.updateInventory();
-        //profile.sendMessage(ChatColor.GREEN + "Giving you the default kit.");
     }
 
-    public String getDisplayName() {
-        switch (name.toLowerCase()) {
-            case "nodebuff":
-                return ChatColor.translateAlternateColorCodes('&', "&dNoDebuff");
-            case "builduhc":
-                return ChatColor.translateAlternateColorCodes('&', "&cBuildUHC");
-            case "combo":
-                return ChatColor.translateAlternateColorCodes('&', "&6Combo");
-            case "mcsg":
-                return ChatColor.translateAlternateColorCodes('&', "&bSG");
-            case "sumo":
-                return ChatColor.translateAlternateColorCodes('&', "&3Sumo");
-            default:
-                return ChatColor.translateAlternateColorCodes('&', "&" + displayColor + name);
-        }
-    }
 
     public void whitelistArena(String arena) {
         if (!this.arenaWhiteList.remove(arena)) {

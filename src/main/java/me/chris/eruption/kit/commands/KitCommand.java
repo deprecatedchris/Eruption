@@ -1,6 +1,7 @@
 package me.chris.eruption.kit.commands;
 
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.kit.Flag;
 import me.chris.eruption.setup.arena.Arena;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.util.random.ItemUtil;
@@ -12,6 +13,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class KitCommand extends Command {
     private static final String NO_KIT = ChatColor.RED + "That kit doesn't exist!";
@@ -71,44 +75,49 @@ public class KitCommand extends Command {
                     sender.sendMessage(KitCommand.NO_KIT);
                 }
                 break;
-            case "combo":
+            case "flag":
                 if (kit != null) {
-                    kit.setCombo(!kit.isCombo());
-                    sender.sendMessage(
-                            kit.isCombo() ? ChatColor.GREEN + "Successfully enabled combo mode for kit " + args[1] + "."
-                                    : ChatColor.RED + "Successfully disabled combo mode for kit " + args[1] + ".");
+                    if (args.length < 3) {
+                        sender.sendMessage(this.usageMessage);
+                    }
+                    if (args.length == 3) {
+                        final String flagString = args[2];
+
+                        try {
+                            final Flag flag = Flag.valueOf(flagString);
+
+                            kit.setFlag(flag);
+
+                            sender.sendMessage(ChatColor.GREEN + "Updated the flag to " + flag.name());
+                        } catch (Exception ignored) {
+                            sender.sendMessage(ChatColor.RED + "Invalid flag, here're some below:");
+                            sender.sendMessage(ChatColor.GREEN + Arrays.stream(Flag.values()).map(Flag::name).collect(Collectors.joining(ChatColor.WHITE + ", " + ChatColor.GREEN)));
+                        }
+                    }
                 } else {
-                    sender.sendMessage(KitCommand.NO_KIT);
+                    sender.sendMessage(NO_KIT);
                 }
                 break;
-            case "sumo":
+            case "queue":
                 if (kit != null) {
-                    kit.setSumo(!kit.isSumo());
-                    sender.sendMessage(
-                            kit.isSumo() ? ChatColor.GREEN + "Successfully enabled sumo mode for kit " + args[1] + "."
-                                    : ChatColor.RED + "Successfully disabled sumo mode for kit " + args[1] + ".");
+                    if (args.length < 3) {
+                        sender.sendMessage(this.usageMessage);
+                        return true;
+                    }
+                    if (args.length == 3) {
+                        final String flagString = args[2];
+
+                        try {
+                            final int integer = Integer.parseInt(flagString);
+                            kit.setQueueMenu(integer);
+
+                            sender.sendMessage(ChatColor.GREEN + "Updated the queue pos to " + integer);
+                        } catch (Exception ignored) {
+                            sender.sendMessage(ChatColor.RED + "Invalid int");
+                        }
+                    }
                 } else {
-                    sender.sendMessage(KitCommand.NO_KIT);
-                }
-                break;
-            case "build":
-                if (kit != null) {
-                    kit.setBuild(!kit.isBuild());
-                    sender.sendMessage(
-                            kit.isBuild() ? ChatColor.GREEN + "Successfully enabled build mode for kit " + args[1] + "."
-                                    : ChatColor.RED + "Successfully disabled build mode for kit " + args[1] + ".");
-                } else {
-                    sender.sendMessage(KitCommand.NO_KIT);
-                }
-                break;
-            case "spleef":
-                if (kit != null) {
-                    kit.setSpleef(!kit.isSpleef());
-                    sender.sendMessage(
-                            kit.isSpleef() ? ChatColor.GREEN + "Successfully enabled spleef mode for kit " + args[1] + "."
-                                    : ChatColor.RED + "Successfully disabled spleef mode for kit " + args[1] + ".");
-                } else {
-                    sender.sendMessage(KitCommand.NO_KIT);
+                    sender.sendMessage(NO_KIT);
                 }
                 break;
             case "ranked":

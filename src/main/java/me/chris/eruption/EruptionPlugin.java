@@ -25,6 +25,7 @@ import me.chris.eruption.leaderboards.commands.StatsCommand;
 import me.chris.eruption.party.commands.PartyCommand;
 import me.chris.eruption.profile.commands.*;
 import me.chris.eruption.profile.commands.donator.FlyCommand;
+import me.chris.eruption.util.random.Style;
 import me.chris.eruption.util.runnable.ExpBarRunnable;
 import me.chris.eruption.util.runnable.SaveDataRunnable;
 import me.chris.eruption.settings.commands.SettingsCommand;
@@ -52,7 +53,7 @@ import me.chris.eruption.profile.commands.time.DayCommand;
 import me.chris.eruption.profile.commands.time.NightCommand;
 import me.chris.eruption.setup.WarpCommand;
 import me.chris.eruption.util.config.Config;
-import me.chris.eruption.util.handler.CustomMovementListener;
+import me.chris.eruption.util.CustomMovementListener;
 import me.chris.eruption.util.database.Mongo;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.util.random.User;
@@ -63,6 +64,8 @@ import me.chris.eruption.util.timer.TimerManager;
 import me.chris.eruption.util.timer.impl.EnderpearlTimer;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Getter
 public class EruptionPlugin extends JavaPlugin {
@@ -152,17 +155,15 @@ public class EruptionPlugin extends JavaPlugin {
                 new StatusEventCommand(),
                 new HostCommand(),
                 new EventManagerCommand(),
-                new AcceptCommand(),
                 new ArenaCommand(),
                 new NightCommand(),
                 new FlyCommand(),
                 new PartyCommand(),
-                new PingCommand(),
-                new PracticeCommand(),
                 new DuelCommand(),
                 new SpectateCommand(),
                 new DayCommand(),
                 new KitCommand(),
+                new AcceptCommand(),
                 new EventSpectateCommand(),
                 new EruptionCommand(),
                 new InvCommand(),
@@ -228,6 +229,11 @@ public class EruptionPlugin extends JavaPlugin {
 
     }
 
+
+
+    public void logConsole(String message) {
+        this.getServer().getConsoleSender().sendMessage(Style.translate(message));
+    }
 
 
     /**

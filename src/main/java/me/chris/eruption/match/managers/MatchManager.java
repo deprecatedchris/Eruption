@@ -200,14 +200,14 @@ public class MatchManager {
 
 		if (remaining != 0) {
 			Set<Item> items = new HashSet<>();
-			for (ItemStack item : player.getInventory().getContents()) {
-				if (item != null && item.getType() != Material.AIR) {
-					items.add(player.getWorld().dropItemNaturally(player.getLocation(), item, player));
+			for (ItemStack inventory : player.getInventory().getContents()) {
+				if (inventory != null && inventory.getType() != Material.AIR) {
+					items.add(player.getWorld().dropItemNaturally(player.getLocation(), inventory));
 				}
 			}
-			for (ItemStack item : player.getInventory().getArmorContents()) {
-				if (item != null && item.getType() != Material.AIR) {
-					items.add(player.getWorld().dropItemNaturally(player.getLocation(), item, player));
+			for (ItemStack armor : player.getInventory().getArmorContents()) {
+				if (armor != null && armor.getType() != Material.AIR) {
+					items.add(player.getWorld().dropItemNaturally(player.getLocation(), armor));
 				}
 			}
 			this.plugin.getMatchManager().addDroppedItems(match, items);

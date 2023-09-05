@@ -1,6 +1,7 @@
 package me.chris.eruption.profile.listeners;
 
 import me.chris.eruption.events.types.sumo.SumoEvent;
+import me.chris.eruption.kit.Flag;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -35,7 +36,17 @@ public class EntityListener implements Listener {
                 case FIGHTING:
                     Match match = this.plugin.getMatchManager().getMatch(playerData);
                     if (match.getMatchState() != MatchState.FIGHTING) {
-                        e.setCancelled(true);
+                        if (match.getKit().getName().equals("Boxing")) {
+                            if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
+                                e.setCancelled(true);
+                                return;
+                            }
+
+                            if (!e.getCause().equals(EntityDamageEvent.DamageCause.CUSTOM)) {
+                                e.setDamage(0.0D);
+                            }
+                            return;
+                        }
                     }
                     if (e.getCause() == EntityDamageEvent.DamageCause.VOID) {
                         this.plugin.getMatchManager().removeFighter(player, playerData, true);
@@ -167,11 +178,25 @@ public class EntityListener implements Listener {
             return;
         }
 
-        if (match.getKit().isSpleef() || match.getKit().isSumo()) {
+        if (match.getKit().getFlag().equals(Flag.PARKOUR)) {
+            e.setCancelled(true);
+            return;
+        }
+
+        if (match.getKit().getName().equals("Sumo")) {
+            e.setDamage(0.0D);
+            return;
+        }
+
+        if (match.getKit().getFlag().equals(Flag.SPLEEF) || match.getKit().getFlag().equals(Flag.SUMO)) {
             e.setDamage(0.0D);
         }
 
         if (e.getDamager() instanceof Player) {
+            if (!match.getMatchState().equals(MatchState.FIGHTING)) {
+                return;
+            }
+
             damagerData.setCombo(damagerData.getCombo() + 1);
             damagerData.setHits(damagerData.getHits() + 1);
 
@@ -181,7 +206,15 @@ public class EntityListener implements Listener {
 
             entityData.setCombo(0);
 
-            if (match.getKit().isSpleef()) {
+            if (match.getKit().getName().contains("Boxing")) {
+                if (damagerData.getHits() >= 100) {
+                    this.plugin.getMatchManager().removeFighter(entity, entityData, false);
+                }
+
+                e.setDamage(0.0D);
+            } else if (match.getKit().getFlag().equals(Flag.STICK_FIGHT)) {
+                e.setDamage(0.0D);
+            } else if (match.getKit().getFlag().equals(Flag.SPLEEF)) {
                 e.setCancelled(true);
             }
         } else if (e.getDamager() instanceof Arrow) {

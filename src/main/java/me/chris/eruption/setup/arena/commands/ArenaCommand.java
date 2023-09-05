@@ -35,17 +35,17 @@ public class ArenaCommand extends Command {
             sender.sendMessage(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------------------------------");
             sender.sendMessage(Style.translate( "&cEruption &7» Arena Help"));
             sender.sendMessage(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------------------------------");
-            sender.sendMessage(Style.translate("&c» &7/arena create - Create an Arena"));
-            sender.sendMessage(Style.translate("&c» &7/arena delete - Delete an Arena"));
-            sender.sendMessage(Style.translate("&c» &7/arena a - Setup first arena spawn point"));
-            sender.sendMessage(Style.translate("&c» &7/arena b - Setup second arena spawn point"));
-            sender.sendMessage(Style.translate("&c» &7/arena min - Setup min arena loc"));
-            sender.sendMessage(Style.translate("&c» &7/arena max - Setup max arena loc"));
-            sender.sendMessage(Style.translate("&c» &7/arena enable - Enable an Arena"));
-            sender.sendMessage(Style.translate("&c» &7/arena disable - Disable an Arena"));
-            sender.sendMessage(Style.translate("&c» &7/arena generate - Generate an Arena"));
-            sender.sendMessage(Style.translate("&c» &7/arena save save - Generate an Arena"));
-            sender.sendMessage(Style.translate("&c» &7/arena manage manage - Generate an Arena"));
+            sender.sendMessage(Style.translate("&c* &7/arena create - Create an Arena"));
+            sender.sendMessage(Style.translate("&c* &7/arena delete - Delete an Arena"));
+            sender.sendMessage(Style.translate("&c* &7/arena a - Setup first arena spawn point"));
+            sender.sendMessage(Style.translate("&c* &7/arena b - Setup second arena spawn point"));
+            sender.sendMessage(Style.translate("&c* &7/arena min - Setup min arena loc"));
+            sender.sendMessage(Style.translate("&c* &7/arena max - Setup max arena loc"));
+            sender.sendMessage(Style.translate("&c* &7/arena enable - Enable an Arena"));
+            sender.sendMessage(Style.translate("&c* &7/arena disable - Disable an Arena"));
+            sender.sendMessage(Style.translate("&c* &7/arena generate - Generate an Arena"));
+            sender.sendMessage(Style.translate("&c* &7/arena save save - Generate an Arena"));
+            sender.sendMessage(Style.translate("&c* &7/arena manage manage - Generate an Arena"));
             sender.sendMessage(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "---------------------------------------------------");
 
             return true;

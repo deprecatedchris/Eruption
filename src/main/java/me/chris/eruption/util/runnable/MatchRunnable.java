@@ -8,6 +8,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
 import me.chris.eruption.match.Match;
+import me.chris.eruption.kit.Flag;
 import me.chris.eruption.match.MatchState;
 
 @RequiredArgsConstructor
@@ -56,7 +57,7 @@ public class MatchRunnable extends BukkitRunnable {
 					this.match.spectatorPlayers().forEach(this.plugin.getMatchManager()::removeSpectator);
 					this.match.getPlacedBlockLocations().forEach(location -> location.getBlock().setType(Material.AIR));
 					this.match.getOriginalBlockChanges().forEach((blockState) -> blockState.getLocation().getBlock().setType(blockState.getType()));
-					if (this.match.getKit().isBuild() || this.match.getKit().isSpleef()) {
+					if (this.match.getKit().getFlag().equals(Flag.BUILD) || this.match.getKit().getFlag().equals(Flag.SPLEEF)) {
 						this.match.getArena().addAvailableArena(this.match.getStandaloneArena());
 						this.plugin.getArenaManager().removeArenaMatchUUID(this.match.getStandaloneArena());
 					}

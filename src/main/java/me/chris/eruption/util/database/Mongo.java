@@ -23,17 +23,13 @@ public class Mongo {
     private MongoCollection<Document> players;
 
     public Mongo() {
-        if (instance != null) {
-            throw new RuntimeException("The database database has already been instantiated.");
-        }
-
         instance = this;
-        Plugin plugin = EruptionPlugin.getPlugin(EruptionPlugin.class);
         FileConfiguration config = EruptionPlugin.getInstance().getMainConfig().getConfig();
-
-        this.client = new MongoClient(new MongoClientURI(config.getString("Mongo.URL")));
-        this.database = this.client.getDatabase(config.getString("Mongo.Database"));
+        this.client = new MongoClient(new MongoClientURI(EruptionPlugin.getInstance().getConfig().getString("mongodb.url")));
+        this.database = client.getDatabase(EruptionPlugin.getInstance().getConfig().getString("mongodb.database"));
         this.players = this.database.getCollection("players");
+
+        EruptionPlugin.getInstance().logConsole("&a[Mongo] &eSetup the MongoDB Database!");
     }
 
 }

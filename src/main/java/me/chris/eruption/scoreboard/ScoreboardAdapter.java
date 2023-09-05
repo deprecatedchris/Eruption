@@ -40,7 +40,7 @@ public class ScoreboardAdapter implements BoardAdapter {
 
     @Override
     public String getTitle(Player player) {
-        return ChatColor.RED.toString() + "Shinto " + ChatColor.GRAY + "§7(Practice)";
+        return Style.translate("&c&lWay&6&lBack &7[Beta])");
     }
 
     @Override
@@ -85,18 +85,13 @@ public class ScoreboardAdapter implements BoardAdapter {
 
 
         if (playerData.getPlayerState() != PlayerState.EVENT) {
-            strings.add(ChatColor.WHITE.toString() + "Online§7: " + ChatColor.RED + this.plugin.getServer().getOnlinePlayers().size());
-            if (settings.isAltScoreboard()) {
-                strings.add(ChatColor.WHITE.toString() + "Queueing§7: " + ChatColor.RED + this.plugin.getQueueManager().getQueueSize());
-                strings.add(ChatColor.WHITE.toString() + "Fighting§7: " + ChatColor.RED + this.plugin.getMatchManager().getFighters());
-            } else {
-                strings.add(ChatColor.WHITE.toString() + "In Queue§7: " + ChatColor.RED + this.plugin.getQueueManager().getQueueSize());
-                strings.add(ChatColor.WHITE.toString() + "In Fights§7: " + ChatColor.RED + this.plugin.getMatchManager().getFighters());
+            strings.add(ChatColor.WHITE.toString() + "Online&7: " + ChatColor.RED + this.plugin.getServer().getOnlinePlayers().size());
+                strings.add(ChatColor.WHITE.toString() + "In Fights&7: " + ChatColor.RED + this.plugin.getMatchManager().getFighters());
             }
             if (System.currentTimeMillis() < this.plugin.getEventManager().getCooldown()) {
-                strings.add(ChatColor.WHITE.toString() + ChatColor.BOLD + "Cooldown§7: " + ChatColor.RED + TimeUtil.convertToFormat(this.plugin.getEventManager().getCooldown()));
+                strings.add(ChatColor.WHITE.toString() + ChatColor.BOLD + "Cooldown&7: " + ChatColor.RED + TimeUtil.convertToFormat(this.plugin.getEventManager().getCooldown()));
             }
-        }
+        
 
         if (queuing) {
             QueueEntry queueEntry = party == null ? this.plugin.getQueueManager().getQueueEntry(player.getUniqueId()) : this.plugin.getQueueManager().getQueueEntry(party.getLeader());
@@ -130,15 +125,15 @@ public class ScoreboardAdapter implements BoardAdapter {
                 }
 
                 String eloRangeString = "" + Math.max(elo - eloRange / 2, 0) + " -> " + Math.max(elo + eloRange / 2, 0) + "";
-                strings.add(ChatColor.WHITE + "Range§7: §f" + ChatColor.GOLD + eloRangeString);
+                strings.add(ChatColor.WHITE + "Range&7: " + ChatColor.GOLD + eloRangeString);
             }
         }
 
         if (party != null) {
             strings.add(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "--------------");
-            strings.add(ChatColor.RED.toString() + ChatColor.BOLD + "Party§7: ");
+            strings.add(ChatColor.RED.toString() + ChatColor.BOLD + "Party&7: ");
             strings.add(ChatColor.WHITE + "* " + ChatColor.RED + this.plugin.getServer().getPlayer(party.getLeader()).getName());
-            strings.add(ChatColor.WHITE + "Members§7: " + ChatColor.RED + party.getMembers().size());
+            strings.add(ChatColor.WHITE + "Members&7: " + ChatColor.RED + party.getMembers().size());
         }
 
         if (event != null) {
@@ -148,18 +143,18 @@ public class ScoreboardAdapter implements BoardAdapter {
                 SumoEvent sumoEvent = (SumoEvent) event;
 
                 int playingSumo = sumoEvent.getByState(SumoPlayer.SumoState.WAITING).size() + sumoEvent.getByState(SumoPlayer.SumoState.FIGHTING).size() + sumoEvent.getByState(SumoPlayer.SumoState.PREPARING).size();
-                strings.add(ChatColor.WHITE + "Players§7: §b" + playingSumo + "/" + event.getLimit());
+                strings.add(ChatColor.WHITE + "Players&7: &c" + playingSumo + "/" + event.getLimit());
 
 
                 int countdown = sumoEvent.getCountdownTask().getTimeUntilStart();
 
                 if (countdown > 0 && countdown <= 60) {
-                    strings.add(ChatColor.WHITE + "Starting§7: §b" + countdown + "s");
+                    strings.add(ChatColor.WHITE + "Starting&7: &c" + countdown + "s");
                 }
 
                 if (sumoEvent.getPlayer(player) != null) {
                     SumoPlayer sumoPlayer = sumoEvent.getPlayer(player);
-                    strings.add(ChatColor.WHITE + "State§7: §b" + StringUtils.capitalize(sumoPlayer.getState().name().toLowerCase()));
+                    strings.add(ChatColor.WHITE + "State&7: &c" + StringUtils.capitalize(sumoPlayer.getState().name().toLowerCase()));
                 }
 
 
@@ -177,13 +172,13 @@ public class ScoreboardAdapter implements BoardAdapter {
                 OITCEvent oitcEvent = (OITCEvent) event;
 
                 int playingOITC = oitcEvent.getPlayers().size();
-                strings.add(ChatColor.RED.toString() + "» " + ChatColor.WHITE + "Players§7: §b" + ChatColor.GOLD + playingOITC + "/" + event.getLimit());
+                strings.add(ChatColor.RED.toString() + "» " + ChatColor.WHITE + "Players&7: &c" + ChatColor.GOLD + playingOITC + "/" + event.getLimit());
 
 
                 int countdown = oitcEvent.getCountdownTask().getTimeUntilStart();
 
                 if (countdown > 0 && countdown <= 60) {
-                    strings.add(ChatColor.WHITE + "Starting§7: §B" + ChatColor.GRAY + countdown + "s");
+                    strings.add(ChatColor.WHITE + "Starting&7: &c" + ChatColor.GRAY + countdown + "s");
                 }
 
                 if (oitcEvent.getPlayer(player) != null) {
@@ -193,8 +188,8 @@ public class ScoreboardAdapter implements BoardAdapter {
 
                         List<OITCPlayer> sortedList = oitcEvent.sortedScores();
 
-                        strings.add(ChatColor.WHITE + "Kills§7: §b" + ChatColor.GRAY + oitcPlayer.getScore());
-                        strings.add(ChatColor.WHITE + "Lives§7: §b" + ChatColor.GRAY + oitcPlayer.getLives());
+                        strings.add(ChatColor.WHITE + "Kills&7: &c" + ChatColor.GRAY + oitcPlayer.getScore());
+                        strings.add(ChatColor.WHITE + "Lives&7: &c" + ChatColor.GRAY + oitcPlayer.getLives());
 
 
                         if (sortedList.size() >= 2) {
@@ -205,18 +200,18 @@ public class ScoreboardAdapter implements BoardAdapter {
                             Player second = Bukkit.getPlayer(sortedList.get(1).getUuid());
 
                             if (first != null) {
-                                strings.add(ChatColor.BLUE + "#1 " + ChatColor.WHITE.toString() + first.getName() + "§7: §a" + sortedList.get(0).getScore());
+                                strings.add(ChatColor.BLUE + "#1 " + ChatColor.WHITE.toString() + first.getName() + "&7: &a" + sortedList.get(0).getScore());
                             }
 
                             if (second != null) {
-                                strings.add(ChatColor.GOLD + "#2 " + ChatColor.WHITE.toString() + second.getName() + "§7: §a" + sortedList.get(1).getScore());
+                                strings.add(ChatColor.GOLD + "#2 " + ChatColor.WHITE.toString() + second.getName() + "&7: &a" + sortedList.get(1).getScore());
                             }
 
                             if (sortedList.size() >= 3) {
                                 Player third = Bukkit.getPlayer(sortedList.get(2).getUuid());
 
                                 if (third != null) {
-                                    strings.add(ChatColor.YELLOW + "#3 " + ChatColor.WHITE.toString() + ChatColor.WHITE + third.getName() + "§7: §a" + sortedList.get(2).getScore());
+                                    strings.add(ChatColor.YELLOW + "#3 " + ChatColor.WHITE.toString() + ChatColor.WHITE + third.getName() + "&7: &a" + sortedList.get(2).getScore());
                                 }
                             }
                         }
@@ -230,20 +225,20 @@ public class ScoreboardAdapter implements BoardAdapter {
             for (Tournament tournament : this.plugin.getTournamentManager().getTournaments().values()) {
                 strings.add("");
                 strings.add(ChatColor.GRAY.toString() + ChatColor.BOLD + "Tournament " + ChatColor.GRAY + "(" + tournament.getTeamSize() + "v" + tournament.getTeamSize() + ")");
-                strings.add(ChatColor.WHITE + "Ladder§7: §b" + ChatColor.GRAY + tournament.getKitName());
-                strings.add(ChatColor.WHITE + "Stage§7: §b" + "Round #" + ChatColor.GRAY + tournament.getCurrentRound());
-                strings.add(ChatColor.WHITE + "Players§7: §b" + tournament.getPlayers().size() + "/" + tournament.getSize());
+                strings.add(ChatColor.WHITE + "Ladder&7: &c" + ChatColor.GRAY + tournament.getKitName());
+                strings.add(ChatColor.WHITE + "Stage&7: &c" + "Round #" + ChatColor.GRAY + tournament.getCurrentRound());
+                strings.add(ChatColor.WHITE + "Players&7: &c" + tournament.getPlayers().size() + "/" + tournament.getSize());
 
                 int countdown = tournament.getCountdown();
 
                 if (countdown > 0 && countdown <= 30) {
-                    strings.add(ChatColor.WHITE + "Starting§7: §b" + ChatColor.GRAY + countdown + "s");
+                    strings.add(ChatColor.WHITE + "Starting&7: &c" + ChatColor.GRAY + countdown + "s");
                 }
             }
 
         }
         strings.add("");
-        strings.add(ChatColor.GRAY.toString() + ChatColor.ITALIC + "shinto.online");
+        strings.add(ChatColor.GRAY.toString() + "www.wayback.dev");
         strings.add(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "-------------------");
 
         return strings;
@@ -331,15 +326,15 @@ public class ScoreboardAdapter implements BoardAdapter {
             if (match.getMatchState() == MatchState.STARTING || match.getMatchState() == MatchState.FIGHTING) {
                 strings.add(ChatColor.WHITE.toString() + "Opponent: " + ChatColor.RED + opponentPlayer.getName());
                 if (settings.isAltScoreboard()) {
-                    strings.add(ChatColor.WHITE.toString()  + "Duration: §b" + ChatColor.RED + match.getDuration());
+                    strings.add(ChatColor.WHITE.toString()  + "Duration: &c" + ChatColor.RED + match.getDuration());
                     strings.add("");
                     strings.add(ChatColor.WHITE.toString() + "Your Ping: " + ChatColor.GREEN + PlayerUtil.getPing(player) + " ms");
                     strings.add(ChatColor.WHITE.toString() + "Enemy's Ping: " + ChatColor.RED + PlayerUtil.getPing(opponentPlayer) + " ms");
                 } else {
-                strings.add(ChatColor.WHITE.toString()  + "Duration: §b" + ChatColor.RED + match.getDuration());
+                strings.add(ChatColor.WHITE.toString()  + "Duration: &c" + ChatColor.RED + match.getDuration());
                 }
             } else {
-                strings.add("§fMatch Ended");
+                strings.add("&c&lMatch Ended");
             }
         } else if (match.isParty() && !match.isFFA()) {
             PlayerData playerData = this.plugin.getPlayerManager().getPlayerData(player.getUniqueId());
@@ -350,16 +345,16 @@ public class ScoreboardAdapter implements BoardAdapter {
 
             strings.add(ChatColor.WHITE.toString() + ChatColor.BOLD + "Your Team: " + ChatColor.GREEN + playerTeam.getAlivePlayers().size() + " alive");
             strings.add(ChatColor.WHITE.toString() + ChatColor.BOLD + "Opponent(s): " + ChatColor.RED + opposingTeam.getAlivePlayers().size() + " alive");
-            strings.add(ChatColor.WHITE.toString() + "Time: §f" + ChatColor.RED + match.getDuration());
+            strings.add(ChatColor.WHITE.toString() + "Time: &f" + ChatColor.RED + match.getDuration());
 
         } else if (match.isFFA()) {
             int alive = (match.getTeams().get(0).getAlivePlayers().size() - 1);
             strings.add(ChatColor.WHITE.toString() + ChatColor.BOLD + "Remaining: " + ChatColor.RED + (match.getTeams().get(0).getAlivePlayers().size() - 1) + " profile" + (alive == 1 ? "" : "s"));
-            strings.add(ChatColor.WHITE.toString() + "Time: §f" + ChatColor.RED + match.getDuration());
+            strings.add(ChatColor.WHITE.toString() + "Time: &f" + ChatColor.RED + match.getDuration());
         }
 
         strings.add("");
-        strings.add(ChatColor.GRAY.toString() + "shinto.online");
+        strings.add(ChatColor.GRAY.toString() + "www.wayback.dev");
         strings.add(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "-------------------");
 
         return strings;

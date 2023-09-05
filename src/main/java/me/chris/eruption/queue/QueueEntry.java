@@ -11,6 +11,7 @@ public class QueueEntry {
 	private final String kitName;
 
 	private final int elo;
+	private final int ping;
 
 	private final boolean party;
 

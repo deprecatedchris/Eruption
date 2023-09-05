@@ -31,11 +31,11 @@ public class SettingsMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
 
-        buttons.put(4, new SettingsMenu.SettingsButton("Toggle duel requests", Material.DIAMOND_SWORD, 0, Arrays.asList("", "&9Toggles duel requests", ""), "toggleduelrequests", "duelRequests"));
-        buttons.put(12, new SettingsMenu.SettingsButton("Toggle scoreboard style", Material.PAINTING, 0, Arrays.asList("", "&9Toggles between scoreboard styles", ""), "togglestyle", "altScoreboard"));
-        buttons.put(13, new SettingsMenu.SettingsButton("Toggle scoreboard", Material.STRING, 0, Arrays.asList("", "&9Toggles side scoreboard in-match", ""), "togglescoreboard", "scoreboardToggled"));
-        buttons.put(14, new SettingsMenu.SettingsButton("Game Spectators", Material.ENDER_PEARL, 0, Arrays.asList("", "&9Disable to disallow match spectators", ""), "togglespectators", "spectatorsAllowed"));
-        buttons.put(22, new SettingsMenu.SettingsButton("Toggle profile visibility", Material.EYE_OF_ENDER, 0, Arrays.asList("", "&9Toggles profile spawn visibility", ""), "toggleplayervisibility", "playerVisibility"));
+        buttons.put(20, new SettingsMenu.SettingsButton("Toggle duel requests", Material.DIAMOND_SWORD, 0, Arrays.asList("", "&9Toggles duel requests", ""), "toggleduelrequests", "duelRequests"));
+        buttons.put(22, new SettingsMenu.SettingsButton("Toggle ping on scoreboard", Material.PAINTING, 0, Arrays.asList("", "&9Toggles between scoreboard styles", ""), "togglestyle", "altScoreboard"));
+        buttons.put(24, new SettingsMenu.SettingsButton("Toggle scoreboard", Material.STRING, 0, Arrays.asList("", "&9Toggles side scoreboard in-match", ""), "togglescoreboard", "scoreboardToggled"));
+        buttons.put(38, new SettingsMenu.SettingsButton("Game Spectators", Material.ENDER_PEARL, 0, Arrays.asList("", "&9Disable to disallow match spectators", ""), "togglespectators", "spectatorsAllowed"));
+        buttons.put(40, new SettingsMenu.SettingsButton("Toggle profile visibility", Material.EYE_OF_ENDER, 0, Arrays.asList("", "&9Toggles profile spawn visibility", ""), "toggleplayervisibility", "playerVisibility"));
 
         return buttons;
     }
@@ -59,8 +59,8 @@ public class SettingsMenu extends Menu {
                 lines.add((settings.isDuelRequests() ? "&a&l■ " : "&8&l■ ") +  "&fAllow Duels");
                 lines.add((!settings.isDuelRequests() ? "&a&l■ " : "&8&l■ ") + "&fDon't Allow Duels");
             } else if (type.equalsIgnoreCase("altScoreboard")) {
-                lines.add((settings.isAltScoreboard() ? "&a&l■ " : "&8&l■ ") +  "&fDefault Style");
-                lines.add((!settings.isAltScoreboard() ? "&a&l■ " : "&8&l■ ") + "&fAlternative Style");
+                lines.add((settings.isAltScoreboard() ? "&a&l■ " : "&8&l■ ") +  "&fHide ping");
+                lines.add((!settings.isAltScoreboard() ? "&a&l■ " : "&8&l■ ") + "&fShow ping");
             } else if (type.equalsIgnoreCase("scoreboardToggled")) {
                 lines.add((settings.isScoreboardToggled() ? "&a&l■ " : "&8&l■ ") +  "&fShow scoreboard");
                 lines.add((!settings.isScoreboardToggled() ? "&a&l■ " : "&8&l■ ") + "&fHide scoreboard");

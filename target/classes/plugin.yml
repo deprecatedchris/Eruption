@@ -1,0 +1,9 @@
+main: me.chris.eruption.EruptionPlugin
+name: Eruption
+version: Dev
+authors: ["DevEmilio", "Joeleoli", "Chris"]
+depend:
+  - ProtocolLib
+commands:
+  kithelp:
+  ping:

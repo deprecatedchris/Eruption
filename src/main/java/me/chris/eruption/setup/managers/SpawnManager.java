@@ -18,10 +18,6 @@ public class SpawnManager {
     private LocationUtil spawnMin;
     private LocationUtil spawnMax;
 
-    private LocationUtil editorLocation;
-    private LocationUtil editorMin;
-    private LocationUtil editorMax;
-
     private LocationUtil sumoLocation;
     private LocationUtil sumoFirst;
     private LocationUtil sumoSecond;

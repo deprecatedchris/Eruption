@@ -2,6 +2,7 @@ package me.chris.eruption.kit.managers;
 
 import lombok.Getter;
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.kit.Flag;
 import me.chris.eruption.util.config.Config;
 import me.chris.eruption.kit.Kit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -10,22 +11,18 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
+@Getter
 public class KitManager {
 
 	private final EruptionPlugin plugin = EruptionPlugin.getInstance();
-
 	private final Map<String, Kit> kits = new HashMap<>();
-
-	@Getter
 	private final List<String> rankedKits = new ArrayList<>();
-
 	private final Config config = new Config("kits", this.plugin);
 
 	public KitManager() {
 		this.loadKits();
 		this.kits.entrySet().stream()
-				.filter(kit -> kit.getValue().isEnabled())
-				.filter(kit -> kit.getValue().isRanked())
+				.filter(kit -> kit.getValue().isEnabled() && kit.getValue().isRanked())
 				.forEach(kit -> this.rankedKits.add(kit.getKey()));
 	}
 
@@ -39,38 +36,21 @@ public class KitManager {
 		}
 
 		kitSection.getKeys(false).forEach(name -> {
-			String displayColor;
-			if (kitSection.contains("displayColor")) {
-				displayColor = kitSection.getString("displayColor");
-			} else {
-				displayColor = "a";
-			}
-
-			String displayName;
-			if (kitSection.contains("displayName")) {
-				displayName = kitSection.getString("displayName");
-			} else {
-				displayName = name;
-			}
-
 			ItemStack[] contents = ((List<ItemStack>) kitSection.get(name + ".contents")).toArray(new ItemStack[0]);
 			ItemStack[] armor = ((List<ItemStack>) kitSection.get(name + ".armor")).toArray(new ItemStack[0]);
 			ItemStack[] kitEditContents = ((List<ItemStack>) kitSection.get(name + ".kitEditContents")).toArray(new ItemStack[0]);
 
+			ItemStack icon = (ItemStack) kitSection.get(name + ".icon");
+
 			List<String> excludedArenas = kitSection.getStringList(name + ".excludedArenas");
 			List<String> arenaWhiteList = kitSection.getStringList(name + ".arenaWhitelist");
 
-			ItemStack icon = (ItemStack) kitSection.get(name + ".icon");
 			boolean enabled = kitSection.getBoolean(name + ".enabled");
 			boolean ranked = kitSection.getBoolean(name + ".ranked");
-			boolean combo = kitSection.getBoolean(name + ".combo");
-			boolean sumo = kitSection.getBoolean(name + ".sumo");
-			boolean build = kitSection.getBoolean(name + ".build");
-			boolean spleef = kitSection.getBoolean(name + ".spleef");
-			boolean nodebuff = kitSection.getBoolean(name + ".nodebuff");
+			final int q = kitSection.getInt(name + ".queue", 0);
+			final Flag kitFlag = Flag.valueOf(kitSection.getString(name + ".flag", "DEFAULT"));
 
-			Kit kit = new Kit(name, displayColor, displayName, contents, armor, kitEditContents, icon, null, excludedArenas, arenaWhiteList, enabled,
-					ranked, combo, sumo, build, spleef, nodebuff);
+			Kit kit = new Kit(name, contents, armor, kitEditContents, icon, excludedArenas, arenaWhiteList, enabled, ranked, q, kitFlag);
 			this.kits.put(name, kit);
 		});
 	}
@@ -91,10 +71,8 @@ public class KitManager {
 				fileConfig.set("kits." + kitName + ".arenaWhitelist", kit.getArenaWhiteList());
 				fileConfig.set("kits." + kitName + ".enabled", kit.isEnabled());
 				fileConfig.set("kits." + kitName + ".ranked", kit.isRanked());
-				fileConfig.set("kits." + kitName + ".combo", kit.isCombo());
-				fileConfig.set("kits." + kitName + ".sumo", kit.isSumo());
-				fileConfig.set("kits." + kitName + ".build", kit.isBuild());
-				fileConfig.set("kits." + kitName + ".spleef", kit.isSpleef());
+				fileConfig.set("kits." + kitName + ".flag", kit.getFlag().name());
+				fileConfig.set("kits." + kitName + ".queue", kit.getQueueMenu());
 			}
 		});
 
@@ -106,6 +84,11 @@ public class KitManager {
 	}
 
 	public void createKit(String name) {
+		final Kit kit = new Kit(name);
+
+		kit.setEnabled(true);
+		kit.setRanked(true);
+
 		this.kits.put(name, new Kit(name));
 	}
 
