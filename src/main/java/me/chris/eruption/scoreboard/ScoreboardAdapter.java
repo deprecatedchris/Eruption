@@ -4,7 +4,7 @@ import com.bizarrealex.aether.scoreboard.Board;
 import com.bizarrealex.aether.scoreboard.BoardAdapter;
 import com.bizarrealex.aether.scoreboard.cooldown.BoardCooldown;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.settings.SettingsInfo;
+import me.chris.eruption.setting.SettingsInfo;
 import me.chris.eruption.events.types.sumo.SumoEvent;
 import me.chris.eruption.tournament.Tournament;
 import org.apache.commons.lang.StringUtils;

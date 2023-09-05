@@ -8,8 +8,6 @@ import java.util.List;
 
 public final class Style {
 
-    public static final String API_FAILED =
-            ChatColor.RED.toString() + "The API failed to retrieve your information. Try again later.";
     public static final String BLUE = ChatColor.BLUE.toString();
     public static final String AQUA = ChatColor.AQUA.toString();
     public static final String YELLOW = ChatColor.YELLOW.toString();
@@ -64,6 +62,4 @@ public final class Style {
 
         return toReturn;
     }
-
-
 }

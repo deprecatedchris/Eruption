@@ -1,18 +1,15 @@
 package me.chris.eruption.util.random;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import lombok.Data;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
 import java.util.StringJoiner;
 
-
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 public class LocationUtil {
 
@@ -94,14 +91,6 @@ public class LocationUtil {
 		return new Location(this.toBukkitWorld(), this.x, this.y, this.z, this.yaw, this.pitch);
 	}
 
-	public double getGroundDistanceTo(LocationUtil location) {
-		return Math.sqrt(Math.pow(this.x - location.x, 2) + Math.pow(this.z - location.z, 2));
-	}
-
-	public double getDistanceTo(LocationUtil location) {
-		return Math.sqrt(Math.pow(this.x - location.x, 2) + Math.pow(this.y - location.y, 2) + Math.pow(this.z - location.z, 2));
-	}
-
 	public World toBukkitWorld() {
 		if (this.world == null) {
 			return Bukkit.getServer().getWorlds().get(0);
@@ -112,11 +101,10 @@ public class LocationUtil {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof LocationUtil)) {
+		if (!(obj instanceof LocationUtil location)) {
 			return false;
 		}
 
-		LocationUtil location = (LocationUtil) obj;
 		return location.x == this.x && location.y == this.y && location.z == this.z
 				&& location.pitch == this.pitch && location.yaw == this.yaw;
 	}
@@ -132,56 +120,5 @@ public class LocationUtil {
 				.append("world", this.world)
 				.append("timestamp", this.timestamp)
 				.toString();
-	}
-	public long getTimestamp() {
-		return this.timestamp;
-	}
-
-	public String getWorld() {
-		return this.world;
-	}
-
-	public void setWorld(String world) {
-		this.world = world;
-	}
-
-	public double getX() {
-		return this.x;
-	}
-
-	public void setX(double x) {
-		this.x = x;
-	}
-
-	public double getY() {
-		return this.y;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
-
-	public double getZ() {
-		return this.z;
-	}
-
-	public void setZ(double z) {
-		this.z = z;
-	}
-
-	public float getYaw() {
-		return this.yaw;
-	}
-
-	public void setYaw( float yaw) {
-		this.yaw = yaw;
-	}
-
-	public float getPitch() {
-		return this.pitch;
-	}
-
-	public void setPitch( float pitch) {
-		this.pitch = pitch;
 	}
 }

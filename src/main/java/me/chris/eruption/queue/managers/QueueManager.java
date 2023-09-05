@@ -69,14 +69,6 @@ public class QueueManager {
 			player.sendMessage(unrankedMessage);
 		}
 		this.playerQueueTime.put(player.getUniqueId(), System.currentTimeMillis());
-
-		/**if (!this.findMatch(profile, kitName, elo, type) && type.isRanked()) {
-			profile.sendMessage(CC.SECONDARY + "Searching in ELO range " + CC.PRIMARY
-					+ (playerData.getEloRange() == -1
-					? "Unrestricted"
-					: "[" + Math.max(elo - playerData.getEloRange() / 2, 0)
-					+ " -> " + Math.max(elo + playerData.getEloRange() / 2, 0) + "]"));
-		}**/
 	}
 
 	private void giveQueueItems(Player player) {
@@ -98,10 +90,6 @@ public class QueueManager {
 				.filter(entry -> entry.getValue().getKitName().equals(ladder)).count();
 	}
 
-	public int getQueueSize() {
-		return this.queued.entrySet().size();
-	}
-
 	private boolean findMatch(Player player, String kitName, int elo, QueueType type) {
 		long queueTime = System.currentTimeMillis() - this.playerQueueTime.get(player.getUniqueId());
 
@@ -111,7 +99,6 @@ public class QueueManager {
 			this.plugin.getLogger().warning(player.getName() + "'s profile data is null");
 			return false;
 		}
-		// Increase elo range by 50 every second after 5 seconds
 
 		final QueueEntry queueEntry = this.queued.get(player.getUniqueId());
 
@@ -144,7 +131,6 @@ public class QueueManager {
 
 
 		for (UUID opponent : this.queued.keySet()) {
-			String playerFoundMatchMessage, matchedFoundMatchMessage;
 			if (opponent.equals(player.getUniqueId()))
 				continue;
 			QueueEntry opponentQueueEntry = this.queued.get(opponent);

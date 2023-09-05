@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class TeamUtil {
 
 	public static String getNames(KillableTeam team) {
-		String names = "";
+		StringBuilder names = new StringBuilder();
 
 		for (int i = 0; i < team.getPlayers().size(); i++) {
 			UUID teammateUUID = team.getPlayers().get(i);
@@ -29,10 +29,10 @@ public class TeamUtil {
 			int players = team.getPlayers().size();
 
 			if (teammate != null) {
-				names += name + (((players - 1) == i) ? "" : ((players - 2) == i) ? (players > 2 ? "," : "") + " & " : ", ");
+				names.append(name).append(((players - 1) == i) ? "" : ((players - 2) == i) ? (players > 2 ? "," : "") + " & " : ", ");
 			}
 		}
 
-		return names;
+		return names.toString();
 	}
 }

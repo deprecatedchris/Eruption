@@ -6,7 +6,7 @@ import lombok.Setter;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.kit.PlayerKit;
-import me.chris.eruption.settings.SettingsInfo;
+import me.chris.eruption.setting.SettingsInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,9 +19,6 @@ public class PlayerData {
 
     public static final int DEFAULT_ELO = 1000;
 
-    /*
-     * The maps don't need getters as they are never accessed directly.
-     */
     private final Map<String, Map<Integer, PlayerKit>> playerKits = new HashMap<>();
     private final Map<String, Integer> rankedLosses = new HashMap<>();
     private final Map<String, Integer> rankedWins = new HashMap<>();

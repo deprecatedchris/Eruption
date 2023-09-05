@@ -1,8 +1,11 @@
 package me.chris.eruption.util.random;
 
-public final class MathUtil {
+import lombok.experimental.UtilityClass;
 
-	public static String convertTicksToMinutes(int ticks) {
+@UtilityClass
+public class MathUtil {
+
+	public String convertTicksToMinutes(int ticks) {
 		long minute = (long) ticks / 1200L;
 		long second = (long) ticks / 20L - (minute * 60L);
 
@@ -20,18 +23,11 @@ public final class MathUtil {
 		return minuteString + ":" + secondString;
 	}
 
-	public static String convertToRomanNumeral(int number) {
-		switch (number) {
-			case 1:
-				return "I";
-			case 2:
-				return "II";
-		}
-
-		return null;
-	}
-
-	public static double roundToHalves(double d) {
-		return Math.round(d * 2.0D) / 2.0D;
+	public String convertToRomanNumeral(int number) {
+		return switch (number) {
+			case 1 -> "I";
+			case 2 -> "II";
+			default -> null;
+		};
 	}
 }

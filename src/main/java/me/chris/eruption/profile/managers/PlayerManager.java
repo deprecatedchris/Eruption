@@ -10,17 +10,14 @@ import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.util.config.Config;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.kit.PlayerKit;
-import me.chris.eruption.util.database.Mongo;
+import me.chris.eruption.database.DatabaseHandler;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
-import me.chris.eruption.settings.SettingsInfo;
+import me.chris.eruption.setting.SettingsInfo;
 import me.chris.eruption.util.random.InventoryUtil;
-import me.chris.eruption.util.random.ItemUtil;
 import me.chris.eruption.util.random.PlayerUtil;
 import me.chris.eruption.util.timer.impl.EnderpearlTimer;
 import org.bson.Document;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -103,7 +100,7 @@ public class PlayerManager {
          * Loading profile stats.
          */
 
-        Document document = Mongo.getInstance().getPlayers().find(Filters.eq("uuid", playerData.getUniqueId().toString())).first();
+        Document document = DatabaseHandler.getInstance().getPlayers().find(Filters.eq("uuid", playerData.getUniqueId().toString())).first();
 
         if (document == null) {
             for (Kit kit : this.plugin.getKitManager().getKits()) {
@@ -302,7 +299,7 @@ public class PlayerManager {
         document.put("kitsDocument", kitsDocument);
         document.put("settings", settingsDocument);
 
-        Mongo.getInstance().getPlayers().replaceOne(Filters.eq("uuid", playerData.getUniqueId().toString()), document, new ReplaceOptions().upsert(true));
+        DatabaseHandler.getInstance().getPlayers().replaceOne(Filters.eq("uuid", playerData.getUniqueId().toString()), document, new ReplaceOptions().upsert(true));
     }
 
     public Collection<PlayerData> getAllData() {
@@ -433,6 +430,6 @@ public class PlayerManager {
 
         sort.put("statistics." + ladder.getName() + ".ranked-elo", -1);
 
-        return Mongo.getInstance().getPlayers().find().sort(sort).limit(10).iterator();
+        return DatabaseHandler.getInstance().getPlayers().find().sort(sort).limit(10).iterator();
     }
 }

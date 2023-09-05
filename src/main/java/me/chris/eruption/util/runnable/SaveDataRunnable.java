@@ -18,5 +18,4 @@ public class SaveDataRunnable implements Runnable {
 			this.plugin.getMainConfig().save();
 		}
 	}
-
 }

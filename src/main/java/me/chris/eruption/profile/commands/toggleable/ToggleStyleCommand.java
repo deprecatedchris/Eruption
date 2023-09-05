@@ -2,7 +2,7 @@ package me.chris.eruption.profile.commands.toggleable;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;
-import me.chris.eruption.settings.SettingsInfo;
+import me.chris.eruption.setting.SettingsInfo;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

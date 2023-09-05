@@ -3,14 +3,12 @@ package me.chris.eruption.profile.commands.toggleable;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
-import me.chris.eruption.settings.SettingsInfo;
+import me.chris.eruption.setting.SettingsInfo;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
-import me.vaperion.blade.annotation.command.UsageAlias;
 import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class TogglePlayerVisibilityCommand {
