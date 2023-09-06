@@ -1,4 +1,4 @@
-package me.chris.eruption.profile.commands.toggleable;
+package me.chris.eruption.command.toggleable;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;

@@ -5,7 +5,7 @@ import me.chris.eruption.kit.Flag;
 import me.chris.eruption.setup.arena.Arena;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.util.random.ItemUtil;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;

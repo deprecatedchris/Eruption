@@ -1,4 +1,4 @@
-package me.chris.eruption.profile.commands.toggleable;
+package me.chris.eruption.command.toggleable;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;
@@ -8,13 +8,12 @@ import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
 import org.bukkit.entity.Player;
 
-public class ToggleSpectatorsCommand {
-    @Command({"toggle spectators", "tspec"})
-    @Description("Toggle whether you want to allow spectators or not.")
-    public static void toggleSpectators(@Sender Player player) {
+public class TogglePartyInvitesCommand {
+    @Command({"toggle party", "tpi"})
+    @Description("Toggle whether you want to receive party invites.")
+    public static void togglePartyInvites(@Sender Player player) {
         PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
         SettingsInfo settings = playerData.getSettings();
-        settings.setSpectatorsAllowed(!settings.isSpectatorsAllowed());
+        settings.setDuelRequests(!settings.isPartyInvites());
     }
-
 }

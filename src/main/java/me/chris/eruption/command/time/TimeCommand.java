@@ -1,4 +1,4 @@
-package me.chris.eruption.profile.commands.time;
+package me.chris.eruption.command.time;
 
 import me.chris.eruption.util.CC;
 import me.vaperion.blade.annotation.argument.Sender;

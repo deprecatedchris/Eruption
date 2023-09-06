@@ -13,8 +13,6 @@ import java.util.StringJoiner;
 @AllArgsConstructor
 public class LocationUtil {
 
-	private final long timestamp = System.currentTimeMillis();
-
 	private String world;
 
 	private double x;
@@ -118,7 +116,6 @@ public class LocationUtil {
 				.append("yaw", this.yaw)
 				.append("pitch", this.pitch)
 				.append("world", this.world)
-				.append("timestamp", this.timestamp)
 				.toString();
 	}
 }

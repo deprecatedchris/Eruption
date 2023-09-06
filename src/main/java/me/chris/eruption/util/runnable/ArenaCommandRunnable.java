@@ -29,6 +29,7 @@ public class ArenaCommandRunnable implements Runnable {
     private void duplicateArena(Arena arena, int offsetX, int offsetZ) {
 
         new DuplicateArenaRunnable(this.plugin, arena, offsetX, offsetZ, 500, 500) {
+
             @Override
             public void onComplete() {
                 double minX = arena.getMin().getX() + this.getOffsetX();

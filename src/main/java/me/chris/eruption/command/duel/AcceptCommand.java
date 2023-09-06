@@ -1,6 +1,5 @@
-package me.chris.eruption.profile.commands.duel;
+package me.chris.eruption.command.duel;
 
-import com.sun.org.apache.bcel.internal.util.Args;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.match.Match;
@@ -11,13 +10,10 @@ import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.queue.QueueType;
 import me.chris.eruption.util.CC;
-import me.chris.eruption.util.random.StringUtil;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
 import me.vaperion.blade.annotation.command.Usage;
-import me.vaperion.blade.annotation.command.UsageAlias;
-import me.vaperion.blade.argument.Argument;
 import me.vaperion.blade.exception.BladeExitMessage;
 import me.vaperion.blade.exception.BladeUsageMessage;
 import org.bukkit.ChatColor;

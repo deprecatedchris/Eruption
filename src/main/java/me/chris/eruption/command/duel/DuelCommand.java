@@ -1,4 +1,4 @@
-package me.chris.eruption.profile.commands.duel;
+package me.chris.eruption.command.duel;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.party.Party;

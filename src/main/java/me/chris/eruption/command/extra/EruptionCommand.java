@@ -1,4 +1,4 @@
-package me.chris.eruption.profile.commands;
+package me.chris.eruption.command.extra;
 
 import me.chris.eruption.util.CC;
 import me.chris.eruption.util.random.Style;

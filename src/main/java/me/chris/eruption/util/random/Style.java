@@ -1,10 +1,11 @@
 package me.chris.eruption.util.random;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.bukkit.ChatColor;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.apache.commons.text.StringEscapeUtils.unescapeJava;
 
 public final class Style {
 
@@ -32,13 +33,13 @@ public final class Style {
     public static final String PINK = ChatColor.LIGHT_PURPLE.toString();
     public static final String BLANK_LINE = "§a §b §c §d §e §f §0 §r";
     public static final String BORDER_LINE_SCOREBOARD = Style.GRAY + Style.STRIKE_THROUGH + "----------------------";
-    public static final String UNICODE_VERTICAL_BAR = Style.GRAY + StringEscapeUtils.unescapeJava("\u2503");
-    public static final String UNICODE_CAUTION = StringEscapeUtils.unescapeJava("\u26a0");
-    public static final String UNICODE_ARROW_LEFT = StringEscapeUtils.unescapeJava("\u25C0");
-    public static final String UNICODE_ARROW_RIGHT = StringEscapeUtils.unescapeJava("\u25B6");
-    public static final String UNICODE_ARROWS_LEFT = StringEscapeUtils.unescapeJava("\u00AB");
-    public static final String UNICODE_ARROWS_RIGHT = StringEscapeUtils.unescapeJava("\u00BB");
-    public static final String UNICODE_HEART = StringEscapeUtils.unescapeJava("\u2764");
+    public static final String UNICODE_VERTICAL_BAR = Style.GRAY + unescapeJava("\u2503");
+    public static final String UNICODE_CAUTION = unescapeJava("\u26a0");
+    public static final String UNICODE_ARROW_LEFT = unescapeJava("\u25C0");
+    public static final String UNICODE_ARROW_RIGHT = unescapeJava("\u25B6");
+    public static final String UNICODE_ARROWS_LEFT = unescapeJava("\u00AB");
+    public static final String UNICODE_ARROWS_RIGHT = unescapeJava("\u00BB");
+    public static final String UNICODE_HEART = unescapeJava("\u2764");
     private static final String MAX_LENGTH = "11111111111111111111111111111111111111111111111111111";
 
     private Style() {
@@ -54,12 +55,8 @@ public final class Style {
     }
 
     public static List<String> translateLines(List<String> lines) {
-        List<String> toReturn = new ArrayList<>();
-
-        for (String line : lines) {
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', line));
-        }
-
-        return toReturn;
+        return lines.stream()
+                .map(string -> ChatColor.translateAlternateColorCodes('&', string))
+                .collect(Collectors.toList());
     }
 }

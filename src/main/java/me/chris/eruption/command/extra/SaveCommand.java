@@ -1,4 +1,4 @@
-package me.chris.eruption.profile.commands;
+package me.chris.eruption.command.extra;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;

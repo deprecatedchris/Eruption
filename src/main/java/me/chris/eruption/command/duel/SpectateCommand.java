@@ -1,4 +1,4 @@
-package me.chris.eruption.profile.commands.duel;
+package me.chris.eruption.command.duel;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.events.PracticeEvent;
@@ -9,7 +9,6 @@ import me.chris.eruption.party.Party;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.util.CC;
-import me.chris.eruption.util.random.StringUtil;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
@@ -18,10 +17,7 @@ import me.vaperion.blade.annotation.command.UsageAlias;
 import me.vaperion.blade.exception.BladeExitMessage;
 import me.vaperion.blade.exception.BladeUsageMessage;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.Arrays;
 
 public class SpectateCommand {
     @Command({"spectate", "spec"})
