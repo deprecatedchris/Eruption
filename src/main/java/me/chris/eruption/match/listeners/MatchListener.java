@@ -2,12 +2,12 @@ package me.chris.eruption.match.listeners;
 
 import com.google.common.base.Joiner;
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.kit.Flag;
 import me.chris.eruption.match.menus.InventorySnapshot;
 import me.chris.eruption.util.runnable.MatchRunnable;
 import net.md_5.bungee.api.chat.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -46,8 +46,8 @@ public class MatchListener implements Listener {
 			return;
 		}
 
-		if (kit.isBuild() || kit.isSpleef()) {
-			if (match.getArena().getAvailableArenas().size() > 0) {
+		if (kit.isBuild()|| kit.isSpleef()) {
+			if (match.getArena().getAvailableArenas().isEmpty()){
 				match.setStandaloneArena(match.getArena().getAvailableArena());
 				this.plugin.getArenaManager().setArenaMatchUUID(match.getStandaloneArena(), match.getMatchId());
 			} else {

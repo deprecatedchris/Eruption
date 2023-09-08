@@ -2,7 +2,6 @@ package me.chris.eruption;
 
 import com.bizarrealex.aether.Aether;
 import com.google.gson.JsonParser;
-import io.github.nosequel.menu.MenuHandler;
 import lombok.Getter;
 import me.chris.eruption.database.DatabaseHandler;
 import me.chris.eruption.events.managers.EventManager;
@@ -24,7 +23,7 @@ import me.chris.eruption.setup.managers.SpawnManager;
 import me.chris.eruption.tournament.managers.TournamentManager;
 import me.chris.eruption.util.inventory.UIListener;
 import me.chris.eruption.util.menu.ButtonListener;
-import me.chris.eruption.util.menu.MenuUpdateTask;
+import me.chris.eruption.util.random.ItemBuilder;
 import me.chris.eruption.util.runnable.ExpBarRunnable;
 import me.chris.eruption.util.runnable.SaveDataRunnable;
 import me.chris.eruption.util.timer.TimerManager;
@@ -103,7 +102,6 @@ public class EruptionPlugin extends JavaPlugin {
         new Aether(this, new ScoreboardAdapter());
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new SaveDataRunnable(), 20L * 60L * 5L, 20L * 60L * 5L);
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new ExpBarRunnable(), 2L, 2L);
-        this.getServer().getScheduler().runTaskTimerAsynchronously(this, new MenuUpdateTask(), 5L, 5L);
 
         for (Entity entity : Bukkit.getWorlds().get(0).getEntities()) {
             if (entity instanceof Player) {
@@ -112,7 +110,8 @@ public class EruptionPlugin extends JavaPlugin {
             entity.remove();
         }
 
-        new MenuHandler(this);
+        ItemBuilder.registerGlow();
+
     }
 
     @Override
@@ -133,8 +132,7 @@ public class EruptionPlugin extends JavaPlugin {
                 new WorldListener(),
                 new ShutdownListener(),
                 new UIListener(),
-                new InventoryListener(),
-                new ButtonListener()
+                new InventoryListener()
         ).forEach(listener -> this.getServer().getPluginManager().registerEvents(listener, this));
     }
 

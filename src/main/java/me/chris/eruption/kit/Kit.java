@@ -51,4 +51,16 @@ public class Kit {
         }
     }
 
+    public boolean isBuild(){
+        return flag.equals(Flag.BUILD);
+    }
+
+    public boolean isSpleef(){
+        return flag.equals(Flag.SPLEEF);
+    }
+
+    public boolean isCombo(){
+        return flag.equals(Flag.COMBO);
+    }
+
 }

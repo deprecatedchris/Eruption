@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+//todo: unused
 public final class EntityUtils {
     private static Map<EntityType, String> displayNames = new EnumMap(EntityType.class);
     private static int currentFakeEntityId = -1;

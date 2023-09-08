@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.FireworkEffect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -35,6 +34,7 @@ public class PlayerUtil {
 		player.closeInventory();
 		player.setGameMode(GameMode.SURVIVAL);
 		player.getActivePotionEffects().stream().map(PotionEffect::getType).forEach(player::removePotionEffect);
+		//todo: wtf
 		((CraftPlayer) player).getHandle().getDataWatcher().watch(9, (byte) 0);
 		player.updateInventory();
 	}

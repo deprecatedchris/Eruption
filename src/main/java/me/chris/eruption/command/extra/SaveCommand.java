@@ -22,6 +22,6 @@ public class SaveCommand {
         EruptionPlugin.getInstance().getArenaManager().saveArenas();
         EruptionPlugin.getInstance().getSpawnManager().saveConfig();
         EruptionPlugin.getInstance().getKitManager().saveKits();
-        EruptionPlugin.getInstance().getMainConfig().save();
+        EruptionPlugin.getInstance().saveConfig();
     }
 }

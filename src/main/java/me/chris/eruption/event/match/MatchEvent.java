@@ -1,24 +1,18 @@
 package me.chris.eruption.event.match;
 
+import lombok.Setter;
 import me.chris.eruption.match.Match;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
+import me.chris.eruption.util.BukkitEvent;
 
 @Getter
+@Setter
 @RequiredArgsConstructor
-public class MatchEvent extends Event {
-	private static final HandlerList HANDLERS = new HandlerList();
+public class MatchEvent extends BukkitEvent {
 
-	private final Match match;
+    private Match match;
 
-	public static HandlerList getHandlerList() {
-		return HANDLERS;
-	}
-
-	@Override
-	public HandlerList getHandlers() {
-		return HANDLERS;
-	}
+    public MatchEvent(Match match){
+    }
 }

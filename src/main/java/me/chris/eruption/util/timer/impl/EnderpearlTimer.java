@@ -2,6 +2,9 @@ package me.chris.eruption.util.timer.impl;
 
 import com.bizarrealex.aether.scoreboard.Board;
 import com.bizarrealex.aether.scoreboard.cooldown.BoardCooldown;
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import com.lunarclient.bukkitapi.nethandler.client.LCPacketCooldown;
+import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.util.timer.PlayerTimer;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.bukkit.ChatColor;
@@ -65,6 +68,10 @@ public class EnderpearlTimer extends PlayerTimer implements Listener {
 					event.setCancelled(true);
 					player.updateInventory();
 					return;
+				}
+
+				if(EruptionPlugin.getInstance().getServer().getPluginManager().isPluginEnabled("LunarClient-API")){
+					LunarClientAPI.getInstance().sendPacket(player, new LCPacketCooldown("Enderpearl", TimeUnit.SECONDS.toMillis(15L), Material.ENDER_PEARL.getId()));
 				}
 
 				new BoardCooldown(board, "enderpearl", 15);

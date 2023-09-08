@@ -11,12 +11,28 @@ import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 @AllArgsConstructor
 public class BackButton extends Button {
 
     private Menu back;
+
+    @Override
+    public String getName(Player var1) {
+        return null;
+    }
+
+    @Override
+    public List<String> getDescription(Player var1) {
+        return null;
+    }
+
+    @Override
+    public Material getMaterial(Player var1) {
+        return null;
+    }
 
     @Override
     public ItemStack getButtonItem(Player player) {

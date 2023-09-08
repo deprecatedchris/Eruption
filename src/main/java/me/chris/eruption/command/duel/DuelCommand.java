@@ -26,11 +26,11 @@ public class DuelCommand {
 			throw new BladeExitMessage(CC.translate("&cCannot issue this command in your current state."));
 		}
 
-		PlayerData targetData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(target.getUniqueId());
-
 		if (target == null) {
 			throw new BladeExitMessage(CC.translate("&cCannot find this player."));
 		}
+
+		PlayerData targetData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(target.getUniqueId());
 
 		if (targetData.getPlayerState() != PlayerState.SPAWN) {
 			throw new BladeExitMessage(CC.translate("&cThis player is currently busy."));

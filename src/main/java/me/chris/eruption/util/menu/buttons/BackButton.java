@@ -1,36 +1,42 @@
 package me.chris.eruption.util.menu.buttons;
 
-import lombok.AllArgsConstructor;
-import me.chris.eruption.util.random.Style;
 import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
+import me.chris.eruption.util.random.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-@AllArgsConstructor
+import java.beans.ConstructorProperties;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BackButton extends Button {
+    private Menu back;
 
-	private Menu back;
+    public Material getMaterial(Player player) {
+        return Material.BARRIER;
+    }
 
-	@Override
-	public ItemStack getButtonItem(Player player) {
-		ItemStack itemStack = new ItemStack(Material.BED);
-		ItemMeta itemMeta = itemStack.getItemMeta();
+    public byte getDamageValue(Player player) {
+        return 0;
+    }
 
-		itemMeta.setDisplayName(Style.RED + "Go back");
-		itemStack.setItemMeta(itemMeta);
+    public String getName(Player player) {
+        return "§c§lGo back";
+    }
 
-		return itemStack;
-	}
+    public List<String> getDescription(Player player) {
+        return new ArrayList();
+    }
 
-	@Override
-	public void clicked(Player player, int i, ClickType clickType, int hb) {
-		Button.playNeutral(player);
+    public void clicked(Player player, int i, ClickType clickType) {
+        Button.playNeutral(player);
+        this.back.openMenu(player);
+    }
 
-		this.back.openMenu(player);
-	}
-
+    @ConstructorProperties({"back"})
+    public BackButton(Menu back) {
+        this.back = back;
+    }
 }

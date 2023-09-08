@@ -74,7 +74,6 @@ public class Party {
 				return;
 			}
 
-			//no CC.translate()
 			player.sendMessage(CC.translate(message));
 
 		}

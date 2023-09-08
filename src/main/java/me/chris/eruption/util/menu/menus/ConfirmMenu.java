@@ -1,46 +1,39 @@
 package me.chris.eruption.util.menu.menus;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import me.chris.eruption.util.CC;
+import me.chris.eruption.util.Callback;
 import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
+import me.chris.eruption.util.menu.buttons.BooleanButton;
+import me.chris.eruption.util.menu.buttons.GlassPaneButton;
 import org.bukkit.entity.Player;
-import me.chris.eruption.util.menu.buttons.ConfirmationButton;
-import me.chris.eruption.util.menu.callback.TypeCallback;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@AllArgsConstructor
 public class ConfirmMenu extends Menu {
 
     private String title;
-    private TypeCallback<Boolean> response;
-    private boolean closeAfterResponse;
-    private Button[] centerButtons;
+    @Getter private Callback<Boolean> response;
 
-    public ConfirmMenu(String title, TypeCallback<Boolean> response, boolean closeAfter, Button... centerButtons) {
-        this.title = title;
-        this.response = response;
-        this.closeAfterResponse = closeAfter;
-        this.centerButtons = centerButtons;
-    }
-
-    @Override
     public Map<Integer, Button> getButtons(Player player) {
-        HashMap<Integer, Button> buttons = new HashMap<>();
+        HashMap<Integer, Button> buttons = new HashMap();
 
-        for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
-                buttons.put(getSlot(x, y), new ConfirmationButton(true, response, closeAfterResponse));
-                buttons.put(getSlot(8 - x, y), new ConfirmationButton(false, response, closeAfterResponse));
-            }
-        }
 
-        if (centerButtons != null) {
-            for (int i = 0; i < centerButtons.length; i++) {
-                if (centerButtons[i] != null) {
-                    buttons.put(getSlot(4, i), centerButtons[i]);
-                }
-            }
-        }
+        buttons.put(0, new BooleanButton(true, this.response));
+        buttons.put(1, new BooleanButton(true, this.response));
+        buttons.put(2, new BooleanButton(true, this.response));
+        buttons.put(3, new BooleanButton(true, this.response));
+        buttons.put(4, new GlassPaneButton((short) 7));
+        buttons.put(5, new BooleanButton(false, this.response));
+        buttons.put(6, new BooleanButton(false, this.response));
+        buttons.put(7, new BooleanButton(false, this.response));
+        buttons.put(8, new BooleanButton(false, this.response));
+
+        player.sendMessage(CC.translate("&e&l(!)&e Please select '&a&lCONFIRM&e' or &e'&c&lDENY&e' in " + title + " GUI."));
 
         return buttons;
     }
@@ -49,5 +42,4 @@ public class ConfirmMenu extends Menu {
     public String getTitle(Player player) {
         return title;
     }
-
 }

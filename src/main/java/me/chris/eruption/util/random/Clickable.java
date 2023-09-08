@@ -45,7 +45,7 @@ public class Clickable {
 	}
 
 	public void sendToPlayer(Player player) {
-		player.sendMessage(this.asComponents());
+		player.spigot().sendMessage(this.asComponents());
 	}
 
 	public TextComponent[] asComponents() {

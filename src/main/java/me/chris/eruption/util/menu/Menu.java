@@ -1,195 +1,183 @@
 package me.chris.eruption.util.menu;
 
+import com.google.common.base.Preconditions;
 import lombok.Getter;
-import lombok.Setter;
+import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.util.random.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-@Getter
-@Setter
 public abstract class Menu {
+    @Getter
+    private final ConcurrentHashMap<Integer, Button> buttons = new ConcurrentHashMap<>();
+    @Getter private boolean autoUpdate = false;
+    @Getter private boolean updateAfterClick = true;
+    @Getter private boolean placeholder = false;
+    @Getter private boolean noncancellingInventory = false;
+    @Getter
+    private String staticTitle = null;
+    private boolean fill = false;
+    public static Map<String, Menu> currentlyOpenedMenus;
+    public static Map<String, BukkitRunnable> checkTasks;
+    public static Button BLANK_BUTTON;
+    public static ItemStack BLANK_BUTTON_ITEM;
 
-	public static Map<String, Menu> currentlyOpenedMenus = new HashMap<>();
-	@Getter
-	private Map<Integer, Button> buttons = new HashMap<>();
-	private boolean autoUpdate = false;
-	private boolean updateAfterClick = true;
-	private boolean closedByMenu = false;
-	private boolean placeholder = false;
-	private Button placeholderButton = Button.placeholder(Material.STAINED_GLASS_PANE, (byte) 15, " ");
+    //todo: i need a way to make specific spots no filled and others filled; YAY IT DID IT
+    private Inventory createInventory(Player player) {
+        Map<Integer, Button> invButtons = this.getButtons(player);
+        Inventory inv = Bukkit.createInventory(player, (useNormalSize() ? this.size(invButtons) : this.size(player)), this.getTitle(player));
+        for (Map.Entry<Integer, Button> buttonEntry : invButtons.entrySet()) {
+            this.buttons.put(buttonEntry.getKey(), buttonEntry.getValue());
+            inv.setItem(buttonEntry.getKey(), buttonEntry.getValue().getButtonItem(player));
+        }
 
-	private ItemStack createItemStack(Player player, Button button) {
-		ItemStack item = button.getButtonItem(player);
+        if (isFill(player, invButtons)) {
+            //todo: have 0 clue why this doesn't work
+            Button placeholder = Button.placeholder(Material.STAINED_GLASS_PANE, (byte) 15);
+            for (int index = 0; index < (useNormalSize() ? this.size(invButtons) : this.size(player)); ++index) {
+                boolean skip = false;
+                for (int index1 : noneFillButtons()) {
+                    if (index1 == index) {
+                        skip = true;
+                        break; // No need to check further, we can skip this slot
+                    }
+                }
+                if (skip || invButtons.get(index) != null) {
+                    continue; // Skip this iteration if "skip" is true or there's a button
+                }
 
-		if (item.getType() != Material.SKULL) {
-			ItemMeta meta = item.getItemMeta();
+                this.buttons.put(index, placeholder);
+                inv.setItem(index, placeholder.getButtonItem(player));
+            }
+        }
+        return inv;
+    }
 
-			if (meta != null && meta.hasDisplayName()) {
-				meta.setDisplayName(meta.getDisplayName() + "§b§c§d§e");
-			}
+    public Menu() {
+    }
 
-			item.setItemMeta(meta);
-		}
+    public Menu(String staticTitle) {
+        this.staticTitle = (String) Preconditions.checkNotNull((Object) staticTitle);
+    }
 
-		return item;
-	}
+    public void openMenu(Player player) {
 
-	public void openMenu(final Player player) {
-		this.buttons = this.getButtons(player);
+        Inventory inv = this.createInventory(player);
+        try {
+            player.openInventory(inv);
+            this.update(player);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
-		Menu previousMenu = Menu.currentlyOpenedMenus.get(player.getName());
-		Inventory inventory = null;
-		int size = this.getSize() == -1 ? this.size(this.buttons) : this.getSize();
-		boolean update = false;
-		String title = this.getTitle(player);
+    public void update(final Player player) {
+        Menu.cancelCheck(player);
+        currentlyOpenedMenus.put(player.getName(), this);
+        this.onOpen(player);
+        BukkitRunnable runnable = new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (!player.isOnline()) {
+                    Menu.cancelCheck(player);
+                    currentlyOpenedMenus.remove(player.getName());
+                }
+                try {
+                    if (Menu.this.isAutoUpdate()) {
+                        player.getOpenInventory().getTopInventory().setContents(Menu.this.createInventory(player).getContents());
+                    }
+                } catch (IllegalArgumentException ignored) {
+                    openMenu(player);
+                }
+            }
+        };
+        runnable.runTaskTimer(EruptionPlugin.getInstance(), 10L, 10L);
+        checkTasks.put(player.getName(), runnable);
+    }
 
-		if (title.length() > 32) {
-			title = title.substring(0, 32);
-		}
+    public int[] noneFillButtons(){
+        return new int[]{};
+    }
 
-		if (player.getOpenInventory() != null) {
-			if (previousMenu == null) {
-				player.closeInventory();
-			} else {
-				int previousSize = player.getOpenInventory().getTopInventory().getSize();
+    public static void cancelCheck(Player player) {
+        if (checkTasks.containsKey(player.getName())) {
+            checkTasks.remove(player.getName()).cancel();
+        }
+    }
 
-				if (previousSize == size && player.getOpenInventory().getTopInventory().getTitle().equals(title)) {
-					inventory = player.getOpenInventory().getTopInventory();
-					update = true;
-				} else {
-					previousMenu.setClosedByMenu(true);
-					player.closeInventory();
-				}
-			}
-		}
+    public int getSlot(int x, int y) {
+        return 9 * y + x;
+    }
 
-		if (inventory == null) {
-			inventory = Bukkit.createInventory(player, size, title);
-		}
+    public String getTitle(Player player) {
+        return this.staticTitle;
+    }
 
-		inventory.setContents(new ItemStack[inventory.getSize()]);
+    public abstract Map<Integer, Button> getButtons(Player player);
 
-		currentlyOpenedMenus.put(player.getName(), this);
+    public int size(Player player){
+        return 9;
+    }
 
-		for (Map.Entry<Integer, Button> buttonEntry : this.buttons.entrySet()) {
-			inventory.setItem(buttonEntry.getKey(), createItemStack(player, buttonEntry.getValue()));
-		}
+    public void onOpen(Player player) {
+    }
 
-		if (this.isPlaceholder()) {
-			for (int index = 0; index < size; index++) {
-				if (this.buttons.get(index) == null) {
-					this.buttons.put(index, this.placeholderButton);
-					inventory.setItem(index, this.placeholderButton.getButtonItem(player));
-				}
-			}
-		}
+    public void onClose(Player player) {
+    }
 
-		if (update) {
-			player.updateInventory();
-		} else {
-			player.openInventory(inventory);
-		}
+    public boolean isFill(Player player, Map<Integer, Button> buttons) {
+        return false;
+    }
 
-		this.onOpen(player);
-		this.setClosedByMenu(false);
-	}
+    public void setAutoUpdate(boolean autoUpdate) {
+        this.autoUpdate = autoUpdate;
+    }
 
+    public void setUpdateAfterClick(boolean updateAfterClick) {
+        this.updateAfterClick = updateAfterClick;
+    }
 
-	public void openMenuTest(Player use, Player player) {
-		this.buttons = this.getButtons(player);
+    public void setPlaceholder(boolean placeholder) {
+        this.placeholder = placeholder;
+    }
 
-		Menu previousMenu = Menu.currentlyOpenedMenus.get(player.getName());
-		Inventory inventory = null;
-		int size = this.getSize() == -1 ? this.size(this.buttons) : this.getSize();
-		boolean update = false;
-		String title = this.getTitle(player);
+    public void setNoncancellingInventory(boolean noncancellingInventory) {
+        this.noncancellingInventory = noncancellingInventory;
+    }
 
-		if (title.length() > 32) {
-			title = title.substring(0, 32);
-		}
+    public boolean useNormalSize(){
+        return true;
+    }
 
-		if (use.getOpenInventory() != null) {
-			if (previousMenu == null) {
-				use.closeInventory();
-			} else {
-				int previousSize = use.getOpenInventory().getTopInventory().getSize();
+    public boolean isFillFiltered(int slot) {
+        return false;
+    }
 
-				if (previousSize == size && use.getOpenInventory().getTopInventory().getTitle().equals(title)) {
-					inventory = use.getOpenInventory().getTopInventory();
-					update = true;
-				} else {
-					previousMenu.setClosedByMenu(true);
-					use.closeInventory();
-				}
-			}
-		}
+    public int size(Map<Integer, Button> buttons) {
+        int highest = 0;
+        for (int buttonValue : buttons.keySet()) {
+            if (buttonValue > highest) {
+                highest = buttonValue;
+            }
+        }
 
-		if (inventory == null) {
-			inventory = Bukkit.createInventory(use, size, title);
-		}
+        return (int) (Math.ceil((double) (highest + 1) / 9.0D) * 9.0D);
+    }
 
-		inventory.setContents(new ItemStack[inventory.getSize()]);
-
-		currentlyOpenedMenus.put(use.getName(), this);
-
-		for (Map.Entry<Integer, Button> buttonEntry : this.buttons.entrySet()) {
-			inventory.setItem(buttonEntry.getKey(), createItemStack(player, buttonEntry.getValue()));
-		}
-
-		if (this.isPlaceholder()) {
-			for (int index = 0; index < size; index++) {
-				if (this.buttons.get(index) == null) {
-					this.buttons.put(index, this.placeholderButton);
-					inventory.setItem(index, this.placeholderButton.getButtonItem(player));
-				}
-			}
-		}
-
-		if (update) {
-			use.updateInventory();
-		} else {
-			use.openInventory(inventory);
-		}
-
-		this.onOpen(use);
-		this.setClosedByMenu(false);
-	}
-
-	public int size(Map<Integer, Button> buttons) {
-		int highest = 0;
-
-		for (int buttonValue : buttons.keySet()) {
-			if (buttonValue > highest) {
-				highest = buttonValue;
-			}
-		}
-
-		return (int) (Math.ceil((highest + 1) / 9D) * 9D);
-	}
-
-	public int getSlot(int x, int y) {
-		return ((9 * y) + x);
-	}
-
-	public int getSize() {
-		return -1;
-	}
-
-	public abstract String getTitle(Player player);
-
-	public abstract Map<Integer, Button> getButtons(Player player);
-
-	public void onOpen(Player player) {
-	}
-
-	public void onClose(Player player) {
-	}
-
+    static {
+        EruptionPlugin.getInstance().getServer().getPluginManager().registerEvents(new ButtonListener(), EruptionPlugin.getInstance());
+        currentlyOpenedMenus = new HashMap<>();
+        checkTasks = new HashMap<>();
+        Button BLANK_BUTTON = Button.fromItem(ItemBuilder.of(Material.STAINED_GLASS_PANE).data((short) 15).name(" ").build());
+        ItemStack BLANK_BUTTON_ITEM = ItemBuilder.of(Material.STAINED_GLASS_PANE).data((short) 15).name(" ").build();
+    }
 }
+

@@ -1,62 +1,64 @@
 package me.chris.eruption.util.menu.pagination;
 
-import lombok.AllArgsConstructor;
+import me.chris.eruption.util.menu.Button;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import me.chris.eruption.util.menu.Button;
-import me.chris.eruption.util.random.Style;
 
-import java.util.Arrays;
+import java.beans.ConstructorProperties;
+import java.util.ArrayList;
+import java.util.List;
 
-@AllArgsConstructor
 public class PageButton extends Button {
 
-	private int mod;
-	private PaginatedMenu menu;
+    private final int mod;
+    private final PaginatedMenu menu;
 
-	@Override
-	public ItemStack getButtonItem(Player player) {
-		ItemStack itemStack = new ItemStack(Material.CARPET);
-		ItemMeta itemMeta = itemStack.getItemMeta();
+    @Override
+    public void clicked(Player player, int i, ClickType clickType) {
+        if (clickType == ClickType.RIGHT) {
+            new ViewAllPagesMenu(this.menu).openMenu(player);
+            PageButton.playNeutral(player);
+        } else if (this.hasNext(player)) {
+            this.menu.modPage(player, this.mod);
+            Button.playNeutral(player);
+        } else {
+            Button.playFail(player);
+        }
+    }
 
-		if (this.hasNext(player)) {
-			itemMeta.setDisplayName(this.mod > 0 ? Style.GREEN + "Next page" : Style.RED + "Previous page");
-		} else {
-			itemMeta.setDisplayName(Style.GRAY + (this.mod > 0 ? "Last page" : "First page"));
-		}
+    private boolean hasNext(Player player) {
+        int pg = this.menu.getPage() + this.mod;
+        return pg > 0 && this.menu.getPages(player) >= pg;
+    }
 
-		itemMeta.setLore(Arrays.asList(
-				"",
-				Style.RED + "Right click to",
-				Style.RED + "jump to a page"
-		));
+    @Override
+    public String getName(Player player) {
+        if (!this.hasNext(player)) {
+            return this.mod > 0 ? "\u00a77Last page" : "\u00a77First page";
+        }
+        String str = "(\u00a7e" + (this.menu.getPage() + this.mod) + "/\u00a7e" + this.menu.getPages(player) + "\u00a7a)";
+        return this.mod > 0 ? "\u00a7a\u27f6" : "\u00a7c\u27f5";
+    }
 
-		itemStack.setItemMeta(itemMeta);
+    @Override
+    public List<String> getDescription(Player player) {
+        return new ArrayList<>();
+    }
 
-		return itemStack;
-	}
+    @Override
+    public byte getDamageValue(Player player) {
+        return this.hasNext(player) ? (byte)11 : 7;
+    }
 
-	@Override
-	public void clicked(Player player, int i, ClickType clickType, int hb) {
-		if (clickType == ClickType.RIGHT) {
-			new ViewAllPagesMenu(this.menu).openMenu(player);
-			playNeutral(player);
-		} else {
-			if (hasNext(player)) {
-				this.menu.modPage(player, this.mod);
-				Button.playNeutral(player);
-			} else {
-				Button.playFail(player);
-			}
-		}
-	}
+    @Override
+    public Material getMaterial(Player player) {
+        return Material.CARPET;
+    }
 
-	private boolean hasNext(Player player) {
-		int pg = this.menu.getPage() + this.mod;
-		return pg > 0 && this.menu.getPages(player) >= pg;
-	}
-
+    @ConstructorProperties(value={"mod", "menu"})
+    public PageButton(int mod, PaginatedMenu menu) {
+        this.mod = mod;
+        this.menu = menu;
+    }
 }

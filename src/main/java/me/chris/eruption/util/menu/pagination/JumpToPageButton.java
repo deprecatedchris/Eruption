@@ -1,46 +1,53 @@
 package me.chris.eruption.util.menu.pagination;
 
-import lombok.AllArgsConstructor;
+import me.chris.eruption.util.menu.Button;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import me.chris.eruption.util.menu.Button;
-import me.chris.eruption.util.random.Style;
 
-import java.util.Arrays;
+import java.beans.ConstructorProperties;
+import java.util.List;
 
-@AllArgsConstructor
 public class JumpToPageButton extends Button {
 
-	private int page;
-	private PaginatedMenu menu;
-	private boolean current;
+    private final int page;
+    private final PaginatedMenu menu;
 
-	@Override
-	public ItemStack getButtonItem(Player player) {
-		ItemStack itemStack = new ItemStack(this.current ? Material.ENCHANTED_BOOK : Material.BOOK, this.page);
-		ItemMeta itemMeta = itemStack.getItemMeta();
+    @Override
+    public String getName(Player player) {
+        return "\u00a7ePage " + this.page;
+    }
 
-		itemMeta.setDisplayName(Style.RED + "Page " + this.page);
+    @Override
+    public List<String> getDescription(Player player) {
+        return null;
+    }
 
-		if (this.current) {
-			itemMeta.setLore(Arrays.asList(
-					"",
-					Style.GREEN + "Current page"
-			));
-		}
+    @Override
+    public Material getMaterial(Player player) {
+        return Material.BOOK;
+    }
 
-		itemStack.setItemMeta(itemMeta);
+    @Override
+    public int getAmount(Player player) {
+        return this.page;
+    }
 
-		return itemStack;
-	}
+    @Override
+    public byte getDamageValue(Player player) {
+        return 0;
+    }
 
-	@Override
-	public void clicked(Player player, int i, ClickType clickType, int hb) {
-		this.menu.modPage(player, this.page - this.menu.getPage());
-		Button.playNeutral(player);
-	}
+    @Override
+    public void clicked(Player player, int i, ClickType clickType) {
+        this.menu.modPage(player, this.page - this.menu.getPage());
+        Button.playNeutral(player);
+    }
 
+    @ConstructorProperties(value={"page", "menu"})
+    public JumpToPageButton(int page, PaginatedMenu menu) {
+        this.page = page;
+        this.menu = menu;
+    }
 }
+

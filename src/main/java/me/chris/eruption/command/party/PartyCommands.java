@@ -112,7 +112,7 @@ public final class PartyCommands {
 
     @Command({"party accept", "party join", "p accept", "p join"})
     @Description("Accept a party invite.")
-    public static void partyAccept(@Sender Player player, CommandSender sender, Player target) throws BladeExitMessage {
+    public static void partyAccept(@Sender Player player, Player target) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
         Party targetParty = plugin.getPartyManager().getParty(target.getUniqueId());
         PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
@@ -192,7 +192,7 @@ public final class PartyCommands {
     @Command({"party setLimit", "p setLimit"})
     @Usage("/party limit <value>")
     @Description("Limit your party.")
-    public static void partyLimit(@Sender Player player, CommandSender sender, Integer limit, Player target) throws BladeExitMessage {
+    public static void partyLimit(@Sender Player player, Integer limit, Player target) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
         PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
         PartyManager partyManager = plugin.getPartyManager();
@@ -239,11 +239,10 @@ public final class PartyCommands {
 
     @Command({"party info", "p info"})
     @Description("See your party information.")
-    public static void partyInformation(@Sender Player player, CommandSender sender, Integer limit, Player target) throws BladeExitMessage {
+    public static void partyInformation(@Sender Player player) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
         PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
         PartyManager partyManager = plugin.getPartyManager();
-        Party targetParty = plugin.getPartyManager().getParty(target.getUniqueId());
 
         if (party == null) {
             throw new BladeExitMessage("You are not in a party.");
@@ -269,12 +268,22 @@ public final class PartyCommands {
         player.sendMessage(information);
     }
 
+
+    //hot
     @Command({"party allinvite", "p allinvite", "p allinv"})
     @Description("Allow all party members to invite.")
-    public static void partAllInvite(@Sender Player player, CommandSender sender, Integer limit, Player target) throws BladeExitMessage {
+    public static void partAllInvite(@Sender Player player) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
-        PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
-        PartyManager partyManager = plugin.getPartyManager();
-        Party targetParty = plugin.getPartyManager().getParty(target.getUniqueId());
+
+        if(party == null){
+            throw new BladeExitMessage("You are not in a party.");
+        }
+
+        if (!party.getLeader().equals(player.getUniqueId())) {
+            throw new BladeExitMessage(ChatColor.RED + "You are not the leader of this party.");
+        }
+
+        party.setAllInvite(!party.isAllInvite());
+        party.messageAllMembers(ChatColor.GREEN.toString() + ChatColor.BOLD + "[*]" + " &cYou're are " + (!party.isAllInvite() ? "no longer allowed" : "now allowed") + " to invite people to the party.");
     }
 }

@@ -4,7 +4,6 @@ public enum Flag {
 
     DEFAULT,
     HCF,
-
     SUMO,
     BUILD,
     SPLEEF,
@@ -12,5 +11,6 @@ public enum Flag {
     BEDWARS,
     BRIDGES,
     STICK_FIGHT,
+    COMBO
 
 }
