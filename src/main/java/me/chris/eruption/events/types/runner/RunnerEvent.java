@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;
-import me.chris.eruption.util.random.LocationUtil;
+import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.events.EventCountdownTask;
 import me.chris.eruption.events.PracticeEvent;
 import org.bukkit.*;

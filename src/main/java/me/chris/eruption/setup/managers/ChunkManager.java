@@ -1,6 +1,6 @@
 package me.chris.eruption.setup.managers;
 
-import me.chris.eruption.util.random.LocationUtil;
+import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.setup.arena.Arena;
 import me.chris.eruption.setup.arena.StandaloneArena;

@@ -2,7 +2,6 @@ package me.chris.eruption.profile.listeners;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Flag;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -17,7 +16,6 @@ import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.TrapDoor;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -34,10 +32,8 @@ import me.chris.eruption.match.MatchState;
 import me.chris.eruption.party.Party;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
-import me.chris.eruption.util.random.Clickable;
-import me.chris.eruption.util.random.Style;
-
-import java.util.UUID;
+import me.chris.eruption.util.other.Clickable;
+import me.chris.eruption.util.other.Style;
 
 public class PlayerListener implements Listener {
 

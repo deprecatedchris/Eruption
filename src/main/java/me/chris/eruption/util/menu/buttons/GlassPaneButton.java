@@ -2,7 +2,7 @@ package me.chris.eruption.util.menu.buttons;
 
 import lombok.AllArgsConstructor;
 import me.chris.eruption.util.menu.Button;
-import me.chris.eruption.util.random.ItemBuilder;
+import me.chris.eruption.util.other.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

@@ -8,7 +8,7 @@ import me.chris.eruption.setup.arena.Arena;
 import me.chris.eruption.setup.arena.StandaloneArena;
 import me.chris.eruption.match.menus.InventorySnapshot;
 import me.chris.eruption.kit.Kit;
-import me.chris.eruption.util.random.Clickable;
+import me.chris.eruption.util.other.Clickable;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -16,7 +16,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import me.chris.eruption.queue.QueueType;
-import me.chris.eruption.util.random.TimeUtils;
+import me.chris.eruption.util.other.TimeUtils;
 
 import java.util.*;
 import java.util.stream.Stream;

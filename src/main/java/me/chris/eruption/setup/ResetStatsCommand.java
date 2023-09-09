@@ -3,7 +3,7 @@ package me.chris.eruption.setup;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.profile.PlayerData;
-import me.chris.eruption.util.random.StringUtil;
+import me.chris.eruption.util.other.StringUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

@@ -7,6 +7,7 @@ import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.setting.SettingsInfo;
 import me.chris.eruption.events.types.sumo.SumoEvent;
 import me.chris.eruption.tournament.Tournament;
+import me.chris.eruption.util.CC;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.bukkit.Bukkit;
@@ -28,9 +29,9 @@ import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.queue.QueueEntry;
 import me.chris.eruption.queue.QueueType;
-import me.chris.eruption.util.random.PlayerUtil;
-import me.chris.eruption.util.random.Style;
-import me.chris.eruption.util.random.TimeUtil;
+import me.chris.eruption.util.other.PlayerUtil;
+import me.chris.eruption.util.other.Style;
+import me.chris.eruption.util.other.TimeUtil;
 
 import java.util.*;
 
@@ -40,7 +41,7 @@ public class ScoreboardAdapter implements BoardAdapter {
 
     @Override
     public String getTitle(Player player) {
-        return Style.translate("&c&lWay&6&lBack &7[Beta])");
+        return CC.translate("&c&lWay&6&lBack &7[Beta])");
     }
 
     @Override

@@ -2,7 +2,7 @@ package me.chris.eruption.setup.managers;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.chris.eruption.util.random.LocationUtil;
+import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 public class SpawnManager {
-    private final EruptionPlugin plugin = EruptionPlugin.getInstance();
+    private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
     private LocationUtil spawnLocation;
     private LocationUtil spawnMin;

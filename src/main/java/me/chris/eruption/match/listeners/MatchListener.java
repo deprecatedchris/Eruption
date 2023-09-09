@@ -2,9 +2,8 @@ package me.chris.eruption.match.listeners;
 
 import com.google.common.base.Joiner;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.kit.Flag;
 import me.chris.eruption.match.menus.InventorySnapshot;
-import me.chris.eruption.util.runnable.MatchRunnable;
+import me.chris.eruption.runnable.MatchRunnable;
 import net.md_5.bungee.api.chat.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
-import me.chris.eruption.util.random.LocationUtil;
+import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.event.match.MatchEndEvent;
 import me.chris.eruption.event.match.MatchStartEvent;
 import me.chris.eruption.kit.Kit;
@@ -23,9 +22,9 @@ import me.chris.eruption.match.MatchTeam;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.queue.QueueType;
-import me.chris.eruption.util.random.Clickable;
-import me.chris.eruption.util.random.EloUtil;
-import me.chris.eruption.util.random.PlayerUtil;
+import me.chris.eruption.util.other.Clickable;
+import me.chris.eruption.util.other.EloUtil;
+import me.chris.eruption.util.other.PlayerUtil;
 
 
 

@@ -26,88 +26,54 @@ public class PlayerData {
     private final Map<String, Integer> partyElo = new HashMap<>();
     private Map<String, PlayerKit[]> kits = new HashMap<>();
 
-    @Getter
-    private final UUID uniqueId;
+    @Getter private final UUID uniqueId;
+    @Getter private PlayerState playerState = PlayerState.LOADING;
+    @Getter private SettingsInfo settings = new SettingsInfo();
+    @Getter private UUID currentMatchID;
+    @Getter private UUID duelSelecting;
 
-    @Getter
-    private PlayerState playerState = PlayerState.LOADING;
-    @Getter
-    private SettingsInfo settings = new SettingsInfo();
+    @Getter private int eloRange = 250;
+    @Getter private int pingRange = 50;
 
-    @Getter
-    private UUID currentMatchID;
-    @Getter
-    private UUID duelSelecting;
 
-    @Getter
-    private int eloRange = 250;
-    @Getter
-    private int pingRange = 50;
+    @Getter private int teamID = -1;
+    @Getter private int rematchID = -1;
+    @Getter private int missedPots;
+    @Getter private int thrownPots;
+    @Getter private int longestCombo;
 
-    @Getter
-    private int teamID = -1;
-    @Getter
-    private int rematchID = -1;
-    @Getter
-    private int missedPots;
-    @Getter
-    private int thrownPots;
-    @Getter
-    private int longestCombo;
-    @Getter
-    private int combo;
-    @Getter
-    private int hits;
+    @Getter private int combo;
+    @Getter private int hits;
 
-    @Getter
-    private int oitcKills;
-    @Getter
-    private int oitcDeaths;
-    @Getter
-    private int oitcWins;
-    @Getter
-    private int oitcLosses;
 
-    @Getter
-    private int runnerWins;
-    @Getter
-    private int runnerLosses;
+    @Getter private int oitcKills;
+    @Getter private int oitcDeaths;
+    @Getter private int oitcWins;
+    @Getter private int oitcLosses;
 
-    @Getter
-    private int lmsWins;
-    @Getter
-    private int lmsLosses;
+    @Getter private int runnerWins;
+    @Getter private int runnerLosses;
 
-    @Getter
-    private int cornersWins;
-    @Getter
-    private int cornersLosses;
+    @Getter private int lmsWins;
+    @Getter private int lmsLosses;
 
-    @Getter
-    private int sumoWins;
-    @Getter
-    private int sumoLosses;
+    @Getter private int cornersWins;
+    @Getter private int cornersLosses;
 
-    @Getter
-    private int parkourWins;
-    @Getter
-    private int parkourLosses;
+    @Getter private int sumoWins;
+    @Getter private int sumoLosses;
 
-    @Getter
-    private int tournamentWins;
-    @Getter
-    private int tournamentLosses;
+    @Getter private int parkourWins;
+    @Getter private int parkourLosses;
 
-    @Getter
-    @Setter
-    private Kit selectedLadder;
-    @Getter
-    @Setter
-    private PlayerKit selectedKit;
-    @Getter
-    private boolean active;
-    @Getter
-    private boolean rename;
+    @Getter private int tournamentWins;
+    @Getter private int tournamentLosses;
+
+    @Getter @Setter private Kit selectedLadder;
+    @Getter @Setter private PlayerKit selectedKit;
+
+    @Getter private boolean active;
+    @Getter private boolean rename;
 
 
     public PlayerKit[] getKits(Kit ladder) {

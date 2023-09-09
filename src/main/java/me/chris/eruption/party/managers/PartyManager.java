@@ -4,8 +4,8 @@ import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.party.Party;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
-import me.chris.eruption.util.random.Style;
-import me.chris.eruption.util.random.TtlHashMap;
+import me.chris.eruption.util.other.Style;
+import me.chris.eruption.util.other.TtlHashMap;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -14,11 +14,11 @@ import java.util.concurrent.TimeUnit;
 
 public class PartyManager {
 
-	private final EruptionPlugin plugin = EruptionPlugin.getInstance();
+	private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
-	private Map<UUID, List<UUID>> partyInvites = new TtlHashMap<>(TimeUnit.SECONDS, 15);
-	private Map<UUID, Party> parties = new HashMap<>();
-	private Map<UUID, UUID> partyLeaders = new HashMap<>();
+	private final Map<UUID, List<UUID>> partyInvites = new TtlHashMap<>(TimeUnit.SECONDS, 15);
+	private final Map<UUID, Party> parties = new HashMap<>();
+	private final Map<UUID, UUID> partyLeaders = new HashMap<>();
 
 	public boolean isLeader(UUID uuid) {
 		return this.parties.containsKey(uuid);
@@ -57,31 +57,30 @@ public class PartyManager {
 
 
 		this.parties.put(player.getUniqueId(), party);
-		this.plugin.getInventoryManager().addParty(player);
-		this.plugin.getPlayerManager().Reset(player);
+		plugin.getInventoryManager().addParty(player);
+		plugin.getPlayerManager().Reset(player);
 
-		player.sendMessage(Style.translate("&7&m-----------------------------------"));
-		player.sendMessage(Style.translate("&7You have successfully created a new &dParty&7."));
-		player.sendMessage(Style.translate("&7To invite your friends do &c/party invite &7."));
+		player.sendMessage(" ");
+		player.sendMessage(Style.translate("&eYou have created a new &dParty&e."));
+		player.sendMessage(Style.translate("&eTo invite your friends do &c/party invite &e."));
 		player.sendMessage(Style.translate(" "));
-		player.sendMessage(Style.translate("&7Remember to tell them to join!"));
-		player.sendMessage(Style.translate("&7&o/party for information on all commands, to use party chat do '&d@&7' <messsage>"));
-		player.sendMessage(Style.translate("&7&m-----------------------------------"));	}
+		player.sendMessage(Style.translate("&e&o/party for information on all commands, to use party chat do '&d@&e' <messsage>"));
+		player.sendMessage(" "); }
 
 	private void disbandParty(Party party, boolean tournament) {
-		this.plugin.getInventoryManager().removeParty(party);
+		plugin.getInventoryManager().removeParty(party);
 		this.parties.remove(party.getLeader());
 
 		party.broadcast(ChatColor.RED + "Your party has been disbanded.");
 
 		party.members().forEach(member -> {
-			PlayerData memberData = this.plugin.getPlayerManager().getPlayerData(member.getUniqueId());
+			PlayerData memberData = plugin.getPlayerManager().getPlayerData(member.getUniqueId());
 
 			if (this.partyLeaders.get(memberData.getUniqueId()) != null) {
 				this.partyLeaders.remove(memberData.getUniqueId());
 			}
 			if (memberData.getPlayerState() == PlayerState.SPAWN) {
-				this.plugin.getPlayerManager().Reset(member);
+				plugin.getPlayerManager().Reset(member);
 			}
 		});
 	}
@@ -93,11 +92,11 @@ public class PartyManager {
 			return;
 		}
 
-		PlayerData playerData = this.plugin.getPlayerManager().getPlayerData(player.getUniqueId());
+		PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 
 		if (this.parties.containsKey(player.getUniqueId())) {
 			this.disbandParty(party, false);
-		} else if (this.plugin.getTournamentManager().getTournament(player.getUniqueId()) != null) {
+		} else if (plugin.getTournamentManager().getTournament(player.getUniqueId()) != null) {
 			this.disbandParty(party, true);
 		} else {
 			party.broadcast(ChatColor.RED.toString() + ChatColor.BOLD + "[-] " + ChatColor.RED + player.getName() + " left the party.");
@@ -105,38 +104,38 @@ public class PartyManager {
 
 			this.partyLeaders.remove(player.getUniqueId());
 
-			this.plugin.getInventoryManager().updateParty(party);
+			plugin.getInventoryManager().updateParty(party);
 		}
 
 		switch (playerData.getPlayerState()) {
 			case FIGHTING:
-				this.plugin.getMatchManager().removeFighter(player, playerData, false);
+				plugin.getMatchManager().removeFighter(player, playerData, false);
 				break;
 			case SPECTATING:
-				if(this.plugin.getEventManager().getSpectators().containsKey(player.getUniqueId())) {
-					this.plugin.getEventManager().removeSpectator(player, this.plugin.getEventManager().getEventPlaying(player));
+				if(plugin.getEventManager().getSpectators().containsKey(player.getUniqueId())) {
+					plugin.getEventManager().removeSpectator(player, plugin.getEventManager().getEventPlaying(player));
 				} else {
-					this.plugin.getMatchManager().removeSpectator(player);
+					plugin.getMatchManager().removeSpectator(player);
 				}
 				break;
 		}
 
-		this.plugin.getPlayerManager().Reset(player);
+		plugin.getPlayerManager().Reset(player);
 	}
 
 	public void joinParty(UUID leader, Player player) {
 		Party party = this.getParty(leader);
 
-		if (this.plugin.getTournamentManager().getTournament(leader) != null) {
+		if (plugin.getTournamentManager().getTournament(leader) != null) {
 			player.sendMessage(ChatColor.RED + "That player is in a tournament.");
 			return;
 		}
 
 		this.partyLeaders.put(player.getUniqueId(), leader);
 		party.addMember(player.getUniqueId());
-		this.plugin.getInventoryManager().updateParty(party);
+		plugin.getInventoryManager().updateParty(party);
 
-		this.plugin.getPlayerManager().Reset(player);
+		plugin.getPlayerManager().Reset(player);
 
 		party.broadcast(ChatColor.GREEN.toString() + ChatColor.BOLD + "[+] " + ChatColor.RED + player.getName() + " joined the party.");
 	}

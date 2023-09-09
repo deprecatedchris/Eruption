@@ -10,13 +10,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import me.chris.eruption.util.random.LocationUtil;
+import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.setup.arena.Arena;
 import me.chris.eruption.setup.arena.StandaloneArena;
 import me.chris.eruption.util.config.Config;
 import me.chris.eruption.kit.Kit;
-import me.chris.eruption.util.random.ItemUtil;
+import me.chris.eruption.util.other.ItemUtil;
 import me.chris.eruption.util.inventory.InventoryUI;
 
 import java.util.*;

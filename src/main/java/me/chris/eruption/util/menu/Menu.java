@@ -3,7 +3,7 @@ package me.chris.eruption.util.menu;
 import com.google.common.base.Preconditions;
 import lombok.Getter;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.util.random.ItemBuilder;
+import me.chris.eruption.util.other.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

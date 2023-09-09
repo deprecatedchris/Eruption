@@ -4,7 +4,7 @@ import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.events.EventState;
 import me.chris.eruption.events.PracticeEvent;
 import me.chris.eruption.events.types.sumo.SumoEvent;
-import me.chris.eruption.util.random.Clickable;
+import me.chris.eruption.util.other.Clickable;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

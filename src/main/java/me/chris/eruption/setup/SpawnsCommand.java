@@ -1,8 +1,8 @@
 package me.chris.eruption.setup;
 
-import me.chris.eruption.util.random.LocationUtil;
+import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.util.random.Style;
+import me.chris.eruption.util.other.Style;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

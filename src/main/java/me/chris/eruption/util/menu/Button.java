@@ -2,7 +2,7 @@ package me.chris.eruption.util.menu;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
-import me.chris.eruption.util.random.ItemBuilder;
+import me.chris.eruption.util.other.ItemBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;

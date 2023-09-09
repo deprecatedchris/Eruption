@@ -3,7 +3,7 @@ package me.chris.eruption.kit.managers;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.kit.PlayerKit;
-import me.chris.eruption.util.random.PlayerUtil;
+import me.chris.eruption.util.other.PlayerUtil;
 import org.bukkit.ChatColor;
 
 import java.util.HashMap;

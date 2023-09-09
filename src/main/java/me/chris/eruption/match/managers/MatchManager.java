@@ -1,21 +1,19 @@
 package me.chris.eruption.match.managers;
 
 import lombok.Getter;
-import me.chris.eruption.util.random.*;
+import me.chris.eruption.util.CC;
+import me.chris.eruption.util.other.*;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.util.Vector;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.setup.arena.Arena;
 import me.chris.eruption.event.match.MatchEndEvent;
@@ -422,11 +420,11 @@ public class MatchManager {
 		playerA.showPlayer(playerB);
 		playerB.showPlayer(playerA);
 
-		match.broadcast(Style.translate("&c&lOpponent Found!"));
+		match.broadcast(CC.translate("&c&lOpponent Found!"));
 		match.broadcast("");
 		match.broadcast(ChatColor.GRAY + "* " + ChatColor.RED + "Opponent: " + ChatColor.GREEN + playerB.getName());
-		match.broadcast(ChatColor.GRAY + "* " + ChatColor.RED + "Kit: " + ChatColor.RED + match.getKit().getName());
-		match.broadcast(ChatColor.GRAY + "* " + ChatColor.RED + "Map: " + ChatColor.WHITE + match.getArena().getName());
+		match.broadcast(ChatColor.GRAY + "* " + ChatColor.RED + "Kit: " + ChatColor.YELLOW + match.getKit().getName());
+		match.broadcast(ChatColor.GRAY + "* " + ChatColor.RED + "Map: " + ChatColor.YELLOW + match.getArena().getName());
 
 	}
 	public UUID getRematcher(UUID uuid) {

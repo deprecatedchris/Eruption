@@ -7,15 +7,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.json.simple.JSONObject;
 import me.chris.eruption.match.Match;
 import me.chris.eruption.profile.PlayerData;
-import me.chris.eruption.util.random.ItemUtil;
-import me.chris.eruption.util.random.MathUtil;
-import me.chris.eruption.util.random.StringUtil;
+import me.chris.eruption.util.other.ItemUtil;
+import me.chris.eruption.util.other.MathUtil;
+import me.chris.eruption.util.other.StringUtil;
 import me.chris.eruption.util.inventory.InventoryUI;
 
 import java.util.*;

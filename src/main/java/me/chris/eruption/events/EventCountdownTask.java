@@ -2,7 +2,7 @@ package me.chris.eruption.events;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.chris.eruption.util.random.Clickable;
+import me.chris.eruption.util.other.Clickable;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 

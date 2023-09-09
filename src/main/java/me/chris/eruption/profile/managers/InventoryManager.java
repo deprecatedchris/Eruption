@@ -19,10 +19,9 @@ import me.chris.eruption.party.Party;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.queue.QueueType;
-import me.chris.eruption.util.random.Clickable;
-import me.chris.eruption.util.random.ItemBuilder;
-import me.chris.eruption.util.random.ItemUtil;
-import me.chris.eruption.util.random.StringUtil;
+import me.chris.eruption.util.other.Clickable;
+import me.chris.eruption.util.other.ItemUtil;
+import me.chris.eruption.util.other.StringUtil;
 import me.chris.eruption.util.inventory.InventoryUI;
 
 import java.util.*;

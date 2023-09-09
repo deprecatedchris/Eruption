@@ -9,11 +9,11 @@ import me.chris.eruption.match.Match;
 import me.chris.eruption.match.MatchTeam;
 import me.chris.eruption.party.Party;
 import me.chris.eruption.profile.PlayerData;
-import me.chris.eruption.util.runnable.TournamentRunnable;
+import me.chris.eruption.runnable.TournamentRunnable;
 import me.chris.eruption.tournament.Tournament;
 import me.chris.eruption.tournament.TournamentState;
 import me.chris.eruption.tournament.TournamentTeam;
-import me.chris.eruption.util.random.TeamUtil;
+import me.chris.eruption.util.other.TeamUtil;
 
 import java.util.HashMap;
 import java.util.Map;

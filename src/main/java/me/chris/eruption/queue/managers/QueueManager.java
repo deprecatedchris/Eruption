@@ -2,7 +2,7 @@ package me.chris.eruption.queue.managers;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.chris.eruption.util.random.PlayerUtil;
+import me.chris.eruption.util.other.PlayerUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import me.chris.eruption.EruptionPlugin;

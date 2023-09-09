@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import me.chris.eruption.util.runnable.BlockRemoveRunnable;
+import me.chris.eruption.runnable.BlockRemoveRunnable;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;

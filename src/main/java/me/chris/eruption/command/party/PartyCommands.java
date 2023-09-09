@@ -6,8 +6,7 @@ import me.chris.eruption.party.managers.PartyManager;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.util.CC;
-import me.chris.eruption.util.random.Clickable;
-import me.chris.eruption.util.random.StringUtil;
+import me.chris.eruption.util.other.Clickable;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
@@ -18,7 +17,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;

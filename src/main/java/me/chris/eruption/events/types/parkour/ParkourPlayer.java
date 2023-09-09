@@ -2,7 +2,7 @@ package me.chris.eruption.events.types.parkour;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.chris.eruption.util.random.LocationUtil;
+import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.events.EventPlayer;
 import me.chris.eruption.events.PracticeEvent;
 

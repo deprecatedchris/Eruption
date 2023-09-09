@@ -6,7 +6,7 @@ import me.chris.eruption.match.MatchTeam;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.tournament.Tournament;
-import me.chris.eruption.util.random.Clickable;
+import me.chris.eruption.util.other.Clickable;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

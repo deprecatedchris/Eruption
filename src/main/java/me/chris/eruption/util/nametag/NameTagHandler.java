@@ -8,7 +8,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-import me.chris.eruption.util.random.Style;
+import me.chris.eruption.util.other.Style;
 
 import java.util.Iterator;
 

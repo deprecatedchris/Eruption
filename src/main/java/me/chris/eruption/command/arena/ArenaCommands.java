@@ -3,8 +3,8 @@ package me.chris.eruption.command.arena;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.setup.arena.Arena;
 import me.chris.eruption.util.CC;
-import me.chris.eruption.util.random.LocationUtil;
-import me.chris.eruption.util.runnable.ArenaCommandRunnable;
+import me.chris.eruption.util.other.LocationUtil;
+import me.chris.eruption.runnable.ArenaCommandRunnable;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
@@ -14,10 +14,8 @@ import me.vaperion.blade.exception.BladeExitMessage;
 import me.vaperion.blade.exception.BladeUsageMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.chris.eruption.util.random.LocationUtil.fromBukkitLocation;
 import static org.bukkit.ChatColor.GREEN;
 import static org.bukkit.ChatColor.RED;
 

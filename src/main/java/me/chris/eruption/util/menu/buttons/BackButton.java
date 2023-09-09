@@ -2,7 +2,6 @@ package me.chris.eruption.util.menu.buttons;
 
 import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
-import me.chris.eruption.util.random.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;

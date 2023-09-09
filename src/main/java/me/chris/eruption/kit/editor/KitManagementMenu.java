@@ -10,8 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import me.chris.eruption.profile.PlayerData;
-import me.chris.eruption.util.random.ItemBuilder;
-import me.chris.eruption.util.random.Style;
+import me.chris.eruption.util.other.ItemBuilder;
+import me.chris.eruption.util.other.Style;
 import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
 

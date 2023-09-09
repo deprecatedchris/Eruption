@@ -9,7 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import me.chris.eruption.util.random.ItemUtil;
+import me.chris.eruption.util.other.ItemUtil;
 
 import java.util.LinkedList;
 import java.util.List;

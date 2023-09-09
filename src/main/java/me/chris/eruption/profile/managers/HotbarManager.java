@@ -1,7 +1,7 @@
 package me.chris.eruption.profile.managers;
 
 import lombok.Getter;
-import me.chris.eruption.util.random.ItemUtil;
+import me.chris.eruption.util.other.ItemUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
