@@ -30,6 +30,8 @@ import me.chris.eruption.util.other.PlayerUtil;
 
 import java.util.*;
 
+
+//Todo: Make this look like lounge and add Map rating.
 public class MatchListener implements Listener {
 
 	private final EruptionPlugin plugin = EruptionPlugin.getInstance();

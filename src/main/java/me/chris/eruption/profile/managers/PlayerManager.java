@@ -7,7 +7,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.ReplaceOptions;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.util.config.Config;
+import me.chris.eruption.scoreboard.ScoreboardState;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.kit.PlayerKit;
 import me.chris.eruption.database.DatabaseHandler;
@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+//Todo: Recode this mess holy shit
 public class PlayerManager {
 
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();
@@ -124,6 +125,7 @@ public class PlayerManager {
         playerData.getSettings().setDuelRequests(settingsDocument.getBoolean("duelRequests"));
         playerData.getSettings().setPartyInvites(settingsDocument.getBoolean("partyInvites"));
         playerData.getSettings().setScoreboardToggled(settingsDocument.getBoolean("scoreboardToggled"));
+        playerData.getSettings().setScoreboardState(ScoreboardState.valueOf(settingsDocument.getString("scoreboardState")));
         playerData.getSettings().setSpectatorsAllowed(settingsDocument.getBoolean("spectatorsAllowed"));
         playerData.getSettings().setPlayerVisibility(settingsDocument.getBoolean("playerVisibility"));
 

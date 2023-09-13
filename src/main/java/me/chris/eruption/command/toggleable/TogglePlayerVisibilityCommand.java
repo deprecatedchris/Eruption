@@ -7,6 +7,7 @@ import me.chris.eruption.setting.SettingsInfo;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
+import me.vaperion.blade.annotation.command.Permission;
 import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -15,6 +16,7 @@ public class TogglePlayerVisibilityCommand {
    //Hopefully this works lol
 
     @Command({"TogglePlayerVisibility", "tpv"})
+    @Permission("practice.donator")
     @Description("Toggle whether you want to see players or not.")
     public static void togglePlayerVisibility(@Sender Player player) throws BladeExitMessage {
         PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
