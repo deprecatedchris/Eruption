@@ -33,8 +33,8 @@ public class SettingsMenu extends Menu {
                         CC.translate("&7Would you like to allow"),
                         CC.translate("&7players to duel you?"),
                         "",
-                        (playerData.getSettings().isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
-                        (!playerData.getSettings().isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
+                        (settings.isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
+                        (!settings.isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
                 }).setClickAction(event ->{
                     event.setCancelled(true);
                     this.getPlayer().performCommand("tdr");
@@ -49,26 +49,26 @@ public class SettingsMenu extends Menu {
                         CC.translate("&7Switch between which style is"),
                         CC.translate("&7displayed on your scoreboard."),
                         "",
-                        (playerData.getSettings().getScoreboardState().name().equals("PING") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fPing",
-                        (playerData.getSettings().getScoreboardState().name().equals("ARENA") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fArena",
-                        (playerData.getSettings().getScoreboardState().name().equals("LADDER") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fLadder",
-                        (playerData.getSettings().getScoreboardState().name().equals("DURATION") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fDuration"
+                        (settings.getScoreboardState().name().equals("PING") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fPing",
+                        (settings.getScoreboardState().name().equals("ARENA") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fArena",
+                        (settings.getScoreboardState().name().equals("LADDER") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fLadder",
+                        (settings.getScoreboardState().name().equals("DURATION") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fDuration"
 
                 }).setClickAction(event ->{
                     event.setCancelled(true);
 
-                    switch (playerData.getSettings().getScoreboardState()) {
+                    switch (settings.getScoreboardState()) {
                         case PING:
-                            playerData.getSettings().setScoreboardState(ScoreboardState.PING);
+                            settings.setScoreboardState(ScoreboardState.PING);
                             break;
                         case ARENA:
-                            playerData.getSettings().setScoreboardState(ScoreboardState.ARENA);
+                            settings.setScoreboardState(ScoreboardState.ARENA);
                             break;
                         case LADDER:
-                            playerData.getSettings().setScoreboardState(ScoreboardState.LADDER);
+                            settings.setScoreboardState(ScoreboardState.LADDER);
                             break;
                         default:
-                            playerData.getSettings().setScoreboardState(ScoreboardState.DURATION);
+                            settings.setScoreboardState(ScoreboardState.DURATION);
                             break;
                     }
                     this.updateMenu();
@@ -81,8 +81,8 @@ public class SettingsMenu extends Menu {
                         CC.translate("&7Would you like to see"),
                         CC.translate("&7your scoreboard?"),
                         "",
-                        (playerData.getSettings().isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
-                        (!playerData.getSettings().isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
+                        (settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
+                        (!settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
                 }).setClickAction(event ->{
                     event.setCancelled(true);
                     this.getPlayer().performCommand("tsb");
@@ -97,8 +97,8 @@ public class SettingsMenu extends Menu {
                         CC.translate("&7Would you like to allow"),
                         CC.translate("&7players to spectate?"),
                         "",
-                        (playerData.getSettings().isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
-                        (!playerData.getSettings().isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
+                        (settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
+                        (!settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
                 }).setClickAction(event ->{
                     event.setCancelled(true);
                     this.getPlayer().performCommand("tspec");
@@ -113,8 +113,8 @@ public class SettingsMenu extends Menu {
                         CC.translate("&7Would you like to see"),
                         CC.translate("&7players at spawn?"),
                         "",
-                        (playerData.getSettings().isPlayerVisibility() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
-                        (!playerData.getSettings().isPlayerVisibility() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
+                        (settings.isPlayerVisibility() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
+                        (!settings.isPlayerVisibility() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
                 }).setClickAction(event ->{
                     event.setCancelled(true);
                     this.getPlayer().performCommand("tspec");

@@ -26,50 +26,30 @@ public class Match {
 
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
-    @Getter
-    private final Map<UUID, InventorySnapshot> snapshots = new HashMap<>();
+    @Getter private final Map<UUID, InventorySnapshot> snapshots = new HashMap<>();
+    @Getter private final Set<Entity> entitiesToRemove = new HashSet<>();
+    @Getter private final Set<BlockState> originalBlockChanges = new ConcurrentSet<>();
+    @Getter private final Set<Location> placedBlockLocations = new ConcurrentSet<>();
+    @Getter private final Set<UUID> spectators = new ConcurrentSet<>();
 
-    @Getter
-    private final Set<Entity> entitiesToRemove = new HashSet<>();
-    @Getter
-    private final Set<BlockState> originalBlockChanges = new ConcurrentSet<>();
-    @Getter
-    private final Set<Location> placedBlockLocations = new ConcurrentSet<>();
-    @Getter
-    private final Set<UUID> spectators = new ConcurrentSet<>();
-    @Getter
-    private final Set<Integer> runnables = new HashSet<>();
+    @Getter private final Set<Integer> runnables = new HashSet<>();
 
     private final Set<UUID> haveSpectated = new HashSet<>();
 
-    @Getter
-    private final List<MatchTeam> teams;
+    @Getter private final List<MatchTeam> teams;
+    @Getter private final UUID matchId = UUID.randomUUID();
+    @Getter private final QueueType type;
+    @Getter private final Arena arena;
+    @Getter private final Kit kit;
+    @Getter private final boolean redrover;
+    @Getter @Setter private String starting = "Starting";
 
-    @Getter
-    private final UUID matchId = UUID.randomUUID();
-    @Getter
-    private final QueueType type;
-    @Getter
-    private final Arena arena;
-    @Getter
-    private final Kit kit;
-    @Getter
-    private final boolean redrover;
-    @Getter
-    @Setter
-    private String starting = "Starting";
+    @Getter private StandaloneArena standaloneArena;
+    @Getter private MatchState matchState = MatchState.STARTING;
+    @Getter private int winningTeamId;
+    @Getter private int countdown = 6;
 
-    @Getter
-    private StandaloneArena standaloneArena;
-    @Getter
-    private MatchState matchState = MatchState.STARTING;
-    @Getter
-    private int winningTeamId;
-    @Getter
-    private int countdown = 6;
-    @Getter
-    @Setter
-    private int durationTimer;
+    @Getter @Setter private int durationTimer;
 
     public Match(Arena arena, Kit kit, QueueType type, MatchTeam... teams) {
         this(arena, kit, type, false, teams);

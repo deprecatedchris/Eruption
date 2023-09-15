@@ -64,4 +64,8 @@ public class Kit {
         return flag.equals(Flag.COMBO);
     }
 
+    public boolean isBoxing(){
+        return flag.equals(Flag.BOXING);
+    }
+
 }

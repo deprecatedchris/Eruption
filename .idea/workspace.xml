@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="minor changes (dont change spigot we need nms)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/MenuHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/MenuType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/buttons/Button.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/filling/FillingType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/listener/MenuListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/pagination/NavigationPosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/pagination/PaginatedMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/menu/setting/SettingsMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/menu/statistic/LeaderboardsMenu.java" afterDir="false" />
+    <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/toggleable/TogglePlayerVisibilityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/toggleable/TogglePlayerVisibilityCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/PlayerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setting/commands/SettingsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setting/commands/SettingsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setting/menu/SettingsMenu.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +98,7 @@
       <workItem from="1694223239951" duration="2850000" />
       <workItem from="1694235585661" duration="3131000" />
       <workItem from="1694610878058" duration="4399000" />
-      <workItem from="1694629448777" duration="4251000" />
+      <workItem from="1694629448777" duration="5863000" />
     </task>
     <task id="LOCAL-00001" summary="new command api :) + some completed commands :)">
       <option name="closed" value="true" />
@@ -132,7 +116,23 @@
       <option name="project" value="LOCAL" />
       <updated>1694238937550</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos">
+      <option name="closed" value="true" />
+      <created>1694634664443</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1694634664443</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos">
+      <option name="closed" value="true" />
+      <created>1694634732458</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1694634732458</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +153,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="new command api :) + some completed commands :)" />
     <MESSAGE value="minor changes (dont change spigot we need nms)" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes (dont change spigot we need nms)" />
+    <MESSAGE value="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos" />
   </component>
 </project>

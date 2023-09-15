@@ -4,7 +4,9 @@ import com.google.common.base.Joiner;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.match.menus.InventorySnapshot;
 import me.chris.eruption.runnable.MatchRunnable;
+import me.chris.eruption.util.CC;
 import net.md_5.bungee.api.chat.*;
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -25,7 +27,7 @@ import me.chris.eruption.queue.QueueType;
 import me.chris.eruption.util.other.Clickable;
 import me.chris.eruption.util.other.EloUtil;
 import me.chris.eruption.util.other.PlayerUtil;
-
+import org.bukkit.potion.PotionEffectType;
 
 
 import java.util.*;
@@ -90,6 +92,12 @@ public class MatchListener implements Listener {
 				player.setMaximumNoDamageTicks(2);
 			}
 
+			//todo: set kit items in this method
+			if (kit.isBoxing()) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 1));
+
+				player.sendMessage(CC.GREEN + "First to 100 hits wins the match.");
+			}
 
 			if (!match.isRedrover()) {
 				for (ItemStack itemStack : this.plugin.getMatchManager().getKitItems(player, match.getKit(), match)) {
@@ -174,7 +182,7 @@ public class MatchListener implements Listener {
 								event.getWinningTeam().getTeamID();
 				inventories.add((onWinningTeam ? ChatColor.GREEN : ChatColor.RED)
 								+ player.getName() + " ",
-						ChatColor.RED + "View menus",
+						ChatColor.RED + "Click to view inventory",
 						"/_ " + match.getSnapshot(player.getUniqueId()).getSnapshotId());
 
 				player.setMaximumNoDamageTicks(19); // Double checking the damage ticks.
@@ -201,19 +209,19 @@ public class MatchListener implements Listener {
 					+ ChatColor.RED + event.getWinningTeam().getLeaderName();
 
 			TextComponent first = new TextComponent();
-			first.setText(ChatColor.translateAlternateColorCodes('&', "&aWinner: &7"));
+			first.setText(CC.translate("&aWinner: &7"));
 			TextComponent winner = new TextComponent();
-			winner.setText(ChatColor.translateAlternateColorCodes('&', "&a" + winnerPlayer.getName()));
+			winner.setText(CC.translate("&a" + winnerPlayer.getName()));
 			winner.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/_ " + match.getSnapshot(winnerPlayer.getUniqueId()).getSnapshotId()));
-			winner.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.translateAlternateColorCodes('&', "&fClick to see the &c" + winnerPlayer.getName() + "&f's menus")).create()));
+			winner.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(CC.translate("&fClick to see the &c" + winnerPlayer.getName() + "&f's inventory")).create()));
 			TextComponent second = new TextComponent();
-			second.setText(ChatColor.translateAlternateColorCodes('&', " &7| "));
+			second.setText(CC.translate(" &7- "));
 			TextComponent third = new TextComponent();
-			third.setText(ChatColor.translateAlternateColorCodes('&', "&cLoser: &7"));
+			third.setText(CC.translate( "&cLoser: &7"));
 			TextComponent loser = new TextComponent();
-			loser.setText(ChatColor.translateAlternateColorCodes('&', "&c" + loserPlayer.getName()));
+			loser.setText(CC.translate("&c" + loserPlayer.getName()));
 			loser.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/_ " + match.getSnapshot(loserPlayer.getUniqueId()).getSnapshotId()));
-			loser.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.translateAlternateColorCodes('&', "&fClick to see the &c" + loserPlayer.getName() + "&f's menus")).create()));
+			loser.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(CC.translate("&fClick to see the &c" + loserPlayer.getName() + "&f's inventory")).create()));
 
 			BaseComponent[] bases = {
 					first,
@@ -338,6 +346,7 @@ public class MatchListener implements Listener {
 				match.broadcast(spectators);
 			}
 			match.broadcast(" ");
+
 		}
 	}
 }

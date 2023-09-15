@@ -2,6 +2,7 @@ package me.chris.eruption.runnable;
 
 import lombok.RequiredArgsConstructor;
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.util.CC;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -25,7 +26,7 @@ public class MatchRunnable extends BukkitRunnable {
 					this.match.setMatchState(MatchState.FIGHTING);
 					this.match.broadcastWithSound(ChatColor.GREEN + "Match starting now!", Sound.FIREWORK_BLAST);
 					this.match.broadcast("");
-					this.match.broadcast(ChatColor.RED.toString() + ChatColor.BOLD + "Reminder: " + ChatColor.WHITE + "Butterfly clicking is " + ChatColor.RED + "discouraged" + ChatColor.WHITE + " and could result in a" + ChatColor.RED + " ban." + ChatColor.RED + " Use at own risk.");
+					this.match.broadcast(CC.translate("&c&lReminder: &fButterfly clicking is &cdiscouraged &fand could result in a &cban. Use at your own risk."));
 					this.match.broadcast("");
 					if (this.match.isRedrover()) {
 						this.plugin.getMatchManager().pickPlayer(this.match);
@@ -33,7 +34,7 @@ public class MatchRunnable extends BukkitRunnable {
 				} else {
 					this.match.broadcastWithSound(
 							ChatColor.WHITE + "Match starting " + ChatColor.RED + this.match.getCountdown() +
-									(match.getCountdown() == 1 ? ChatColor.WHITE + " second ..." : ChatColor.WHITE + " second(s) ..."), Sound.CLICK);
+									(match.getCountdown() == 1 ? ChatColor.WHITE + " second ..." : ChatColor.WHITE + " seconds ..."), Sound.CLICK);
 				}
 				break;
 			case SWITCHING:

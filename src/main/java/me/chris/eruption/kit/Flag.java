@@ -11,6 +11,7 @@ public enum Flag {
     BEDWARS,
     BRIDGES,
     STICK_FIGHT,
+    BOXING,
     COMBO
 
 }

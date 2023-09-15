@@ -420,12 +420,7 @@ public class MatchManager {
 		playerA.showPlayer(playerB);
 		playerB.showPlayer(playerA);
 
-		match.broadcast(CC.translate("&c&lOpponent Found!"));
-		match.broadcast("");
-		match.broadcast(ChatColor.GRAY + "* " + ChatColor.RED + "Opponent: " + ChatColor.GREEN + playerB.getName());
-		match.broadcast(ChatColor.GRAY + "* " + ChatColor.RED + "Kit: " + ChatColor.YELLOW + match.getKit().getName());
-		match.broadcast(ChatColor.GRAY + "* " + ChatColor.RED + "Map: " + ChatColor.YELLOW + match.getArena().getName());
-
+		match.broadcast(CC.translate("&eStarting a " + match.getKit().getName() + " match between&a " + playerA.getName() + " &eand&c " + playerB.getName() + " &eon the map: " + match.getArena().getName()));
 	}
 	public UUID getRematcher(UUID uuid) {
 		return this.rematchUUIDs.get(uuid);
