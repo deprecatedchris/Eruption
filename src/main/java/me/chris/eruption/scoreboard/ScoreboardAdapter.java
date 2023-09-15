@@ -1,25 +1,11 @@
 package me.chris.eruption.scoreboard;
 
-import com.bizarrealex.aether.scoreboard.Board;
-import com.bizarrealex.aether.scoreboard.BoardAdapter;
-import com.bizarrealex.aether.scoreboard.cooldown.BoardCooldown;
+import io.github.thatkawaiisam.assemble.AssembleAdapter;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setting.SettingsInfo;
-import me.chris.eruption.events.types.sumo.SumoEvent;
-import me.chris.eruption.tournament.Tournament;
-import me.chris.eruption.util.CC;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
 import me.chris.eruption.events.PracticeEvent;
 import me.chris.eruption.events.types.oitc.OITCEvent;
 import me.chris.eruption.events.types.oitc.OITCPlayer;
+import me.chris.eruption.events.types.sumo.SumoEvent;
 import me.chris.eruption.events.types.sumo.SumoPlayer;
 import me.chris.eruption.match.Match;
 import me.chris.eruption.match.MatchState;
@@ -29,23 +15,29 @@ import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.queue.QueueEntry;
 import me.chris.eruption.queue.QueueType;
+import me.chris.eruption.setting.SettingsInfo;
+import me.chris.eruption.tournament.Tournament;
+import me.chris.eruption.util.CC;
 import me.chris.eruption.util.other.PlayerUtil;
-import me.chris.eruption.util.other.Style;
 import me.chris.eruption.util.other.TimeUtil;
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringJoiner;
 
-public class ScoreboardAdapter implements BoardAdapter {
-
+public class ScoreboardAdapter implements AssembleAdapter {
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
     @Override
     public String getTitle(Player player) {
         return CC.translate("&c&lWay&6&lBack &7[Beta])");
     }
-
     @Override
-    public List<String> getScoreboard(Player player, Board board, Set<BoardCooldown> cooldowns) {
+    public List<String> getLines(Player player) {
         PlayerData playerData = this.plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 
         if (playerData == null) {
@@ -67,7 +59,7 @@ public class ScoreboardAdapter implements BoardAdapter {
             case QUEUE:
                 return this.getLobbyBoard(player, true);
             case FIGHTING:
-                return this.getGameBoard(player, cooldowns);
+                return this.getGameBoard(player);
         }
 
         return null;
@@ -87,12 +79,12 @@ public class ScoreboardAdapter implements BoardAdapter {
 
         if (playerData.getPlayerState() != PlayerState.EVENT) {
             strings.add(ChatColor.WHITE.toString() + "Online&7: " + ChatColor.RED + this.plugin.getServer().getOnlinePlayers().size());
-                strings.add(ChatColor.WHITE.toString() + "In Fights&7: " + ChatColor.RED + this.plugin.getMatchManager().getFighters());
-            }
-            if (System.currentTimeMillis() < this.plugin.getEventManager().getCooldown()) {
-                strings.add(ChatColor.WHITE.toString() + ChatColor.BOLD + "Cooldown&7: " + ChatColor.RED + TimeUtil.convertToFormat(this.plugin.getEventManager().getCooldown()));
-            }
-        
+            strings.add(ChatColor.WHITE.toString() + "In Fights&7: " + ChatColor.RED + this.plugin.getMatchManager().getFighters());
+        }
+        if (System.currentTimeMillis() < this.plugin.getEventManager().getCooldown()) {
+            strings.add(ChatColor.WHITE.toString() + ChatColor.BOLD + "Cooldown&7: " + ChatColor.RED + TimeUtil.convertToFormat(this.plugin.getEventManager().getCooldown()));
+        }
+
 
         if (queuing) {
             QueueEntry queueEntry = party == null ? this.plugin.getQueueManager().getQueueEntry(player.getUniqueId()) : this.plugin.getQueueManager().getQueueEntry(party.getLeader());
@@ -244,70 +236,7 @@ public class ScoreboardAdapter implements BoardAdapter {
 
         return strings;
     }
-
-    @Override
-    public void onScoreboardCreate(final Player player, final Scoreboard scoreboard) {
-
-        Team red = scoreboard.getTeam("red");
-        if (red == null) {
-            red = scoreboard.registerNewTeam("red");
-        }
-        Team green = scoreboard.getTeam("green");
-        if (green == null) {
-            green = scoreboard.registerNewTeam("green");
-        }
-
-        red.setPrefix(Style.RED);
-        green.setPrefix(Style.GREEN);
-        final PlayerData playerData = this.plugin.getPlayerManager().getPlayerData(player.getUniqueId());
-        if (playerData.getPlayerState() != PlayerState.FIGHTING) {
-            Objective objective = player.getScoreboard().getObjective(DisplaySlot.BELOW_NAME);
-
-            if (objective != null) {
-                objective.unregister();
-            }
-            for (final String entry : red.getEntries()) {
-                red.removeEntry(entry);
-            }
-            for (final String entry : green.getEntries()) {
-                green.removeEntry(entry);
-            }
-            return;
-        }
-        final Match match = this.plugin.getMatchManager().getMatch(player.getUniqueId());
-        if (match.getKit() == EruptionPlugin.getInstance().getKitManager().getKit("BuildUHC")) {
-            Objective objective = player.getScoreboard().getObjective(DisplaySlot.BELOW_NAME);
-
-            if (objective == null) {
-                objective = player.getScoreboard().registerNewObjective("showhealth", "health");
-            }
-
-            objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
-            objective.setDisplayName(Style.GRAY + StringEscapeUtils.unescapeJava("\u2764"));
-            objective.getScore(player.getName()).setScore((int) Math.floor(player.getHealth()));
-        }
-        for (final MatchTeam team : match.getTeams()) {
-            for (final UUID teamUUID : team.getAlivePlayers()) {
-                final Player teamPlayer = this.plugin.getServer().getPlayer(teamUUID);
-                if (teamPlayer != null) {
-                    final String teamPlayerName = teamPlayer.getName();
-                    if (team.getTeamID() == playerData.getTeamID() && !match.isFFA()) {
-                        if (green.hasEntry(teamPlayerName)) {
-                            continue;
-                        }
-                        green.addEntry(teamPlayerName);
-                    } else {
-                        if (red.hasEntry(teamPlayerName)) {
-                            continue;
-                        }
-                        red.addEntry(teamPlayerName);
-                    }
-                }
-            }
-        }
-    }
-
-    private List<String> getGameBoard(Player player, Set<BoardCooldown> cooldowns) {
+    private List<String> getGameBoard(Player player) {
         PlayerData profile = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
         SettingsInfo settings = profile.getSettings();
         List<String> strings = new LinkedList<>();
@@ -332,7 +261,7 @@ public class ScoreboardAdapter implements BoardAdapter {
                     strings.add(ChatColor.WHITE.toString() + "Your Ping: " + ChatColor.GREEN + PlayerUtil.getPing(player) + " ms");
                     strings.add(ChatColor.WHITE.toString() + "Enemy's Ping: " + ChatColor.RED + PlayerUtil.getPing(opponentPlayer) + " ms");
                 } else {
-                strings.add(ChatColor.WHITE.toString()  + "Duration: &c" + ChatColor.RED + match.getDuration());
+                    strings.add(ChatColor.WHITE.toString()  + "Duration: &c" + ChatColor.RED + match.getDuration());
                 }
             } else {
                 strings.add("&c&lMatch Ended");

@@ -1,7 +1,8 @@
 package me.chris.eruption;
 
-import com.bizarrealex.aether.Aether;
 import com.google.gson.JsonParser;
+import io.github.thatkawaiisam.assemble.Assemble;
+import io.github.thatkawaiisam.assemble.AssembleStyle;
 import lombok.Getter;
 import me.chris.eruption.database.DatabaseHandler;
 import me.chris.eruption.events.managers.EventManager;
@@ -98,7 +99,10 @@ public class EruptionPlugin extends JavaPlugin {
                 .build()
                 .registerPackage(EruptionPlugin.class, "me.chris.eruption.commands");
 
-        new Aether(this, new ScoreboardAdapter());
+        Assemble board = new Assemble(this, new ScoreboardAdapter());
+        board.setTicks(20);
+        board.setAssembleStyle(AssembleStyle.MODERN);
+
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new SaveDataRunnable(), 20L * 60L * 5L, 20L * 60L * 5L);
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new ExpBarRunnable(), 2L, 2L);
 
