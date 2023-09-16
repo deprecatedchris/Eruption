@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos">
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/leaderboard/menu/LeaderboardMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/statistic/StatisticCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/leaderboard/commands/LeaderboardsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/leaderboard/LeaderboardsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/leaderboard/commands/StatsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/leaderboard/menus/LeaderboardsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/leaderboard/menu/LeaderboardsMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +105,7 @@
       <workItem from="1694235585661" duration="3131000" />
       <workItem from="1694610878058" duration="4399000" />
       <workItem from="1694629448777" duration="5863000" />
+      <workItem from="1694898629363" duration="1056000" />
     </task>
     <task id="LOCAL-00001" summary="new command api :) + some completed commands :)">
       <option name="closed" value="true" />
