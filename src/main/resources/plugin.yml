@@ -1,7 +1,7 @@
 main: me.chris.eruption.EruptionPlugin
 name: Eruption
 version: Dev
-authors: ["Jordan's Three Musketeers"]
+authors: ["Chris", "vaaaleh", "staud"]
 depend:
   - ProtocolLib
 softdepend:

@@ -1,3 +1,9 @@
-Mongo:
- URL: ''
- Database:
+MONGO:
+ HOST: 127.0.0.1
+ PORT: 27017
+ DATABASE: Eruption
+ AUTH:
+  ENABLED: false
+  USERNAME: root
+  PASSWORD: root
+

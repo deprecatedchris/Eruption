@@ -71,6 +71,7 @@ public class EruptionPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        saveDefaultConfig();
 
         for (World world : Bukkit.getWorlds()) {
             world.setGameRuleValue("doDaylightCycle", "false");
@@ -79,12 +80,12 @@ public class EruptionPlugin extends JavaPlugin {
         }
 
         new DatabaseHandler(
-                "127.0.0.1",
-                27017,
-                false,
-                "",
-                "",
-                "eruption"
+                getConfig().getString("MONGO.HOST"),
+                getConfig().getInt("MONGO.PORT"),
+                getConfig().getBoolean("MONGO.AUTH.ENABLED"),
+                getConfig().getString("MONGO.AUTH.USERNAME"),
+                getConfig().getString("MONGO.AUTH.PASSWORD"),
+                getConfig().getString("MONGO.DATABASE")
         );
 
         this.registerListeners();
