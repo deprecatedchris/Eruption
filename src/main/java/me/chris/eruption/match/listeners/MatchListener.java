@@ -31,6 +31,7 @@ import org.bukkit.potion.PotionEffectType;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 //Todo: Make this look like lounge and add Map rating.
@@ -119,6 +120,21 @@ public class MatchListener implements Listener {
 		for (Player player : matchPlayers) {
 			for (Player other : matchPlayers) {
 				player.showPlayer(other);
+			}
+		}
+
+		List<Player> suitablePlayers = matchPlayers.stream()
+				.filter(player -> plugin.getPlayerManager().getPlayerData(player.getUniqueId()).getElo(kit.getName()) > 1200)
+				.collect(Collectors.toList());
+
+		if (match.getType() == QueueType.RANKED && suitablePlayers.size() > 1) {
+			Clickable message = new Clickable(
+					CC.translate("&6[&fHigh Elo&6] &fA high elo match has been started between &c" + suitablePlayers.get(0).getName() + " &fand &c" + suitablePlayers.get(1).getName()),
+					CC.translate("&6Click to view."),
+					"/spec " + suitablePlayers.get(0).getName());
+
+			for (Player player : Bukkit.getOnlinePlayers()) {
+				message.sendToPlayer(player);
 			}
 		}
 
