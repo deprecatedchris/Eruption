@@ -134,6 +134,9 @@ public class MatchListener implements Listener {
 					"/spec " + suitablePlayers.get(0).getName());
 
 			for (Player player : Bukkit.getOnlinePlayers()) {
+				if (suitablePlayers.contains(player)) {
+					return;
+				}
 				message.sendToPlayer(player);
 			}
 		}
