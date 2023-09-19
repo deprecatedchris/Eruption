@@ -2,6 +2,7 @@ package me.chris.eruption.setup.arena.managers;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.chris.eruption.setup.arena.type.ArenaType;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -81,8 +82,10 @@ public class ArenaManager {
 			}
 
 			boolean enabled = arenaSection.getBoolean(name + ".enabled", false);
+			boolean isEvent = arenaSection.getBoolean(name + ".event", false);
+			ArenaType arenaType = ArenaType.valueOf(arenaSection.getString(name + ".type"));
 
-			Arena arena = new Arena(name, standaloneArenas, new ArrayList<>(standaloneArenas), locA, locB, locMin, locMax, enabled);
+			Arena arena = new Arena(name, standaloneArenas, new ArrayList<>(standaloneArenas), locA, locB, locMin, locMax, enabled, isEvent, arenaType);
 
 			this.arenas.put(name, arena);
 		});
@@ -112,6 +115,8 @@ public class ArenaManager {
 			fileConfig.set(arenaRoot + ".max", max);
 			fileConfig.set(arenaRoot + ".enabled", arena.isEnabled());
 			fileConfig.set(arenaRoot + ".standaloneArenas", null);
+			fileConfig.set(arenaRoot + ".event", arena.isEvent());
+			fileConfig.set(arenaRoot + ".type", arena.getArenaType().getNiceName());
 			int i = 0;
 			if (arena.getStandaloneArenas() != null) {
 				for (StandaloneArena saArena : arena.getStandaloneArenas()) {
@@ -186,7 +191,6 @@ public class ArenaManager {
 	public void createArena(String name) {
 		this.arenas.put(name, new Arena(name));
 	}
-
 	public void deleteArena(String name) {
 		this.arenas.remove(name);
 	}

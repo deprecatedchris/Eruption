@@ -46,7 +46,6 @@ import java.util.Iterator;
 
 @Getter
 public class EruptionPlugin extends JavaPlugin {
-
     @Getter
     private static EruptionPlugin instance;
 
@@ -72,6 +71,7 @@ public class EruptionPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+
 
         for (World world : Bukkit.getWorlds()) {
             world.setGameRuleValue("doDaylightCycle", "false");

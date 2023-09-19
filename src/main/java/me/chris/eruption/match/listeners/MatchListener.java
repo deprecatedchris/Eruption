@@ -347,6 +347,27 @@ public class MatchListener implements Listener {
 			}
 			match.broadcast(" ");
 
+			TextComponent rateMapBase = new TextComponent(CC.translate("&eClick the stars to rate the &6" + match.getArena().getName() + " &earena! "));
+
+			TextComponent[] rateComponents = new TextComponent[6];
+			String[] ratings = {"Terrible", "NotBest", "Okay", "Good", "Amazing"};
+			String[] colors = {"c", "6", "e", "3", "a"};
+
+			for (int i = 0; i < 5; i++) {
+				rateComponents[i] = new TextComponent(CC.translate("&" + colors[i] + "&l[" + (i + 1) + "⭐]"));
+				rateComponents[i].setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(CC.translate("&eClick to rate &6" + match.getArena().getName() + " &eas &" + colors[i] + ratings[i] + "&e.")).create()));
+				rateComponents[i].setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/ratethemap " + match.getArena().getName() + " " + ratings[i]));
+			}
+
+			BaseComponent[] rateBases = {
+					rateMapBase,
+					rateComponents[0],
+					rateComponents[1],
+					rateComponents[2],
+					rateComponents[3],
+					rateComponents[4]
+			};
+			match.broadcast(rateBases);
 		}
 	}
 }

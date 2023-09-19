@@ -1,10 +1,12 @@
 package me.chris.eruption.setup.arena;
 
+import java.awt.*;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import me.chris.eruption.setup.arena.type.ArenaType;
 import me.chris.eruption.util.other.LocationUtil;
 
 @Getter
@@ -17,7 +19,6 @@ public class Arena {
 
 	private List<StandaloneArena> standaloneArenas;
 	private List<StandaloneArena> availableArenas;
-
 	private LocationUtil a;
 	private LocationUtil b;
 
@@ -25,6 +26,9 @@ public class Arena {
 	private LocationUtil max;
 
 	private boolean enabled;
+	private boolean isEvent = false;
+
+	private ArenaType arenaType = ArenaType.NONE;
 
 	public StandaloneArena getAvailableArena() {
 		StandaloneArena arena = this.availableArenas.get(0);

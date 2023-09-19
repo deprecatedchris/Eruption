@@ -2,9 +2,11 @@ package me.chris.eruption.command.arena;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.setup.arena.Arena;
+import me.chris.eruption.setup.arena.type.ArenaType;
 import me.chris.eruption.util.CC;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.runnable.ArenaCommandRunnable;
+import me.vaperion.blade.annotation.argument.Optional;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
@@ -34,6 +36,61 @@ public final class ArenaCommands {
         plugin.getArenaManager().createArena(name);
         player.sendMessage(CC.translate("&aCreated arena &e" + name + "&a!"));
     }
+
+    @Command("arena event")
+    @Permission("eruption.arena.event")
+    @Description("Toggle arena's event mode")
+    public static void toggleEvent(@Sender Player player, String name) throws BladeExitMessage {
+        Arena arena = plugin.getArenaManager().getArena(name);
+        if (arena == null) {
+            throw new BladeExitMessage("An arena with that name doesn't exist");
+        }
+
+        player.sendMessage(arena.isEvent() ? CC.RED + "Toggled event mode for arena " + arena.getName() : CC.GREEN + "Toggled event mode for arena" + arena.getName());
+        arena.setEvent(!arena.isEvent());
+    }
+
+    @Command("arena type")
+    @Permission("eruption.arena.event")
+    @Description("Toggle arena's event mode")
+    public static void setType(@Sender Player player, String name ,String type) throws BladeExitMessage {
+        Arena arena = plugin.getArenaManager().getArena(name);
+
+        if (arena == null) {
+            throw new BladeExitMessage("An arena with that name doesn't exist");
+        }
+
+         switch (type.toLowerCase()) {
+                case "sumo":
+                    arena.setArenaType(ArenaType.SUMO);
+                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+                    break;
+                case "lms":
+                    arena.setArenaType(ArenaType.LMS);
+                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+                    break;
+                case "oitc":
+                    arena.setArenaType(ArenaType.OITC);
+                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+                    break;
+                case "runner":
+                    arena.setArenaType(ArenaType.RUNNER);
+                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+                    break;
+                case "corners":
+                    arena.setArenaType(ArenaType.CORNERS);
+                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+                    break;
+                case "parkour":
+                    arena.setArenaType(ArenaType.PARKOUR);
+                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+                    break;
+                default:
+                    player.sendMessage(CC.RED + "Types: sumo, lms, oitc, runner, corners, parkour.");
+                    break;
+            }
+    }
+
 
     @Command({"arena delete", "arena del", "arena remove", "arena rem"})
     @Permission("eruption.arena.delete")
