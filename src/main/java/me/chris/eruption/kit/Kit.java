@@ -17,6 +17,7 @@ import java.util.List;
 public class Kit {
 
     private final String name;
+    private String displayName;
     private ItemStack[] contents = new ItemStack[36];
     private ItemStack[] armor = new ItemStack[4];
     private ItemStack[] kitEditContents = new ItemStack[36];
@@ -63,7 +64,6 @@ public class Kit {
     public boolean isCombo(){
         return flag.equals(Flag.COMBO);
     }
-
     public boolean isBoxing(){
         return flag.equals(Flag.BOXING);
     }

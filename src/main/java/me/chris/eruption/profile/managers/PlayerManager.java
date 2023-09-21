@@ -14,6 +14,7 @@ import me.chris.eruption.database.DatabaseHandler;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.setting.SettingsInfo;
+import me.chris.eruption.util.config.Config;
 import me.chris.eruption.util.other.InventoryUtil;
 import me.chris.eruption.util.other.PlayerUtil;
 import me.chris.eruption.util.timer.impl.EnderpearlTimer;
@@ -376,6 +377,7 @@ public class PlayerManager {
             this.plugin.getServer().getOnlinePlayers().forEach(player::showPlayer);
         }
 
+        //Todo: fix this
         player.teleport(this.plugin.getSpawnManager().getSpawnLocation().toBukkitLocation());
 
     }

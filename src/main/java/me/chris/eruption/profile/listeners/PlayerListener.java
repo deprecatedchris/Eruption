@@ -19,14 +19,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.TrapDoor;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import me.chris.eruption.setup.arena.Arena;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.events.PracticeEvent;
 import me.chris.eruption.events.types.oitc.OITCEvent;
 import me.chris.eruption.events.types.oitc.OITCPlayer;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.kit.PlayerKit;
-import me.chris.eruption.kit.editor.KitManagementMenu;
-import me.chris.eruption.kit.editor.SelectLadderKitMenu;
 import me.chris.eruption.match.Match;
 import me.chris.eruption.match.MatchState;
 import me.chris.eruption.party.Party;
@@ -347,7 +345,7 @@ public class PlayerListener implements Listener {
                             this.plugin.getPartyManager().createParty(player);
                             break;
                         case BOOK:
-                            new SelectLadderKitMenu().openMenu(player);
+                            //new SelectLadderKitMenu().openMenu(player);
                             break;
                         case PAPER:
                             player.performCommand("party info");
@@ -553,10 +551,10 @@ public class PlayerListener implements Listener {
             }
 
             if (!playerData.isInMatch()) {
-                new KitManagementMenu(playerData.getSelectedLadder()).openMenu(event.getPlayer());
+                //new KitManagementMenu(playerData.getSelectedLadder()).openMenu(event.getPlayer());
             }
 
-            playerData.getSelectedKit().setName(event.getMessage());
+            //playerData.getSelectedKit().setName(event.getMessage());
             playerData.setActive(false);
             playerData.setRename(false);
         }

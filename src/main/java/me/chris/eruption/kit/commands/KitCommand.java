@@ -2,7 +2,7 @@ package me.chris.eruption.kit.commands;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Flag;
-import me.chris.eruption.setup.arena.Arena;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.util.other.ItemUtil;
 import org.apache.commons.lang.StringUtils;
@@ -233,10 +233,9 @@ public class KitCommand extends Command {
                     sender.sendMessage(KitCommand.NO_KIT);
                 }
                 break;
-                //todo: fix displayName and shit :)
             case "setdisplayname":
                 String displayName = StringUtils.join(args, ' ', 2, args.length);
-//                kit.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
+                kit.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
                 sender.sendMessage(ChatColor.GREEN + "Successfully set the display name as \"" + ChatColor.translateAlternateColorCodes('&', displayName) + ChatColor.GREEN + "\"");
                 break;
             case "seteditinv":

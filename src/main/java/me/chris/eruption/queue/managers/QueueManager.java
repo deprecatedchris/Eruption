@@ -6,7 +6,7 @@ import me.chris.eruption.util.other.PlayerUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setup.arena.Arena;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.match.Match;
 import me.chris.eruption.match.MatchTeam;

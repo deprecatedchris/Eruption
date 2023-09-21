@@ -5,15 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/SpawnCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/type/ArenaType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/managers/ChunkManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/ResetStatsCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/WarpCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/config/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/config/ConfigFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/SettingsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/setting/SettingsCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/arena/ArenaCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/arena/ArenaCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/listeners/MatchListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/listeners/MatchListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/Arena.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/managers/ArenaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/managers/ArenaManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/party/PartyCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/party/PartyCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/toggleable/ToggleStyleCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/Kit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/Kit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/commands/KitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/commands/KitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/managers/KitManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/managers/KitManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/MatchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/MatchRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/managers/MatchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/managers/MatchManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/menu/setting/SettingsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/setting/menu/SettingsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/menu/statistic/LeaderboardsMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/menu/statistic/StatisticsMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/managers/PartyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/managers/PartyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/PlayerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/PlayerListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/WorldListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/WorldListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/InventoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/InventoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/queue/managers/QueueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/queue/managers/QueueManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/ArenaCommandRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/ArenaCommandRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/DuplicateArenaRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/DuplicateArenaRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setting/SettingsInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setting/SettingsInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/ResetStatsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/SpawnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SpawnCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/SpawnsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/WarpCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/Arena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/StandaloneArena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/StandaloneArena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/managers/ArenaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/managers/ArenaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/arena/type/ArenaType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/type/ArenaType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/managers/ChunkManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setup/managers/SpawnManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/nametag/NameTagHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/nametag/NameTagHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,5 +195,31 @@
     <MESSAGE value="minor changes (dont change spigot we need nms)" />
     <MESSAGE value="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos" />
     <option name="LAST_COMMIT_MESSAGE" value="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SpawnCommand.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SpawnCommand.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/managers/ArenaManager.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/commands/KitCommand.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -9,7 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setup.arena.Arena;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.match.menus.InventorySnapshot;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.kit.PlayerKit;
@@ -26,6 +26,8 @@ import me.chris.eruption.util.inventory.InventoryUI;
 
 import java.util.*;
 
+
+//Todo: recode all this bull into sep menus (it should currently work its just nasty)
 public class InventoryManager {
 	private static final String MORE_PLAYERS = ChatColor.RED + "There must be at least 2 players in your party to do this.";
 

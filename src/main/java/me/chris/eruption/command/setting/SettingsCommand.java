@@ -1,10 +1,9 @@
-package me.chris.eruption.command;
+package me.chris.eruption.command.setting;
 
-import me.chris.eruption.menu.setting.SettingsMenu;
+import me.chris.eruption.command.setting.menu.SettingsMenu;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class SettingsCommand {

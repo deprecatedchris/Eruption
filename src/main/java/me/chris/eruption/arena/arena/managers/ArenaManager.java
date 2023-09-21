@@ -1,8 +1,8 @@
-package me.chris.eruption.setup.arena.managers;
+package me.chris.eruption.arena.arena.managers;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.chris.eruption.setup.arena.type.ArenaType;
+import me.chris.eruption.arena.arena.type.ArenaType;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -13,8 +13,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setup.arena.Arena;
-import me.chris.eruption.setup.arena.StandaloneArena;
+import me.chris.eruption.arena.arena.Arena;
+import me.chris.eruption.arena.arena.StandaloneArena;
 import me.chris.eruption.util.config.Config;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.util.other.ItemUtil;

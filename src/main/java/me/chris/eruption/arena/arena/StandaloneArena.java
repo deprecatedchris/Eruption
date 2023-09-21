@@ -1,4 +1,4 @@
-package me.chris.eruption.setup.arena;
+package me.chris.eruption.arena.arena;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

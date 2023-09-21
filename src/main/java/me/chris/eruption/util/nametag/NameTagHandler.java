@@ -1,5 +1,6 @@
 package me.chris.eruption.util.nametag;
 
+import me.chris.eruption.util.CC;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -8,7 +9,6 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-import me.chris.eruption.util.other.Style;
 
 import java.util.Iterator;
 
@@ -87,7 +87,7 @@ public class NameTagHandler {
 			}
 
 			objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
-			objective.setDisplayName(Style.RED + StringEscapeUtils.unescapeJava("\u2764"));
+			objective.setDisplayName(CC.RED + StringEscapeUtils.unescapeJava("\u2764"));
 			objective.getScore(other.getName()).setScore((int) Math.floor(other.getHealth()));
 		}
 	}

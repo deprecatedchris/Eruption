@@ -1,4 +1,4 @@
-package me.chris.eruption.setup.arena.type;
+package me.chris.eruption.arena.arena.type;
 
 public enum ArenaType {
 

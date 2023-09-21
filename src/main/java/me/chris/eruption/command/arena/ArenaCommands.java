@@ -1,12 +1,11 @@
 package me.chris.eruption.command.arena;
 
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setup.arena.Arena;
-import me.chris.eruption.setup.arena.type.ArenaType;
+import me.chris.eruption.arena.arena.Arena;
+import me.chris.eruption.arena.arena.type.ArenaType;
 import me.chris.eruption.util.CC;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.runnable.ArenaCommandRunnable;
-import me.vaperion.blade.annotation.argument.Optional;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;

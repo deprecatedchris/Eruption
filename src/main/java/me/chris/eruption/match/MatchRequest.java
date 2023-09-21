@@ -1,6 +1,6 @@
 package me.chris.eruption.match;
 
-import me.chris.eruption.setup.arena.Arena;
+import me.chris.eruption.arena.arena.Arena;
 
 import java.util.UUID;
 import lombok.Getter;

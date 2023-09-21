@@ -7,7 +7,6 @@ import me.chris.eruption.scoreboard.ScoreboardState;
 public class SettingsInfo {
 
     private boolean duelRequests = true;
-    private boolean altScoreboard = true;
     private boolean scoreboardToggled = true;
     private boolean spectatorsAllowed = true;
     private boolean playerVisibility = true;

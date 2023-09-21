@@ -1,10 +1,8 @@
-package me.chris.eruption.setup;
+package me.chris.eruption.command.admin;
 
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setup.managers.SpawnManager;
 import me.chris.eruption.util.CC;
 import me.chris.eruption.util.other.LocationUtil;
-import me.vaperion.blade.annotation.argument.Optional;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;

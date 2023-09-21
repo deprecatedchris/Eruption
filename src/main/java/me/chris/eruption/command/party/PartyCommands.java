@@ -164,8 +164,6 @@ public final class PartyCommands {
     @Description("Kick a player from party.")
     public static void partyKick(@Sender Player player, CommandSender sender, Player target) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
-        PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
-        PartyManager partyManager = plugin.getPartyManager();
         Party targetParty = plugin.getPartyManager().getParty(target.getUniqueId());
 
         if (party == null) {
@@ -192,9 +190,6 @@ public final class PartyCommands {
     @Description("Limit your party.")
     public static void partyLimit(@Sender Player player, Integer limit, Player target) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
-        PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
-        PartyManager partyManager = plugin.getPartyManager();
-        Party targetParty = plugin.getPartyManager().getParty(target.getUniqueId());
 
         if (party == null) {
             throw new BladeExitMessage("You are not in a party.");
@@ -220,9 +215,6 @@ public final class PartyCommands {
     @Description("Limit your party.")
     public static void partyToggle(@Sender Player player, CommandSender sender, Integer limit, Player target) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
-        PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
-        PartyManager partyManager = plugin.getPartyManager();
-        Party targetParty = plugin.getPartyManager().getParty(target.getUniqueId());
 
         if (party == null) {
             throw new BladeExitMessage("You are not in a party.");
@@ -239,8 +231,6 @@ public final class PartyCommands {
     @Description("See your party information.")
     public static void partyInformation(@Sender Player player) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
-        PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
-        PartyManager partyManager = plugin.getPartyManager();
 
         if (party == null) {
             throw new BladeExitMessage("You are not in a party.");

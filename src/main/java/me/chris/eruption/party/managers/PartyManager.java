@@ -4,7 +4,7 @@ import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.party.Party;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
-import me.chris.eruption.util.other.Style;
+import me.chris.eruption.util.CC;
 import me.chris.eruption.util.other.TtlHashMap;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -12,6 +12,8 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+
+//TODO: Add a view info clickable to party invite message
 public class PartyManager {
 
 	private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
@@ -61,10 +63,10 @@ public class PartyManager {
 		plugin.getPlayerManager().Reset(player);
 
 		player.sendMessage(" ");
-		player.sendMessage(Style.translate("&eYou have created a new &dParty&e."));
-		player.sendMessage(Style.translate("&eTo invite your friends do &c/party invite &e."));
-		player.sendMessage(Style.translate(" "));
-		player.sendMessage(Style.translate("&e&o/party for information on all commands, to use party chat do '&d@&e' <messsage>"));
+		player.sendMessage(CC.translate("&eYou have created a new &dParty&e."));
+		player.sendMessage(CC.translate("&eTo invite your friends do &c/party invite &e."));
+		player.sendMessage(CC.translate(" "));
+		player.sendMessage(CC.translate("&e&o/party for information on all commands, to use party chat do '&d@&e' <messsage>"));
 		player.sendMessage(" "); }
 
 	private void disbandParty(Party party, boolean tournament) {

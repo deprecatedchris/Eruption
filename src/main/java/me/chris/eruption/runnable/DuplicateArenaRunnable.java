@@ -1,7 +1,7 @@
 package me.chris.eruption.runnable;
 
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setup.arena.Arena;
+import me.chris.eruption.arena.arena.Arena;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;

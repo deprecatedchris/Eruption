@@ -6,8 +6,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setup.arena.Arena;
-import me.chris.eruption.setup.arena.StandaloneArena;
+import me.chris.eruption.arena.arena.Arena;
+import me.chris.eruption.arena.arena.StandaloneArena;
 
 /**
  * @since 11/25/2017

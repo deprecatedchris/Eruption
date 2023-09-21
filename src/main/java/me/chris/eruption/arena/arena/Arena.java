@@ -1,12 +1,11 @@
-package me.chris.eruption.setup.arena;
+package me.chris.eruption.arena.arena;
 
-import java.awt.*;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import me.chris.eruption.setup.arena.type.ArenaType;
+import me.chris.eruption.arena.arena.type.ArenaType;
 import me.chris.eruption.util.other.LocationUtil;
 
 @Getter

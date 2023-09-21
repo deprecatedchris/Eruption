@@ -1,4 +1,4 @@
-package me.chris.eruption.menu.setting;
+package me.chris.eruption.command.setting.menu;
 
 import io.github.nosequel.menu.Menu;
 import io.github.nosequel.menu.buttons.Button;

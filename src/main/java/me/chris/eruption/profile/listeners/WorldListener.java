@@ -1,7 +1,7 @@
 package me.chris.eruption.profile.listeners;
 
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.setup.arena.StandaloneArena;
+import me.chris.eruption.arena.arena.StandaloneArena;
 import me.chris.eruption.match.Match;
 import me.chris.eruption.match.MatchState;
 import me.chris.eruption.profile.PlayerData;
