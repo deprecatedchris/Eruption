@@ -11,33 +11,40 @@ import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-
 public class SpawnCommand {
 
     @Command("setlocation")
     @Permission("eruption.setlocation")
     @Description("Setup spawns.")
-    public void execute(@Sender Player sender, String type) throws BladeExitMessage {
+    public void spawn(@Sender Player player, String type) throws BladeExitMessage {
         FileConfiguration config = EruptionPlugin.getInstance().getConfig();
-        if (!(sender instanceof Player)) {
-            return;
-        }
 
-                if (type.equalsIgnoreCase("spawn")) {
-                    config.set("LOCATIONS.SPAWN.LOCATION", LocationUtil.locationToString(LocationUtil.fromBukkitLocation(sender.getLocation())));
-                    sender.sendMessage(CC.translate("&aSpawn location set."));
-                    EruptionPlugin.getInstance().saveConfig();
-                } else if (type.equalsIgnoreCase("min")) {
-                    config.set("LOCATIONS.SPAWN.MIN", LocationUtil.locationToString(LocationUtil.fromBukkitLocation(sender.getLocation())));
-                    sender.sendMessage(CC.translate("&aSpawn's min set."));
-                    EruptionPlugin.getInstance().saveConfig();
-                } else if (type.equalsIgnoreCase("max")) {
-                    config.set("LOCATIONS.SPAWN.MAX", LocationUtil.locationToString(LocationUtil.fromBukkitLocation(sender.getLocation())));
-                    sender.sendMessage(CC.translate("&aSpawn's max set."));
-                    EruptionPlugin.getInstance().saveConfig();
-                } else {
-                    sender.sendMessage(CC.translate("&cWrong usage: /setlocation spawn [spawn|min|max]"));
-                }
+        // How is this going to pass anything other than player to the player param?
+        // Not even needed lol?
+
+//        if (!(sender instanceof Player)) {
+//            return;
+//        }
+
+        switch (type) {
+            case "spawn":
+                config.set("LOCATIONS.SPAWN.LOCATION", LocationUtil.locationToString(LocationUtil.fromBukkitLocation(player.getLocation())));
+                player.sendMessage(CC.translate("&aSpawn location set."));
+                EruptionPlugin.getInstance().saveConfig();
+                break;
+            case "min":
+                config.set("LOCATIONS.SPAWN.MIN", LocationUtil.locationToString(LocationUtil.fromBukkitLocation(player.getLocation())));
+                player.sendMessage(CC.translate("&aSpawn's min set."));
+                EruptionPlugin.getInstance().saveConfig();
+                break;
+            case "max":
+                config.set("LOCATIONS.SPAWN.MAX", LocationUtil.locationToString(LocationUtil.fromBukkitLocation(player.getLocation())));
+                player.sendMessage(CC.translate("&aSpawn's max set."));
+                EruptionPlugin.getInstance().saveConfig();
+                break;
+            default:
+                player.sendMessage(CC.translate("&cWrong usage: /setlocation spawn [spawn|min|max]"));
+                break;
         }
     }
-
+}
