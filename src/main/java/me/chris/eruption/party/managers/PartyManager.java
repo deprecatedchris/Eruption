@@ -62,12 +62,16 @@ public class PartyManager {
 		plugin.getInventoryManager().addParty(player);
 		plugin.getPlayerManager().Reset(player);
 
-		player.sendMessage(" ");
-		player.sendMessage(CC.translate("&eYou have created a new &dParty&e."));
-		player.sendMessage(CC.translate("&eTo invite your friends do &c/party invite &e."));
-		player.sendMessage(CC.translate(" "));
-		player.sendMessage(CC.translate("&e&o/party for information on all commands, to use party chat do '&d@&e' <messsage>"));
-		player.sendMessage(" "); }
+		String[] createMessage = new String[]{
+				" ",
+				CC.translate("&eYou have created a new &dParty&e."),
+				CC.translate("&eTo invite your friends do &c/party invite &e."),
+				" ",
+				CC.translate("&e&o/party for information on all commands, to use party chat do '&d@&e' <messsage>"),
+				" ",
+		};
+
+		player.sendMessage(createMessage); }
 
 	private void disbandParty(Party party, boolean tournament) {
 		plugin.getInventoryManager().removeParty(party);

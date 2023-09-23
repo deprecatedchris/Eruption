@@ -21,34 +21,18 @@ public class Tournament {
 
 	private final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
-	@Getter
-	private final Set<UUID> players = new HashSet<>();
-	@Getter
-	private final Set<UUID> matches = new HashSet<>();
-	@Getter
-	private final List<TournamentTeam> aliveTeams = new ArrayList<>();
-	@Getter
-	private final Map<UUID, TournamentTeam> playerTeams = new HashMap<>();
-	@Getter
-	private final int id;
-	@Getter
-	private final int teamSize;
-	@Getter
-	private final int size;
-	@Getter
-	private final String kitName;
-	@Getter
-	@Setter
-	private TournamentState tournamentState = TournamentState.WAITING;
-	@Getter
-	@Setter
-	private int currentRound = 1;
-	@Getter
-	@Setter
-	private int countdown = 31;
-	@Getter
-	@Setter
-	private int tokens = 0;
+	@Getter private final Set<UUID> players = new HashSet<>();
+	@Getter private final Set<UUID> matches = new HashSet<>();
+	@Getter private final List<TournamentTeam> aliveTeams = new ArrayList<>();
+	@Getter private final Map<UUID, TournamentTeam> playerTeams = new HashMap<>();
+	@Getter private final int id;
+	@Getter private final int teamSize;
+	@Getter private final int size;
+	@Getter private final String kitName;
+	@Getter @Setter private TournamentState tournamentState = TournamentState.WAITING;
+	@Getter @Setter private int currentRound = 1;
+	@Getter @Setter private int countdown = 31;
+	@Getter @Setter private int tokens = 0;
 
 	public void addPlayer(UUID uuid) {
 		this.players.add(uuid);

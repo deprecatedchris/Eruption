@@ -1,4 +1,4 @@
-package me.chris.eruption.match.menus;
+package me.chris.eruption.command.match.menu;
 
 import lombok.Getter;
 import me.chris.eruption.EruptionPlugin;

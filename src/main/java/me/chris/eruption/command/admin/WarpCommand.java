@@ -10,15 +10,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-//TODO: Recode this command to blade.
 public class WarpCommand {
     private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
     @Command({"spawn"})
-    @Usage("/spawn <args>")
     @Description("Teleport to spawn.")
     @Permission("practice.admin")
-    public static void spawnCommand(@Sender Player player, String alias, String[] args) throws BladeExitMessage {
+    public static void spawnCommand(@Sender Player player, String[] args) throws BladeExitMessage {
         if (args.length == 0) {
             plugin.getPlayerManager().sendToSpawnAndReset(player);
         }

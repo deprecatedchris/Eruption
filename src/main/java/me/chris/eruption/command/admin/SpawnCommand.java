@@ -13,8 +13,8 @@ import org.bukkit.entity.Player;
 
 public class SpawnCommand {
 
-    @Command("setlocation")
-    @Permission("eruption.setlocation")
+    @Command("setspawn")
+    @Permission("eruption.setspawn")
     @Description("Setup spawns.")
     public void spawn(@Sender Player player, String type) throws BladeExitMessage {
         FileConfiguration config = EruptionPlugin.getInstance().getConfig();
@@ -43,7 +43,7 @@ public class SpawnCommand {
                 EruptionPlugin.getInstance().saveConfig();
                 break;
             default:
-                player.sendMessage(CC.translate("&cWrong usage: /setlocation spawn [spawn|min|max]"));
+                player.sendMessage(CC.translate("&cWrong usage: /setspawn [spawn|min|max]"));
                 break;
         }
     }

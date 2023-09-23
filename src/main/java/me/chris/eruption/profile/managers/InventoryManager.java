@@ -10,7 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.arena.arena.Arena;
-import me.chris.eruption.match.menus.InventorySnapshot;
+import me.chris.eruption.command.match.menu.InventorySnapshot;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.kit.PlayerKit;
 import me.chris.eruption.match.Match;

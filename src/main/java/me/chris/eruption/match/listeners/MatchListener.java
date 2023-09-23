@@ -2,11 +2,10 @@ package me.chris.eruption.match.listeners;
 
 import com.google.common.base.Joiner;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.match.menus.InventorySnapshot;
+import me.chris.eruption.command.match.menu.InventorySnapshot;
 import me.chris.eruption.runnable.MatchRunnable;
 import me.chris.eruption.util.CC;
 import net.md_5.bungee.api.chat.*;
-import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

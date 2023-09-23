@@ -6,7 +6,7 @@ import lombok.Setter;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.arena.arena.StandaloneArena;
-import me.chris.eruption.match.menus.InventorySnapshot;
+import me.chris.eruption.command.match.menu.InventorySnapshot;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.util.other.Clickable;
 import net.md_5.bungee.api.chat.BaseComponent;

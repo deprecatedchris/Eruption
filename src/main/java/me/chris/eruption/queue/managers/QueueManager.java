@@ -2,6 +2,7 @@ package me.chris.eruption.queue.managers;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.chris.eruption.util.CC;
 import me.chris.eruption.util.other.PlayerUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -131,6 +132,7 @@ public class QueueManager {
 
 
 		for (UUID opponent : this.queued.keySet()) {
+			String playerFoundMatchMessage, matchedFoundMatchMessage;
 			if (opponent.equals(player.getUniqueId()))
 				continue;
 			QueueEntry opponentQueueEntry = this.queued.get(opponent);
@@ -162,40 +164,19 @@ public class QueueManager {
 
 
 			if (type.isRanked()) {
-
-				player.sendMessage("  ");
-				player.sendMessage(ChatColor.RED + "§lMatch found! §f");
-				player.sendMessage(ChatColor.GRAY + "");
-				player.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Map: " + ChatColor.WHITE + arena.getName());
-				player.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Opponent: " + ChatColor.WHITE + opponentPlayer.getName() + ChatColor.BLUE + " (" + this.queued.get(opponentPlayer.getUniqueId()).getElo() + " elo)");
-				player.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Ping:" + ChatColor.WHITE + PlayerUtil.getPing(player));
-				player.sendMessage("  ");
-
-				opponentPlayer.sendMessage("  ");
-				opponentPlayer.sendMessage(ChatColor.RED + "§lMatch found! §f");
-				opponentPlayer.sendMessage(ChatColor.GRAY + "");
-				opponentPlayer.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Map: " + ChatColor.WHITE + arena.getName());
-				opponentPlayer.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Opponent: " + ChatColor.WHITE + player.getName() + ChatColor.BLUE + " (" + this.queued.get(player.getUniqueId()).getElo() + " elo)");
-				opponentPlayer.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Ping:" + ChatColor.WHITE + PlayerUtil.getPing(player));
-				opponentPlayer.sendMessage("  ");
-
+				playerFoundMatchMessage = CC.YELLOW + "Found " + type.getName().toLowerCase() + " match: " + CC.GREEN + player.getName() + CC.GRAY + " (" + elo + " elo)" + CC.YELLOW + " vs. " + CC.RED + opponentPlayer.getName() + CC.GRAY + " (" + this.queued.get(opponentPlayer.getUniqueId()).getElo() + " elo)";
+				matchedFoundMatchMessage = CC.YELLOW + "Found " + type.getName().toLowerCase() + " match: " + CC.GREEN + opponentPlayer.getName() + CC.GRAY + " (" + this.queued.get(opponentPlayer.getUniqueId()).getElo() + " elo)" + CC.YELLOW + " vs. " + CC.RED + player.getName() + CC.GRAY + " (" + elo + " elo)";
+			} else {
+				playerFoundMatchMessage = CC.YELLOW + "Found " + type.getName().toLowerCase() + " match: " + CC.GREEN + player.getName() + CC.YELLOW + " vs. " + CC.RED + opponentPlayer.getName();
+				matchedFoundMatchMessage = CC.YELLOW + "Found " + type.getName().toLowerCase() + " match: " + CC.GREEN + opponentPlayer.getName() + CC.YELLOW + " vs. " + CC.RED + player.getName();
 			}
 
-			player.sendMessage("  ");
-			player.sendMessage(ChatColor.RED + "§lMatch found! §f");
-			player.sendMessage(ChatColor.GRAY + "");
-			player.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Map: " + ChatColor.WHITE + arena.getName());
-			player.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Opponent: " + ChatColor.WHITE + opponentPlayer.getName());
-			player.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Ping: " + ChatColor.WHITE + PlayerUtil.getPing(player));
-			player.sendMessage("  ");
+			player.sendMessage(playerFoundMatchMessage);
+			opponentPlayer.sendMessage(matchedFoundMatchMessage);
 
-			opponentPlayer.sendMessage("  ");
-			opponentPlayer.sendMessage(ChatColor.RED + "§lMatch found! §f");
-			opponentPlayer.sendMessage(ChatColor.GRAY + "");
-			opponentPlayer.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Map: " + ChatColor.WHITE + arena.getName());
-			opponentPlayer.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Opponent: " + ChatColor.WHITE + player.getName());
-			opponentPlayer.sendMessage(ChatColor.GRAY + "• " + ChatColor.RED + "Ping: " + ChatColor.WHITE + PlayerUtil.getPing(player));
-			opponentPlayer.sendMessage("  ");
+			opponentPlayer.sendMessage(CC.YELLOW + "You're playing on the arena " + CC.RED + arena.getName() + CC.YELLOW + ".");
+			player.sendMessage(CC.YELLOW + "You're playing on the arena " + CC.RED + arena.getName() + CC.YELLOW + ".");
+
 
 			MatchTeam teamA = new MatchTeam(player.getUniqueId(), Collections.singletonList(player.getUniqueId()), 0);
 			MatchTeam teamB = new MatchTeam(opponentPlayer.getUniqueId(), Collections.singletonList(opponentPlayer.getUniqueId()), 1);
