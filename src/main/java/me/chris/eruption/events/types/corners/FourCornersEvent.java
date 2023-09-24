@@ -27,8 +27,9 @@ import java.util.stream.Collectors;
 @Getter
 public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
 
-    private Arena eventArena;
     private final Map<UUID, FourCornersPlayer> players = new HashMap<>();
+
+    private Arena arena = getEventArena();
     private final FourCornersCountdownTask countdownTask = new FourCornersCountdownTask(this);
     private RunnerGameTask gameTask;
     private MoveTask moveTask;
@@ -55,7 +56,7 @@ public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
 
     @Override
     public List<LocationUtil> getSpawnLocations() {
-        return Collections.singletonList(eventArena.getEventJoinLocation());
+        return Collections.singletonList(arena.getEventJoinLocation());
     }
 
     @Override
@@ -65,7 +66,7 @@ public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
         gameTask = new RunnerGameTask();
         gameTask.runTaskTimerAsynchronously(getPlugin(), 0L, 20L);
         blocks = new HashMap<>();
-        zone = new Cuboid(eventArena.getMin().toBukkitLocation(), eventArena.getMax().toBukkitLocation());
+        zone = new Cuboid(arena.getMin().toBukkitLocation(), arena.getMax().toBukkitLocation());
     }
 
     private void cancelAll() {
@@ -164,7 +165,7 @@ public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
                 sendMessage(ChatColor.GRAY + "[Event] " + ChatColor.GREEN + "The game has started.");
                 // Teleport that jumped out of bounds back to the center of the map.
                 getBukkitPlayers().stream().filter(player -> getPlayers().containsKey(player.getUniqueId())).forEach(player -> {
-                    player.teleport(eventArena.getEventJoinLocation().toBukkitLocation());
+                    player.teleport(arena.getEventJoinLocation().toBukkitLocation());
                 });
 
                 getPlayers().values().forEach(player -> player.setState(FourCornersPlayer.FourCornerState.INGAME));

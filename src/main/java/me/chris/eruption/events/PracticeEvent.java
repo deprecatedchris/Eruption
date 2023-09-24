@@ -3,6 +3,7 @@ package me.chris.eruption.events;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.events.types.sumo.SumoEvent;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
@@ -32,6 +33,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public abstract class PracticeEvent<K extends EventPlayer> {
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();
+    private Arena eventArena;
 
     private final String name;
 
@@ -116,7 +118,6 @@ public abstract class PracticeEvent<K extends EventPlayer> {
 
     public void start() {
         new EventStartEvent(this).call();
-
 
         setState(EventState.STARTED);
 

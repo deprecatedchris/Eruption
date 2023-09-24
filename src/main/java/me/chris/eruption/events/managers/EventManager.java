@@ -3,6 +3,7 @@ package me.chris.eruption.events.managers;
 import lombok.Getter;
 import lombok.Setter;
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.events.EventState;
 import me.chris.eruption.events.PracticeEvent;
 import me.chris.eruption.events.types.corners.FourCornersEvent;
@@ -79,10 +80,11 @@ public class EventManager {
         return events.values().stream().filter(event -> event.getName().toLowerCase().equalsIgnoreCase(name.toLowerCase())).findFirst().orElse(null);
     }
 
-    public void hostEvent(PracticeEvent event, Player host) {
+    public void hostEvent(PracticeEvent event, Player host, Arena eventArena) {
 
         event.setState(EventState.WAITING);
         event.setHost(host);
+        event.setEventArena(eventArena);
         event.startCountdown();
     }
 

@@ -74,8 +74,7 @@ public class EventHostMenu extends Menu {
                 return;
             }
 
-
-            EruptionPlugin.getInstance().getEventManager().hostEvent(EruptionPlugin.getInstance().getEventManager().getByName(practiceEvent.getName()), player);
+            new SelectEventArenaMenu(practiceEvent).openMenu(player);
             player.closeInventory();
 
         }
