@@ -3,6 +3,7 @@ package me.chris.eruption.events.types.parkour;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.events.EventCountdownTask;
 import me.chris.eruption.events.PracticeEvent;
@@ -26,6 +27,8 @@ public class ParkourEvent extends PracticeEvent<ParkourPlayer> {
 
     @Getter
     private ParkourGameTask gameTask = null;
+
+    private Arena arena = getEventArena();
     private final ParkourCountdownTask countdownTask = new ParkourCountdownTask(this);
     @Getter
     private WaterCheckTask waterCheckTask;
@@ -47,7 +50,7 @@ public class ParkourEvent extends PracticeEvent<ParkourPlayer> {
 
     @Override
     public List<LocationUtil> getSpawnLocations() {
-        return Collections.singletonList(this.getPlugin().getSpawnManager().getParkourLocation());
+        return Collections.singletonList(arena.getEventJoinLocation());
     }
 
     @Override
@@ -93,7 +96,7 @@ public class ParkourEvent extends PracticeEvent<ParkourPlayer> {
         }
 
         player.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.WHITE + "Event" + ChatColor.DARK_GRAY + "] " + ChatColor.WHITE + "Teleporting back to the beginning.");
-        player.teleport(this.getPlugin().getSpawnManager().getParkourGameLocation().toBukkitLocation());
+        player.teleport(arena.getA().toBukkitLocation());
     }
 
     private void giveItems(Player player) {

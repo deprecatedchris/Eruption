@@ -1,7 +1,7 @@
 package me.chris.eruption.util.menu;
 
-import me.chris.eruption.util.external.BukkitReflection;
 import lombok.RequiredArgsConstructor;
+import me.chris.eruption.util.other.BukkitReflection;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

@@ -1,7 +1,5 @@
 package me.chris.eruption.util.timer.impl;
 
-import com.bizarrealex.aether.scoreboard.Board;
-import com.bizarrealex.aether.scoreboard.cooldown.BoardCooldown;
 import com.lunarclient.bukkitapi.LunarClientAPI;
 import com.lunarclient.bukkitapi.nethandler.client.LCPacketCooldown;
 import me.chris.eruption.EruptionPlugin;
@@ -62,19 +60,12 @@ public class EnderpearlTimer extends PlayerTimer implements Listener {
 		if (event.getEntity().getShooter() instanceof Player) {
 			if (event.getEntity() instanceof EnderPearl) {
 				Player player = (Player) event.getEntity().getShooter();
-				Board board = Board.getByPlayer(player);
-				BoardCooldown cooldown = board.getCooldown("enderpearl");
-				if (cooldown != null) {
-					event.setCancelled(true);
-					player.updateInventory();
-					return;
-				}
+
 
 				if(EruptionPlugin.getInstance().getServer().getPluginManager().isPluginEnabled("LunarClient-API")){
 					LunarClientAPI.getInstance().sendPacket(player, new LCPacketCooldown("Enderpearl", TimeUnit.SECONDS.toMillis(15L), Material.ENDER_PEARL.getId()));
 				}
 
-				new BoardCooldown(board, "enderpearl", 15);
 				this.setCooldown(player, player.getUniqueId());
 			}
 		}

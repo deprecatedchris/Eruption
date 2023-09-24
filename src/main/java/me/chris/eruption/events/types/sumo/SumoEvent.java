@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.events.EventCountdownTask;
@@ -26,6 +27,8 @@ import java.util.stream.Collectors;
 public class SumoEvent extends PracticeEvent<SumoPlayer> {
 
     private final Map<UUID, SumoPlayer> players = new HashMap<>();
+
+    private Arena arena = getEventArena();
 
     @Getter
     final List<Player> fighting = new ArrayList<>();
@@ -56,7 +59,7 @@ public class SumoEvent extends PracticeEvent<SumoPlayer> {
 
     @Override
     public List<LocationUtil> getSpawnLocations() {
-        return Collections.singletonList(getPlugin().getSpawnManager().getSumoLocation());
+        return Collections.singletonList(arena.getEventJoinLocation());
     }
 
     @Override
@@ -183,8 +186,8 @@ public class SumoEvent extends PracticeEvent<SumoPlayer> {
 
     private LocationUtil[] getSumoLocations() {
         LocationUtil[] array = new LocationUtil[2];
-        array[0] = getPlugin().getSpawnManager().getSumoFirst();
-        array[1] = getPlugin().getSpawnManager().getSumoSecond();
+        array[0] = arena.getA();
+        array[1] = arena.getB();
         return array;
     }
 

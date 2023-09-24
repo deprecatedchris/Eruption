@@ -1,8 +1,8 @@
 package me.chris.eruption.util.menu.pagination;
 
-import me.chris.eruption.util.external.ItemBuilder;
 import lombok.AllArgsConstructor;
 import me.chris.eruption.util.menu.Button;
+import me.chris.eruption.util.other.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;

@@ -3,6 +3,7 @@ package me.chris.eruption.events.types.oitc;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
@@ -23,6 +24,8 @@ import java.util.stream.Collectors;
 public class OITCEvent extends PracticeEvent<OITCPlayer> {
 
     private final Map<UUID, OITCPlayer> players = new HashMap<>();
+
+    private Arena arena = getEventArena();
 
     @Getter private OITCGameTask gameTask = null;
     private final OITCCountdownTask countdownTask = new OITCCountdownTask(this);
@@ -48,7 +51,7 @@ public class OITCEvent extends PracticeEvent<OITCPlayer> {
 
     @Override
     public List<LocationUtil> getSpawnLocations() {
-        return Collections.singletonList(this.getPlugin().getSpawnManager().getOitcLocation());
+        return Collections.singletonList(arena.getEventJoinLocation());
     }
 
     @Override
@@ -122,7 +125,9 @@ public class OITCEvent extends PracticeEvent<OITCPlayer> {
 
     private List<LocationUtil> getGameLocations() {
         if (this.respawnLocations != null && this.respawnLocations.size() == 0) {
-            this.respawnLocations.addAll(this.getPlugin().getSpawnManager().getOitcSpawnpoints());
+            this.respawnLocations.add(arena.getA());
+            this.respawnLocations.add(arena.getB());
+            this.respawnLocations.add(arena.getEventJoinLocation());  //TODO: add more locations
         }
 
         return this.respawnLocations;
@@ -175,7 +180,7 @@ public class OITCEvent extends PracticeEvent<OITCPlayer> {
             }
 
             if (time > 0) {
-                player.teleport(EruptionPlugin.getInstance().getSpawnManager().getOitcLocation().toBukkitLocation());
+                player.teleport(arena.getEventJoinLocation().toBukkitLocation());
                 player.sendMessage(ChatColor.GRAY + "[Event] " + ChatColor.YELLOW + "Respawning in " + ChatColor.YELLOW + time + " " + (time == 1 ? "second" : "seconds") + ChatColor.YELLOW + ".");
             }
 
@@ -191,7 +196,7 @@ public class OITCEvent extends PracticeEvent<OITCPlayer> {
 
             } else if (time <= 0) {
                 player.sendMessage(ChatColor.GRAY + "[Event] " + ChatColor.YELLOW + "Respawning...");
-                player.teleport(EruptionPlugin.getInstance().getSpawnManager().getOitcLocation().toBukkitLocation());
+                player.teleport(arena.getEventJoinLocation().toBukkitLocation());
 
                 Bukkit.getScheduler().runTaskLater(getPlugin(), () -> {
                     giveRespawnItems(player);

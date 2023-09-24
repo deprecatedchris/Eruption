@@ -34,7 +34,6 @@ import java.util.stream.Collectors;
 public abstract class PracticeEvent<K extends EventPlayer> {
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();
     private Arena eventArena;
-
     private final String name;
 
     private Player host;

@@ -1,9 +1,8 @@
 main: me.chris.eruption.EruptionPlugin
 name: Eruption
 version: Dev
-authors: ["DevEmilio", "Joeleoli", "Chris"]
+authors: ["Chris", "vaaaleh", "staud"]
 depend:
   - ProtocolLib
-commands:
-  kithelp:
-  ping:
+softdepend:
+  - LunarClient-API

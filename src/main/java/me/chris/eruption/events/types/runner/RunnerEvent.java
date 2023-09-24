@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.events.EventCountdownTask;
@@ -29,6 +30,7 @@ public class RunnerEvent extends PracticeEvent<RunnerPlayer> {
     private List<UUID> visibility;
     private RunnerGameTask gameTask;
     private MoveTask moveTask;
+    private Arena arena = getEventArena();
     private Map<Location, ItemStack> blocks;
 
     public RunnerEvent() {
@@ -47,7 +49,7 @@ public class RunnerEvent extends PracticeEvent<RunnerPlayer> {
 
     @Override
     public List<LocationUtil> getSpawnLocations() {
-        return getPlugin().getSpawnManager().getRunnerLocations();
+        return Collections.singletonList(arena.getEventJoinLocation());
     }
 
     @Override

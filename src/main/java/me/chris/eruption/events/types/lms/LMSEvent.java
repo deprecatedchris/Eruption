@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Getter
 public class LMSEvent extends PracticeEvent<LMSPlayer> {
 
-    private Arena eventArena;
+    private Arena arena = getEventArena();
     private final Map<UUID, LMSPlayer> players = new HashMap<>();
     private final LMSCountdownTask countdownTask = new LMSCountdownTask(this);
     private LMSEvent.LMSGameTask gameTask;
@@ -42,7 +42,7 @@ public class LMSEvent extends PracticeEvent<LMSPlayer> {
 
     @Override
     public List<LocationUtil> getSpawnLocations() {
-        return getPlugin().getSpawnManager().getLmsLocations();
+        return Collections.singletonList(arena.getEventJoinLocation());
     }
 
     @Override
