@@ -25,15 +25,13 @@ import me.chris.eruption.util.inventory.UIListener;
 import me.chris.eruption.util.other.ItemBuilder;
 import me.chris.eruption.runnable.ExpBarRunnable;
 import me.chris.eruption.runnable.SaveDataRunnable;
+import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.util.timer.TimerManager;
 import me.chris.eruption.util.timer.impl.EnderpearlTimer;
 import me.vaperion.blade.Blade;
 import me.vaperion.blade.command.Command;
 import me.vaperion.blade.bukkit.BladeBukkitPlatform;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Recipe;
@@ -64,6 +62,8 @@ public class EruptionPlugin extends JavaPlugin {
     private TournamentManager tournamentManager;
     private ChunkManager chunkManager;
     private TimerManager timerManager;
+
+    private Location spawnLocation = Bukkit.getWorld("world").getSpawnLocation();
 
     @Override
     public void onEnable() {
@@ -113,6 +113,10 @@ public class EruptionPlugin extends JavaPlugin {
         }
 
         ItemBuilder.registerGlow();
+
+        if (getConfig().getString("LOCATION") != null) {
+            spawnLocation = LocationUtil.stringToLocation(getConfig().getString("LOCATION")).toBukkitLocation();
+        }
 
     }
 

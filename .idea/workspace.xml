@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="Re-added Config stuff, fixed kit display name error, recoded a few more commands (please help with this kit editor menu)" />
+    <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="Re-added Config stuff, fixed kit display name error, recoded a few more commands (please help with this kit editor menu)">
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/EntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/EntityListener.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +66,7 @@
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/valen/OneDrive/Documentos/Code/Eruption/src/main/java/me/chris/eruption/util",
+    "last_opened_file_path": "C:/Users/valen/OneDrive/Documentos/Code/Eruption/src/main/java/me/chris/eruption",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -78,6 +80,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\valen\OneDrive\Documentos\Code\Eruption\src\main\java\me\chris\eruption" />
       <recent name="C:\Users\valen\OneDrive\Documentos\Code\Eruption\src\main\java\me\chris\eruption\util" />
       <recent name="$PROJECT_DIR$/src/main/java/me/chris/eruption/util" />
     </key>
