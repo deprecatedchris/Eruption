@@ -5,23 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="Re-added Config stuff, fixed kit display name error, recoded a few more commands (please help with this kit editor menu)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/kit/KitCommands.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/menu/EventHostMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/PartyLang.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/Button.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/InvListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/InventoryUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/ItemUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/MenuListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/button/BackButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/button/DisplayButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/button/JumpToMenuButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/pagination/JumpToPageButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/pagination/PageButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/pagination/PageInfoButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/pagination/PaginatedMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/menu/pagination/ViewAllPagesMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SpawnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SpawnCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/WarpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/WarpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/extra/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SaveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/commands/KitCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/kit/commands/KitHelpCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/commands/InvCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/match/InvCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/MenuHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/MenuType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/buttons/Button.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/filling/FillingType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/listener/MenuListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/pagination/NavigationPosition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/nosequel/menu/pagination/PaginatedMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/Arena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/managers/ArenaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/managers/ArenaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/party/PartyCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/party/PartyCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/PracticeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/PracticeEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/EventManagerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/EventManagerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/HostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/HostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/menu/EventManagerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/menu/EventManagerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/corners/FourCornersEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/corners/FourCornersEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/lms/LMSEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/lms/LMSEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/listeners/MatchListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/listeners/MatchListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/match/menus/InventorySnapshot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/match/menu/InventorySnapshot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/managers/PartyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/party/managers/PartyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/InventoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/InventoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/queue/managers/QueueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/queue/managers/QueueManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/tournament/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/tournament/Tournament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/tournament/TournamentState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/tournament/TournamentState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/other/PlayerUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/util/other/PlayerUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,29 +93,30 @@
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jhuggins/Desktop/Minecraft Code/Eruption-Real/src/main/java/me/chris/eruption/util&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/valen/OneDrive/Documentos/Code/Eruption/src/main/java/me/chris/eruption/util",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\valen\OneDrive\Documentos\Code\Eruption\src\main\java\me\chris\eruption\util" />
       <recent name="$PROJECT_DIR$/src/main/java/me/chris/eruption/util" />
     </key>
   </component>
@@ -196,11 +217,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SpawnCommand.java</url>
           <line>35</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/me/chris/eruption/arena/arena/managers/ArenaManager.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/me/chris/eruption/command/kit/KitCommands.java</url>

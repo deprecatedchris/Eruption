@@ -61,7 +61,6 @@ public class EruptionPlugin extends JavaPlugin {
     private EventManager eventManager;
     private HotbarManager hotbarManager;
     private KitManager kitManager;
-    private SpawnManager spawnManager;
     private TournamentManager tournamentManager;
     private ChunkManager chunkManager;
     private TimerManager timerManager;
@@ -140,7 +139,6 @@ public class EruptionPlugin extends JavaPlugin {
     }
 
     private void registerManagers() {
-        this.spawnManager = new SpawnManager();
         this.arenaManager = new ArenaManager();
         this.chunkManager = new ChunkManager();
         this.editorManager = new EditorManager();

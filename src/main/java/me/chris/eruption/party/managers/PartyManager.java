@@ -13,7 +13,6 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
-//TODO: Add a view info clickable to party invite message
 public class PartyManager {
 
 	private static final EruptionPlugin plugin = EruptionPlugin.getInstance();

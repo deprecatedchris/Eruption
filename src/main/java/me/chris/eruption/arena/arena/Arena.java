@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.arena.arena.type.ArenaType;
 import me.chris.eruption.util.other.LocationUtil;
 
@@ -23,6 +24,8 @@ public class Arena {
 
 	private LocationUtil min;
 	private LocationUtil max;
+
+	private LocationUtil eventJoinLocation;
 
 	private boolean enabled;
 	private boolean isEvent = false;

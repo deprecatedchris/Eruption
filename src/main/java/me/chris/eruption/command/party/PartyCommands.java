@@ -2,21 +2,28 @@ package me.chris.eruption.command.party;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.party.Party;
+import me.chris.eruption.party.PartyLang;
 import me.chris.eruption.party.managers.PartyManager;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.util.CC;
 import me.chris.eruption.util.other.Clickable;
+import me.vaperion.blade.annotation.argument.Optional;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
 import me.vaperion.blade.annotation.command.Usage;
 import me.vaperion.blade.annotation.command.UsageAlias;
 import me.vaperion.blade.exception.BladeExitMessage;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +31,13 @@ import java.util.Objects;
 import java.util.UUID;
 
 public final class PartyCommands {
+    
+    private static final TextComponent ACCEPT_BUTTON = new TextComponent("[Click to Accept]");
 
+    private static final TextComponent INVITE_PREFIX = new TextComponent("");
+
+    private static final TextComponent INVITED_YOU_TO_JOIN = new TextComponent(" has invited you to join their party. ");
+    private static final TextComponent INFO_BUTTON = new TextComponent("[Info]");
     private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
     @Command({"party create", "p create"})
@@ -94,15 +107,11 @@ public final class PartyCommands {
         } else if (plugin.getPartyManager().hasPartyInvite(target.getUniqueId(), player.getUniqueId())) {
             throw new BladeExitMessage("You have already sent a party invitation to that player, please wait.");
         } else if (!party.isAllInvite() && !player.getUniqueId().equals(party.getLeader())) {
-            throw new BladeExitMessage("All invite isn't enabled, ask " + ChatColor.RED + ChatColor.BOLD.toString() + Bukkit.getPlayer(party.getLeader()).getName() + ChatColor.RED + " to invite " + target.getName() + ".");
+            throw new BladeExitMessage("All invite isn't enabled, ask " + ChatColor.RED + ChatColor.BOLD + Bukkit.getPlayer(party.getLeader()).getName() + ChatColor.RED + " to invite " + target.getName() + ".");
         } else {
             plugin.getPartyManager().createPartyInvite(player.getUniqueId(), target.getUniqueId());
 
-            Clickable partyInvite = new Clickable(ChatColor.GREEN + sender.getName() + ChatColor.YELLOW + " has invited you to their party! " + ChatColor.GRAY + "[Click to Accept]",
-                    ChatColor.GRAY + "Click to accept",
-                    "/party accept " + sender.getName());
-
-            partyInvite.sendToPlayer(target);
+            target.sendMessage(PartyLang.sendInviteMessage(party));
 
             party.broadcast(ChatColor.GREEN.toString() + ChatColor.BOLD + target.getName() + ChatColor.YELLOW + " has been invited to the party.");
         }
@@ -229,31 +238,32 @@ public final class PartyCommands {
 
     @Command({"party info", "p info"})
     @Description("See your party information.")
-    public static void partyInformation(@Sender Player player) throws BladeExitMessage {
-        Party party = plugin.getPartyManager().getParty(player.getUniqueId());
+    public static void partyInformation(@Sender Player player, @Optional Player target) throws BladeExitMessage {
+        Party party = target == null ? plugin.getPartyManager().getParty(player.getUniqueId()) : plugin.getPartyManager().getParty(target.getUniqueId());
 
         if (party == null) {
             throw new BladeExitMessage("You are not in a party.");
         }
 
-        List<UUID> members = new ArrayList<>(party.getMembers());
-        members.remove(party.getLeader());
+            List<UUID> members = new ArrayList<>(party.getMembers());
+            members.remove(party.getLeader());
 
-        StringBuilder builder = new StringBuilder(CC.translate("&eParty Members: (" + ((party.getMembers().size() - 1) + CC.translate(")&e: "))));
-        members.stream().map(plugin.getServer()::getPlayer).filter(Objects::nonNull).forEach(member -> builder.append(ChatColor.WHITE).append(member.getName()).append(","));
+            StringBuilder builder = new StringBuilder(CC.translate("&eParty Members: (" + ((party.getMembers().size() - 1) + CC.translate(")&e: "))));
+            members.stream().map(plugin.getServer()::getPlayer).filter(Objects::nonNull).forEach(member -> builder.append(ChatColor.WHITE).append(member.getName()).append(","));
 
-        String[] information = new String[]{
-                " ",
-                CC.translate("&c&lParty Information"),
-                " ",
-                ChatColor.YELLOW + "Leader&7: " + ChatColor.RED + plugin.getServer().getPlayer(party.getLeader()).getName(),
-                ChatColor.YELLOW + "Party State&7: " + ChatColor.RED + (party.isOpen() ? "Open" : "Locked"),
-                ChatColor.YELLOW + "All Invite&7: " + ChatColor.RED + (party.isAllInvite() ? ChatColor.GREEN + "Enabled" : ChatColor.RED + "Disabled"),
-                " ",
-                ChatColor.WHITE + builder.toString(),
-        };
+            String[] information = new String[]{
+                    " ",
+                    CC.translate("&c&lParty Information"),
+                    " ",
+                    ChatColor.YELLOW + "Leader&7: " + ChatColor.RED + plugin.getServer().getPlayer(party.getLeader()).getName(),
+                    ChatColor.YELLOW + "Party State&7: " + ChatColor.RED + (party.isOpen() ? "Open" : "Locked"),
+                    ChatColor.YELLOW + "All Invite&7: " + ChatColor.RED + (party.isAllInvite() ? ChatColor.GREEN + "Enabled" : ChatColor.RED + "Disabled"),
+                    " ",
+                    ChatColor.WHITE + builder.toString(),
+            };
 
-        player.sendMessage(information);
+            player.sendMessage(information);
+
     }
 
 

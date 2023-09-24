@@ -29,11 +29,12 @@ import me.chris.eruption.util.other.PlayerUtil;
 import org.bukkit.potion.PotionEffectType;
 
 
+import javax.xml.soap.Text;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
-//Todo: Make this look like lounge and add Map rating.
+//Todo: Make this look like lounge
 public class MatchListener implements Listener {
 
 	private final EruptionPlugin plugin = EruptionPlugin.getInstance();
@@ -92,10 +93,9 @@ public class MatchListener implements Listener {
 				player.setMaximumNoDamageTicks(2);
 			}
 
-			//todo: set kit items in this method
 			if (kit.isBoxing()) {
 				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 1));
-
+				kit.applyToPlayer(player);
 				player.sendMessage(CC.GREEN + "First to 100 hits wins the match.");
 			}
 
@@ -206,7 +206,7 @@ public class MatchListener implements Listener {
 				player.setMaximumNoDamageTicks(19); // Double checking the damage ticks.
 
 				// NameTag start
-				// TODO: make sure too remove nametag after end
+				// TODO: make sure too remove nametag after end`
 				MatchTeam otherTeam = team == match.getTeams().get(0) ? match.getTeams().get(1) : match.getTeams().get(0);
 				// NameTag end
 				// Pvplounge death animation
@@ -223,34 +223,10 @@ public class MatchListener implements Listener {
 				this.plugin.getInventoryManager().addSnapshot(snapshot);
 			}
 
-			String winnerMessage = ChatColor.WHITE + (match.isParty() ? "Winning Team: " : "Winner: ")
-					+ ChatColor.RED + event.getWinningTeam().getLeaderName();
 
-			TextComponent first = new TextComponent();
-			first.setText(CC.translate("&aWinner: &7"));
-			TextComponent winner = new TextComponent();
-			winner.setText(CC.translate("&a" + winnerPlayer.getName()));
-			winner.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/_ " + match.getSnapshot(winnerPlayer.getUniqueId()).getSnapshotId()));
-			winner.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(CC.translate("&fClick to see the &c" + winnerPlayer.getName() + "&f's inventory")).create()));
-			TextComponent second = new TextComponent();
-			second.setText(CC.translate(" &7- "));
-			TextComponent third = new TextComponent();
-			third.setText(CC.translate( "&cLoser: &7"));
-			TextComponent loser = new TextComponent();
-			loser.setText(CC.translate("&c" + loserPlayer.getName()));
-			loser.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/_ " + match.getSnapshot(loserPlayer.getUniqueId()).getSnapshotId()));
-			loser.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(CC.translate("&fClick to see the &c" + loserPlayer.getName() + "&f's inventory")).create()));
-
-			BaseComponent[] bases = {
-					first,
-					winner,
-					second,
-					third,
-					loser
-			};
-
-			match.broadcast(ChatColor.RED + "Match Results " + ChatColor.GRAY + "(click name to view inventory)");
-			match.broadcast(bases);
+			match.broadcast(CC.translate("&eInventories (click to view): &a"
+					+ new Clickable(winnerPlayer.getName(), "&fClick to see the &c" + winnerPlayer.getName() + "&f's inventory", "/_ " + match.getSnapshot(winnerPlayer.getUniqueId()).getSnapshotId()))
+					+ " &c" + new Clickable(loserPlayer.getName(), "&fClick to see the &c" + winnerPlayer.getName() + "&f's inventory", "/_ " + match.getSnapshot(winnerPlayer.getUniqueId()).getSnapshotId()));
 
 			if (match.getType().isRanked()) {
 				String kitName = match.getKit().getName();

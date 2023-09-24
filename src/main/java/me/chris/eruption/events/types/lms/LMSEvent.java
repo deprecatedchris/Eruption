@@ -2,6 +2,7 @@ package me.chris.eruption.events.types.lms;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @Getter
 public class LMSEvent extends PracticeEvent<LMSPlayer> {
 
+    private Arena eventArena;
     private final Map<UUID, LMSPlayer> players = new HashMap<>();
     private final LMSCountdownTask countdownTask = new LMSCountdownTask(this);
     private LMSEvent.LMSGameTask gameTask;

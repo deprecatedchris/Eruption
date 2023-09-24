@@ -2,6 +2,7 @@ package me.chris.eruption.events.types.corners;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import me.chris.eruption.arena.arena.Arena;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.util.other.LocationUtil;
 import me.chris.eruption.EruptionPlugin;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 @Getter
 public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
 
+    private Arena eventArena;
     private final Map<UUID, FourCornersPlayer> players = new HashMap<>();
     private final FourCornersCountdownTask countdownTask = new FourCornersCountdownTask(this);
     private RunnerGameTask gameTask;
@@ -50,9 +52,10 @@ public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
         return countdownTask;
     }
 
+
     @Override
     public List<LocationUtil> getSpawnLocations() {
-        return Collections.singletonList(getPlugin().getSpawnManager().getCornersLocation());
+        return Collections.singletonList(eventArena.getEventJoinLocation());
     }
 
     @Override
@@ -62,7 +65,7 @@ public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
         gameTask = new RunnerGameTask();
         gameTask.runTaskTimerAsynchronously(getPlugin(), 0L, 20L);
         blocks = new HashMap<>();
-        zone = new Cuboid(getPlugin().getSpawnManager().getCornersMin().toBukkitLocation(), getPlugin().getSpawnManager().getCornersMax().toBukkitLocation());
+        zone = new Cuboid(eventArena.getMin().toBukkitLocation(), eventArena.getMax().toBukkitLocation());
     }
 
     private void cancelAll() {
@@ -161,7 +164,7 @@ public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
                 sendMessage(ChatColor.GRAY + "[Event] " + ChatColor.GREEN + "The game has started.");
                 // Teleport that jumped out of bounds back to the center of the map.
                 getBukkitPlayers().stream().filter(player -> getPlayers().containsKey(player.getUniqueId())).forEach(player -> {
-                    player.teleport(getPlugin().getSpawnManager().getCornersLocation().toBukkitLocation());
+                    player.teleport(eventArena.getEventJoinLocation().toBukkitLocation());
                 });
 
                 getPlayers().values().forEach(player -> player.setState(FourCornersPlayer.FourCornerState.INGAME));

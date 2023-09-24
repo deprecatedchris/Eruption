@@ -129,9 +129,9 @@ public abstract class PracticeEvent<K extends EventPlayer> {
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "                        "));
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛⬛⬛⬛⬛⬛⬛"));
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛&4⬛⬛⬛⬛&7⬛⬛"));
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛&4⬛&7⬛⬛⬛⬛⬛ " + ChatColor.GREEN.toString() + ChatColor.BOLD + "[" + name + " Event]"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛&4⬛&7⬛⬛⬛⬛⬛ " + ChatColor.GREEN + ChatColor.BOLD + "[" + name + " Event]"));
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛&4⬛⬛⬛⬛&7⬛⬛ " + winner.getName()) + ChatColor.YELLOW + " has won the commands.");
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛&4⬛&7⬛⬛⬛⬛⬛ " + ChatColor.GRAY.toString() + ChatColor.ITALIC + "Good game!"));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛&4⬛&7⬛⬛⬛⬛⬛ " + ChatColor.GRAY + ChatColor.ITALIC + "Good game!"));
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛&4⬛⬛⬛⬛&7⬛⬛"));
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7⬛⬛⬛⬛⬛⬛⬛⬛"));
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "                        "));

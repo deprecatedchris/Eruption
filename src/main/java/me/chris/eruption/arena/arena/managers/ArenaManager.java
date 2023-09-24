@@ -55,11 +55,13 @@ public class ArenaManager {
 			String b = arenaSection.getString(name + ".b");
 			String min = arenaSection.getString(name + ".min");
 			String max = arenaSection.getString(name + ".max");
+			String joinLoc = arenaSection.getString(name + ".eventJoinLocation");
 
 			LocationUtil locA = LocationUtil.stringToLocation(a);
 			LocationUtil locB = LocationUtil.stringToLocation(b);
 			LocationUtil locMin = LocationUtil.stringToLocation(min);
 			LocationUtil locMax = LocationUtil.stringToLocation(max);
+			LocationUtil locJoinLoc = LocationUtil.stringToLocation(joinLoc);
 
 			List<StandaloneArena> standaloneArenas = new ArrayList<>();
 
@@ -83,9 +85,9 @@ public class ArenaManager {
 
 			boolean enabled = arenaSection.getBoolean(name + ".enabled", false);
 			boolean isEvent = arenaSection.getBoolean(name + ".event", false);
-			ArenaType arenaType = ArenaType.valueOf(arenaSection.getString(name + ".type"));
+			ArenaType type = ArenaType.valueOf(arenaSection.getString(name + ".eventType"));
 
-			Arena arena = new Arena(name, standaloneArenas, new ArrayList<>(standaloneArenas), locA, locB, locMin, locMax, enabled, isEvent, arenaType);
+			Arena arena = new Arena(name, standaloneArenas, new ArrayList<>(standaloneArenas), locA, locB, locMin, locMax, locJoinLoc, enabled, isEvent, type);
 
 			this.arenas.put(name, arena);
 		});
@@ -106,6 +108,7 @@ public class ArenaManager {
 			String b = LocationUtil.locationToString(arena.getB());
 			String min = LocationUtil.locationToString(arena.getMin());
 			String max = LocationUtil.locationToString(arena.getMax());
+			String eventJoinLoc = LocationUtil.locationToString(arena.getEventJoinLocation());
 
 			String arenaRoot = "arenas." + arenaName;
 
@@ -113,10 +116,11 @@ public class ArenaManager {
 			fileConfig.set(arenaRoot + ".b", b);
 			fileConfig.set(arenaRoot + ".min", min);
 			fileConfig.set(arenaRoot + ".max", max);
+			fileConfig.set(arenaRoot + ".eventJoinLoc", eventJoinLoc);
 			fileConfig.set(arenaRoot + ".enabled", arena.isEnabled());
 			fileConfig.set(arenaRoot + ".standaloneArenas", null);
 			fileConfig.set(arenaRoot + ".event", arena.isEvent());
-			fileConfig.set(arenaRoot + ".type", arena.getArenaType().getNiceName());
+			fileConfig.set(arenaRoot + ".eventType", arena.getArenaType().getNiceName());
 			int i = 0;
 			if (arena.getStandaloneArenas() != null) {
 				for (StandaloneArena saArena : arena.getStandaloneArenas()) {
