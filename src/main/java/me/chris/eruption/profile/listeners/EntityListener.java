@@ -78,7 +78,7 @@ public class EntityListener implements Listener {
                     break;
                 default:
                     if (e.getCause() == EntityDamageEvent.DamageCause.VOID) {
-                        e.getEntity().teleport(this.plugin.getSpawnManager().getSpawnLocation().toBukkitLocation());
+                        e.getEntity().teleport(this.plugin.getSpawnLocation());
                     }
                     e.setCancelled(true);
                     break;

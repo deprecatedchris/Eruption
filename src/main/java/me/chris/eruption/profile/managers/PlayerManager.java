@@ -378,7 +378,7 @@ public class PlayerManager {
         }
 
         //Todo: fix this
-        player.teleport(this.plugin.getSpawnManager().getSpawnLocation().toBukkitLocation());
+        player.teleport(this.plugin.getSpawnLocation());
 
     }
 
