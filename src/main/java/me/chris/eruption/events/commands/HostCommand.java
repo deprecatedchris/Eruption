@@ -8,7 +8,6 @@ import me.vaperion.blade.annotation.command.Permission;
 import org.bukkit.entity.Player;
 
 public class HostCommand  {
-
     @Command("host")
     @Description("Host an event")
     @Permission("practice.host")

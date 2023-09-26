@@ -6,68 +6,56 @@ import me.chris.eruption.events.PracticeEvent;
 import me.chris.eruption.party.Party;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
+import me.chris.eruption.util.CC;
+import me.vaperion.blade.annotation.argument.Sender;
+import me.vaperion.blade.annotation.command.Command;
+import me.vaperion.blade.annotation.command.Description;
+import me.vaperion.blade.annotation.command.Usage;
+import me.vaperion.blade.exception.BladeExitMessage;
+import me.vaperion.blade.exception.BladeUsageMessage;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 
-//TODO: Recode this command to blade.
-public class EventSpectateCommand extends Command {
-    private final EruptionPlugin plugin = EruptionPlugin.getInstance();
-
-    public EventSpectateCommand() {
-        super("eventspectate");
-        this.setDescription("Spectate an commands.");
-        this.setUsage(ChatColor.RED + "Usage: /eventspectate <commands>");
-        this.setAliases(Arrays.asList("eventspec", "specevent"));
-    }
+public class EventSpectateCommand {
+    private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
 
-    @Override
-    public boolean execute(CommandSender sender, String alias, String[] args) {
-        if (!(sender instanceof Player)) {
-            return true;
-        }
-        Player player = (Player) sender;
+    @Command({"event spectate", "eventspec", "specevent"})
+    @Usage("/event spectate <player>")
+    @Description("Spectate an event.")
+    public static void eventSpectate(@Sender Player player, Player target, String[] args) throws BladeExitMessage {
+        PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
+        Party party = plugin.getPartyManager().getParty(playerData.getUniqueId());
+        PracticeEvent event = plugin.getEventManager().getByName(args[0]);
 
         if (args.length < 1) {
-            player.sendMessage(usageMessage);
-            return true;
+            throw new BladeUsageMessage();
         }
-
-        PlayerData playerData = this.plugin.getPlayerManager().getPlayerData(player.getUniqueId());
-        Party party = this.plugin.getPartyManager().getParty(playerData.getUniqueId());
 
         if (party != null || (playerData.getPlayerState() != PlayerState.SPAWN && playerData.getPlayerState() != PlayerState.SPECTATING)) {
-            player.sendMessage(ChatColor.RED + "Cannot execute this command in your current state.");
-            return true;
+            throw new BladeExitMessage(CC.translate("&cCannot issue this command in your current state."));
         }
 
-        PracticeEvent event = this.plugin.getEventManager().getByName(args[0]);
-
         if (event == null) {
-            player.sendMessage(ChatColor.RED + "That profile is currently not in an commands.");
-            return true;
+            throw new BladeExitMessage(CC.translate("&cThat player is not currently in an event."));
         }
 
         if (event.getState() == EventState.UNANNOUNCED) {
-            player.sendMessage(ChatColor.RED + "That commands is not available right now.");
-            return true;
+            throw new BladeExitMessage(CC.translate("&cThat event is not currently available."));
         }
 
         if (playerData.getPlayerState() == PlayerState.SPECTATING) {
-            if (this.plugin.getEventManager().getSpectators().containsKey(player.getUniqueId())) {
-                player.sendMessage(ChatColor.RED + "You are already spectating this commands.");
-                return true;
+            if (plugin.getEventManager().getSpectators().containsKey(player.getUniqueId())) {
+                throw new BladeExitMessage(CC.translate("&cYou are already spectating this event."));
             }
-            this.plugin.getEventManager().removeSpectator(player, event);
+            plugin.getEventManager().removeSpectator(player, event);
         }
 
-        player.sendMessage(ChatColor.GREEN + "You are now spectating " + ChatColor.GRAY + event.getName() + " Event" + ChatColor.GREEN + ".");
+        player.sendMessage(CC.translate("&eYou are now spectating &c" + event.getName() + " &eEvent."));
 
-        this.plugin.getEventManager().addSpectator(player, playerData, event);
-        return true;
+        plugin.getEventManager().addSpectator(player, playerData, event);
     }
 }

@@ -16,9 +16,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class EventManagerCommand {
-
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();
-
 
     @Command("eventmanager")
     @Permission("practice.eventmanager")

@@ -27,9 +27,7 @@ public class QueueManager {
 
 	private final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
-	@Getter
-	@Setter
-	private boolean rankedEnabled = true;
+	@Getter @Setter private boolean rankedEnabled = true;
 
 	public QueueManager() {
 		this.plugin.getServer().getScheduler().runTaskTimer(this.plugin,
