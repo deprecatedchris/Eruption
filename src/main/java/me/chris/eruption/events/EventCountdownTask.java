@@ -50,31 +50,31 @@ public abstract class EventCountdownTask extends BukkitRunnable {
             String toSend7 = ChatColor.translateAlternateColorCodes('&', "                        ");
 
             Clickable message0 = new Clickable(toSend0,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
             Clickable message7 = new Clickable(toSend7,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
             Clickable message = new Clickable(toSend,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
             Clickable message1 = new Clickable(toSend1,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
             Clickable message2 = new Clickable(toSend2,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
             Clickable message3 = new Clickable(toSend3,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
             Clickable message4 = new Clickable(toSend4,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
             Clickable message5 = new Clickable(toSend5,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
             Clickable message6 = new Clickable(toSend6,
-                    ChatColor.GREEN + "Click to join this commands.",
+                    ChatColor.GREEN + "Click to join this event.",
                     "/joinevent " + event.getName());
 
             event.getPlugin().getServer().getOnlinePlayers().forEach(message0::sendToPlayer);

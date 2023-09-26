@@ -136,7 +136,6 @@ public class EruptionPlugin extends JavaPlugin {
                 new PlayerListener(),
                 new MatchListener(),
                 new WorldListener(),
-                new ShutdownListener(),
                 new UIListener(),
                 new InventoryListener()
         ).forEach(listener -> this.getServer().getPluginManager().registerEvents(listener, this));

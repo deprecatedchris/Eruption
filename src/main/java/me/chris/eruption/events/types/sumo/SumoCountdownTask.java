@@ -23,7 +23,7 @@ public class SumoCountdownTask extends EventCountdownTask {
 
     @Override
     public void onCancel() {
-        getEvent().sendMessage(ChatColor.RED + "There were not enough players to start the commands.");
+        getEvent().sendMessage(ChatColor.RED + "There were not enough players to start the event.");
         getEvent().end();
         getEvent().getPlugin().getEventManager().setCooldown(0L);
     }

@@ -4,18 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="Re-added Config stuff, fixed kit display name error, recoded a few more commands (please help with this kit editor menu)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/tournament/TournamentCommands.java" afterDir="false" />
+    <list default="true" id="d7d9d5e2-258d-4765-8e36-380d9d1075d5" name="Changes" comment="Finished recoding commands, Edited queue message">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/EventManagerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/EventManagerCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/EventSpectateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/EventSpectateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/HostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/HostCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/JoinEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/JoinEventCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/LeaveEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/LeaveEventCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/StatusEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/StatusEventCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/queue/managers/QueueManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/queue/managers/QueueManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setting/SettingsInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/setting/SettingsInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/tournament/commands/TournamentCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/JoinEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/user/JoinEventCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/LeaveEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/user/LeaveEventCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/StatusEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/user/StatusEventCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/leaderboard/menu/LeaderboardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/leaderboard/menu/LeaderboardMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/match/InvCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/match/InvCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/setting/menu/SettingsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/setting/menu/SettingsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/statistic/StatisticCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/statistic/StatisticCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/EventCountdownTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/EventCountdownTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/EventState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/EventState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/PracticeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/PracticeEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/EventManagerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/EventManagerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/EventSpectateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/EventSpectateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/commands/HostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/HostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/managers/EventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/managers/EventManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/corners/FourCornersCountdownTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/corners/FourCornersCountdownTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/corners/FourCornersEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/corners/FourCornersEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/lms/LMSCountdownTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/lms/LMSCountdownTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/oitc/OITCCountdownTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/oitc/OITCCountdownTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/parkour/ParkourCountdownTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/parkour/ParkourCountdownTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/runner/RunnerCountdownTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/runner/RunnerCountdownTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/sumo/SumoCountdownTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/events/types/sumo/SumoCountdownTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/PlayerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/PlayerListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/ShutdownListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/MatchResetRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/MatchResetRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/MatchRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/MatchRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/TournamentRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/runnable/TournamentRunnable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +130,8 @@
       <workItem from="1694629448777" duration="5863000" />
       <workItem from="1694898629363" duration="1056000" />
       <workItem from="1695501695658" duration="5748000" />
-      <workItem from="1695692390254" duration="3734000" />
+      <workItem from="1695692390254" duration="3915000" />
+      <workItem from="1695758311480" duration="4907000" />
     </task>
     <task id="LOCAL-00001" summary="new command api :) + some completed commands :)">
       <option name="closed" value="true" />
@@ -155,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695263554607</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finished recoding commands, Edited queue message">
+      <option name="closed" value="true" />
+      <created>1695696653458</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1695696653458</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,7 +204,8 @@
     <MESSAGE value="minor changes (dont change spigot we need nms)" />
     <MESSAGE value="Created settings menu, deleted qlib menu api (other is simpler and more efficient), Made todos" />
     <MESSAGE value="Re-added Config stuff, fixed kit display name error, recoded a few more commands (please help with this kit editor menu)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-added Config stuff, fixed kit display name error, recoded a few more commands (please help with this kit editor menu)" />
+    <MESSAGE value="Finished recoding commands, Edited queue message" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished recoding commands, Edited queue message" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

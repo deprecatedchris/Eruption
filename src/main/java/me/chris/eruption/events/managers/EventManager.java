@@ -51,10 +51,10 @@ public class EventManager {
         boolean newWorld;
 
         if (plugin.getServer().getWorld("commands") == null) {
-            eventWorld = plugin.getServer().createWorld(new WorldCreator("commands"));
+            eventWorld = plugin.getServer().createWorld(new WorldCreator("event"));
             newWorld = true;
         } else {
-            eventWorld = plugin.getServer().getWorld("commands");
+            eventWorld = plugin.getServer().getWorld("event");
             newWorld = false;
         }
 

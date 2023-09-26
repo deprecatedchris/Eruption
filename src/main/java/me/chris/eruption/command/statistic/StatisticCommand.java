@@ -8,6 +8,7 @@ import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+//Todo: recode this into leaderboards menu.
 public class StatisticCommand {
 
     @Command({"statistic", "stats"})

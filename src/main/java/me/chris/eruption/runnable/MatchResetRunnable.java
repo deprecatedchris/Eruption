@@ -20,7 +20,7 @@ public class MatchResetRunnable extends BukkitRunnable {
     public void run() {
         int count = 0;
 
-        if (this.match.getKit().getFlag().equals(Flag.BUILD)) {
+        if (this.match.getKit().isBuild()) {
             for (Location location : this.match.getPlacedBlockLocations()) {
                 if (++count <= 15) {
                     location.getBlock().setType(Material.AIR);

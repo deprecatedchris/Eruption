@@ -1,26 +1,36 @@
 package me.chris.eruption.command.leaderboard.menu;
 
 import com.mongodb.client.MongoCursor;
-import io.github.nosequel.menu.Menu;
-import io.github.nosequel.menu.buttons.Button;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Kit;
+import me.chris.eruption.util.CC;
+import me.chris.eruption.util.menu.Button;
+import me.chris.eruption.util.menu.Menu;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
+//Todo: recode this menu.
 public class LeaderboardMenu extends Menu {
 
-    public LeaderboardMenu(Player player) {
-        super(player, "Leaderboards", 54);
+    private int size = 9*6;
+    @Override
+    public String getTitle(Player player) {
+        return CC.translate("&6Leaderboards");
     }
 
+    @Override
+    public Map<Integer, Button> getButtons(Player player) {
+        Map<Integer, Button> buttons = new HashMap<>();
+        return buttons;
+    }
+
+    /*
     @Override
     public void tick() {
         int i = 0;
@@ -61,5 +71,5 @@ public class LeaderboardMenu extends Menu {
                         .setClickAction(event -> event.setCancelled(true));
             }
         }
-    }
+    }*/
 }

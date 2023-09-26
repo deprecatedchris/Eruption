@@ -111,7 +111,7 @@ public class FourCornersEvent extends PracticeEvent<FourCornersPlayer> {
             playerCorenersData.setCornersLosses(playerCorenersData.getCornersLosses() + 1);
 
             player.sendMessage(" ");
-            player.sendMessage(ChatColor.RED + "You have been eliminated from the commands. Better luck next time!");
+            player.sendMessage(ChatColor.RED + "You have been eliminated from the event. Better luck next time!");
             player.sendMessage(" ");
 
             if (getByState(FourCornersPlayer.FourCornerState.INGAME).size() == 1) {

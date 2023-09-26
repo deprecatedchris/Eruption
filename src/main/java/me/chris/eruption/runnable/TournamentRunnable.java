@@ -1,6 +1,7 @@
 package me.chris.eruption.runnable;
 
 import io.netty.util.internal.ConcurrentSet;
+import me.chris.eruption.util.CC;
 import org.bukkit.ChatColor;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Kit;
@@ -15,11 +16,8 @@ import me.chris.eruption.tournament.TournamentState;
 import me.chris.eruption.tournament.TournamentTeam;
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -118,16 +116,19 @@ public class TournamentRunnable extends BukkitRunnable {
 					}
 				}
 
-				this.tournament.broadcast(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------------------------------------------");
-				this.tournament.broadcast(ChatColor.BLUE.toString() + ChatColor.BOLD + "[TOURNAMENT] (" + tournament.getTeamSize() + "v" + tournament.getTeamSize() + ") " + tournament.getKitName());
-				this.tournament.broadcast(ChatColor.WHITE.toString() + ChatColor.BOLD + "* " + ChatColor.WHITE + "Starting Round #" + tournament.getCurrentRound());
-				this.tournament.broadcast(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------------------------------------------");
+				String[] roundMessage = new String[]{
+						" ",
+						CC.translate("&c&l[TOURNAMENT] ("+ tournament.getTeamSize() + "v" + tournament.getTeamSize() + ") " + tournament.getKitName()),
+						CC.translate("&e&lStarting Round #" + tournament.getCurrentRound()),
+						" ",
+				};
 
+				this.tournament.broadcast(Arrays.toString(roundMessage));
 
 				this.tournament.setTournamentState(TournamentState.FIGHTING);
 
 			} else if (countdown <= 5) {
-				String announce = ChatColor.BLUE + "(Tournament) " + ChatColor.GREEN + "Round #" + this.tournament.getCurrentRound() + " is starting in " + ChatColor.YELLOW +  countdown + ChatColor.GREEN + ".";
+				String announce = CC.translate("&c&l[TOURNAMENT] &eRound #" + this.tournament.getCurrentRound() + " is starting in &c" + countdown + "&e.");
 				this.tournament.broadcast(announce);
 			}
 		}

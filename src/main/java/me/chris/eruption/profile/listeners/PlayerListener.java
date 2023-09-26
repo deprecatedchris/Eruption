@@ -2,6 +2,7 @@ package me.chris.eruption.profile.listeners;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Flag;
+import me.chris.eruption.util.CC;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -57,8 +58,8 @@ public class PlayerListener implements Listener {
         PlayerData playerData = this.plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 
         if (playerData.isRenaming()) {
-            event.getPlayer().sendMessage(Style.RED + "A kit name cannot start with \"/\".");
-            event.getPlayer().sendMessage(Style.RED + "Event cancelled.");
+            event.getPlayer().sendMessage(CC.RED + "A kit name cannot start with \"/\".");
+            event.getPlayer().sendMessage(CC.RED + "Event cancelled.");
             playerData.setActive(false);
             playerData.setRename(false);
             event.setCancelled(true);
@@ -109,11 +110,6 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         this.plugin.getPlayerManager().createPlayerData(player);
         this.plugin.getPlayerManager().sendToSpawnAndReset(player);
-        player.performCommand("help");
-        /*Bukkit.getServer().getOnlinePlayers().forEach(x -> {
-            NameTagHandler.addToTeam(profile, x, ChatColor.BLUE, false);
-            NameTagHandler.addToTeam(x, profile, ChatColor.BLUE, false);
-        });*/
     }
 
     @EventHandler
@@ -277,7 +273,7 @@ public class PlayerListener implements Listener {
                             player.getInventory().setArmorContents(match.getKit().getArmor());
                             player.getInventory().setContents(match.getKit().getContents());
                             player.updateInventory();
-                            player.sendMessage(Style.GRAY + "You equipped the default kit.");
+                            player.sendMessage(CC.GRAY + "You equipped the default kit.");
                             return;
                         }
                     }
@@ -293,7 +289,7 @@ public class PlayerListener implements Listener {
                                     player.getInventory().setArmorContents(match.getKit().getArmor());
                                     player.getInventory().setContents(kit.getContents());
                                     player.updateInventory();
-                                    player.sendMessage(Style.GRAY + "You equipped your custom kit.");
+                                    player.sendMessage(CC.GRAY + "You equipped your custom kit.");
                                     return;
                                 }
                             }
@@ -546,7 +542,7 @@ public class PlayerListener implements Listener {
             event.setCancelled(true);
 
             if (event.getMessage().length() > 16) {
-                event.getPlayer().sendMessage(Style.RED + "A kit name cannot be more than 16 characters long.");
+                event.getPlayer().sendMessage(CC.RED + "A kit name cannot be more than 16 characters long.");
                 return;
             }
 

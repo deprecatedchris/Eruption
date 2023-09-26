@@ -1,4 +1,4 @@
-package me.chris.eruption.command.event;
+package me.chris.eruption.command.event.user;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.match.Match;

@@ -1,4 +1,4 @@
-package me.chris.eruption.events.commands;
+package me.chris.eruption.command.event;
 
 import me.chris.eruption.events.menu.EventHostMenu;
 import me.vaperion.blade.annotation.argument.Sender;

@@ -1,20 +1,36 @@
 package me.chris.eruption.command.setting.menu;
 
-import io.github.nosequel.menu.Menu;
-import io.github.nosequel.menu.buttons.Button;
-import io.github.nosequel.menu.filling.FillingType;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.scoreboard.ScoreboardState;
 import me.chris.eruption.setting.SettingsInfo;
 import me.chris.eruption.util.CC;
+import me.chris.eruption.util.menu.Button;
+import me.chris.eruption.util.menu.Menu;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class SettingsMenu extends Menu {
+import java.util.HashMap;
+import java.util.Map;
 
+//Todo: recode this menu and add ping range button
+public class SettingsMenu extends Menu {
+    private int size = 9*3;
+
+    @Override
+    public String getTitle(Player player) {
+        return CC.translate("&b&lSettings");
+    }
+
+    @Override
+    public Map<Integer, Button> getButtons(Player player) {
+        Map<Integer, Button> buttons = new HashMap<>();
+        return buttons;
+    }
+
+    /*
     public SettingsMenu(Player player) {
         super(player, CC.translate("&aSettings"), 26);
         this.addFiller(FillingType.BORDER);
@@ -122,5 +138,7 @@ public class SettingsMenu extends Menu {
                     this.updateMenu();
                 });
     }
+    */
+
 }
 

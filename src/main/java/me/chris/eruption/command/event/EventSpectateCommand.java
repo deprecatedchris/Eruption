@@ -1,4 +1,4 @@
-package me.chris.eruption.events.commands;
+package me.chris.eruption.command.event;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.events.EventState;

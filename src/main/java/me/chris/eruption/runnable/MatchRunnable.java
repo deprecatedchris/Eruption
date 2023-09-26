@@ -34,7 +34,7 @@ public class MatchRunnable extends BukkitRunnable {
 				} else {
 					this.match.broadcastWithSound(
 							ChatColor.WHITE + "Match starting " + ChatColor.RED + this.match.getCountdown() +
-									(match.getCountdown() == 1 ? ChatColor.WHITE + " second ..." : ChatColor.WHITE + " seconds ..."), Sound.CLICK);
+									(match.getCountdown() == 1 ? ChatColor.WHITE + " second..." : ChatColor.WHITE + " seconds..."), Sound.CLICK);
 				}
 				break;
 			case SWITCHING:

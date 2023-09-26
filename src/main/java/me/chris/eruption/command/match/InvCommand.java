@@ -25,12 +25,12 @@ public class InvCommand {
 
 	@Command({"inventory", "_"})
 	@Description("Get the post match inventory of a player.")
-	public static void createKit(@Sender Player sender, String[] args) throws BladeExitMessage {
-		if (!args[0].matches(InvCommand.UUID_PATTERN.pattern())) {
+	public static void createKit(@Sender Player sender, String name) throws BladeExitMessage {
+		if (!name.matches(InvCommand.UUID_PATTERN.pattern())) {
 			throw new BladeExitMessage(InvCommand.INVENTORY_NOT_FOUND);
 		}
 
-		final InventorySnapshot snapshot = plugin.getInventoryManager().getSnapshot(UUID.fromString(args[0]));
+		final InventorySnapshot snapshot = plugin.getInventoryManager().getSnapshot(UUID.fromString(name));
 		if (snapshot == null) {
 			throw new BladeExitMessage(InvCommand.INVENTORY_NOT_FOUND);
 		} else {

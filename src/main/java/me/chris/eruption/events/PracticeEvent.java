@@ -91,7 +91,7 @@ public abstract class PracticeEvent<K extends EventPlayer> {
         getBukkitPlayers().forEach(player::showPlayer);
 
         sendMessage(ChatColor.RED + player.getName() + ChatColor.WHITE + " has joined the game. " + ChatColor.YELLOW + "(" + getPlayers().size() + "/" + limit + ")");
-        player.sendMessage(ChatColor.WHITE + "You have joined the " + name + " commands.");
+        player.sendMessage(ChatColor.YELLOW + "You have joined the " + name + " event.");
     }
 
     public void leave(Player player) {
@@ -168,7 +168,7 @@ public abstract class PracticeEvent<K extends EventPlayer> {
         } else if (this instanceof LMSEvent) {
             LMSEvent lmsEvent = (LMSEvent) this;
             lmsEvent.cancelAll();
-            Bukkit.getWorld("commands").getEntities().stream().filter(entity -> entity instanceof Item).forEach(Entity::remove);
+            Bukkit.getWorld("events").getEntities().stream().filter(entity -> entity instanceof Item).forEach(Entity::remove);
         } else if (this instanceof OITCEvent) {
             OITCEvent oitcEvent = (OITCEvent) this;
 
