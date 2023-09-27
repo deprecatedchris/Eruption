@@ -18,12 +18,8 @@ public class ResetStatsCommand {
 	@Usage("/statreset <player>")
 	@Description("Reset the stats of a player.")
 	@Permission("practice.admin")
-	public static void duel(@Sender Player sender, Player target, String s, String[] args) throws BladeExitMessage {
+	public static void duel(@Sender Player sender, Player target) throws BladeExitMessage {
 		PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(target.getUniqueId());
-
-		if (target == null) {
-			throw new BladeExitMessage(CC.translate("&cCannot find this player."));
-		}
 
 		for (Kit kit : EruptionPlugin.getInstance().getKitManager().getKits()) {
 			playerData.setElo(kit.getName(), PlayerData.DEFAULT_ELO);

@@ -29,7 +29,7 @@ public class JoinEventCommand {
 	@Command({"event join", "joinevent"})
 	@Usage("/event join <id>")
 	@Description("Join an event or tournament.")
-	public static void eventJoin(@Sender Player player, Player target, String[] args) throws BladeExitMessage {
+	public static void eventJoin(@Sender Player player, String[] args) throws BladeExitMessage {
 		PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 		Party party = plugin.getPartyManager().getParty(playerData.getUniqueId());
 

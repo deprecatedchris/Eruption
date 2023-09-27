@@ -1,129 +1,150 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package me.chris.eruption.util.menu;
 
-import com.google.common.collect.Maps;
+import com.google.common.base.Preconditions;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import lombok.Getter;
-import lombok.Setter;
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.util.CC;
+import me.chris.eruption.util.other.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashMap;
-import java.util.Map;
-
-@Getter
-@Setter
 public abstract class Menu {
-
-    public static Map<String, Menu> currentlyOpenedMenus = new HashMap<>();
-
-    private Map<Integer, Button> buttons = new HashMap<>();
+    @Getter
+    private final ConcurrentHashMap<Integer, Button> buttons = new ConcurrentHashMap();
+    @Getter
     private boolean autoUpdate = false;
+    @Getter
     private boolean updateAfterClick = true;
-    private boolean closedByMenu = false;
+    @Getter
     private boolean placeholder = false;
-    private Button placeholderButton = Button.placeholder(Material.STAINED_GLASS_PANE, (byte) 15, " ");
-    public static Map<String, BukkitRunnable> checkTasks = Maps.newHashMap();
-    private boolean async = false;
-    private Inventory inventory = null;
+    @Getter
+    private boolean noncancellingInventory = false;
+    @Getter
+    private String staticTitle = null;
+    private final boolean fill = false;
+    public static Map<String, Menu> currentlyOpenedMenus;
+    public static Map<String, BukkitRunnable> checkTasks;
+    public static Button BLANK_BUTTON;
+    public static ItemStack BLANK_BUTTON_ITEM;
 
-    private ItemStack createItemStack(Player player, Button button) {
-        ItemStack item = button.getButtonItem(player);
+    private Inventory createInventory(Player player) {
+        Map<Integer, Button> invButtons = this.getButtons(player);
+        Inventory inv = Bukkit.createInventory(player, this.useNormalSize() ? this.size(invButtons) : this.size(player), this.getTitle(player));
 
-        if (item.getType() != Material.SKULL_ITEM) {
-            ItemMeta meta = item.getItemMeta();
-
-            if (meta != null && meta.hasDisplayName()) {
-                meta.setDisplayName(meta.getDisplayName() + "&b&c&d&e");
-            }
-
-            item.setItemMeta(meta);
-        }
-
-        return item;
-    }
-
-    private Inventory createInventory(final Player player) {
-        final Map<Integer, Button> invButtons = this.getButtons(player);
-        inventory = Bukkit.createInventory(player, this.size(invButtons), CC.translate(this.getTitle(player)));
-
-        for (final Map.Entry<Integer, Button> buttonEntry : invButtons.entrySet()) {
+        for (Map.Entry<Integer, Button> integerButtonEntry : invButtons.entrySet()) {
+            Map.Entry<Integer, Button> buttonEntry = integerButtonEntry;
             this.buttons.put(buttonEntry.getKey(), buttonEntry.getValue());
-            inventory.setItem(buttonEntry.getKey(), buttonEntry.getValue().getButtonItem(player));
-
+            inv.setItem(buttonEntry.getKey(), buttonEntry.getValue().getButtonItem(player));
         }
-        if (this.isPlaceholder()) {
-            final Button placeholder = Button.placeholder(Material.STAINED_GLASS_PANE, (byte) 15);
-            for (int index = 0; index < this.size(invButtons); ++index) {
-                if (invButtons.get(index) == null) {
+
+        if (this.isFill(player, invButtons)) {
+            Button placeholder = Button.placeholder(Material.STAINED_GLASS_PANE, (fillColor() == 0 ? 15 : fillColor()));
+
+            for(int index = 0; index < (this.useNormalSize() ? this.size(invButtons) : this.size(player)); ++index) {
+                boolean skip = false;
+                int[] var7 = this.noneFillButtons();
+                int var8 = var7.length;
+
+                for (int index1 : var7) {
+                    if (index1 == index) {
+                        skip = true;
+                        break;
+                    }
+                }
+
+                if (!skip && invButtons.get(index) == null) {
                     this.buttons.put(index, placeholder);
-                    inventory.setItem(index, placeholder.getButtonItem(player));
+                    inv.setItem(index, placeholder.getButtonItem(player));
                 }
             }
         }
-        return inventory;
+
+        return inv;
     }
 
-    public void openMenu(final Player player) {
-        Inventory inventory = createInventory(player);
-        player.openInventory(inventory);
-        update(player);
+
+
+    public Menu() {
     }
 
-    private void update(final Player player) {
+    public Menu(String staticTitle) {
+        this.staticTitle = Preconditions.checkNotNull(staticTitle);
+    }
+
+    public void openMenu(Player player) {
+        Inventory inv = this.createInventory(player);
+
+        try {
+            player.openInventory(inv);
+            this.update(player);
+        } catch (Exception var4) {
+            var4.printStackTrace();
+        }
+
+    }
+
+    public void update(final Player player) {
         cancelCheck(player);
-        Menu.currentlyOpenedMenus.put(player.getName(), this);
+        currentlyOpenedMenus.put(player.getName(), this);
         this.onOpen(player);
-        final BukkitRunnable runnable = new BukkitRunnable() {
+        BukkitRunnable runnable = new BukkitRunnable() {
             public void run() {
                 if (!player.isOnline()) {
                     Menu.cancelCheck(player);
                     Menu.currentlyOpenedMenus.remove(player.getName());
                 }
-                if (Menu.this.isAutoUpdate()) {
-                    player.getOpenInventory().getTopInventory().setContents(Menu.this.createInventory(player).getContents());
+
+                try {
+                    if (Menu.this.isAutoUpdate()) {
+                        player.getOpenInventory().getTopInventory().setContents(Menu.this.createInventory(player).getContents());
+                    }
+                } catch (IllegalArgumentException var2) {
+                    Menu.this.openMenu(player);
                 }
+
             }
         };
-        runnable.runTaskTimerAsynchronously(EruptionPlugin.getInstance(), 0L, 0L);
-        Menu.checkTasks.put(player.getName(), runnable);
+        runnable.runTaskTimer(EruptionPlugin.getInstance(), 10L, 10L);
+        checkTasks.put(player.getName(), runnable);
     }
 
-    public static void cancelCheck(final Player player) {
-        if (Menu.checkTasks.containsKey(player.getName())) {
-            Menu.checkTasks.get(player.getName()).cancel();
-            Menu.checkTasks.remove(player.getName()).cancel();
-        }
+    public int[] noneFillButtons() {
+        return new int[0];
     }
 
-    public int size(Map<Integer, Button> buttons) {
-        int highest = 0;
-
-        for (int buttonValue : buttons.keySet()) {
-            if (buttonValue > highest) {
-                highest = buttonValue;
-            }
+    public static void cancelCheck(Player player) {
+        if (checkTasks.containsKey(player.getName())) {
+            checkTasks.remove(player.getName()).cancel();
         }
 
-        return (int) (Math.ceil((highest + 1) / 9D) * 9D);
-    }
-
-    public int getSize() {
-        return -1;
     }
 
     public int getSlot(int x, int y) {
-        return ((9 * y) + x);
+        return 9 * y + x;
     }
 
-    public abstract String getTitle(Player player);
+    public String getTitle(Player player) {
+        return this.staticTitle;
+    }
 
-    public abstract Map<Integer, Button> getButtons(Player player);
+    public abstract Map<Integer, Button> getButtons(Player var1);
+
+    public int size(Player player) {
+        return 9;
+    }
 
     public void onOpen(Player player) {
     }
@@ -131,12 +152,57 @@ public abstract class Menu {
     public void onClose(Player player) {
     }
 
-    private int getSlot(Button button) {
-        for (int entry : buttons.keySet()) {
-            if (buttons.get(entry).equals(button)) {
-                return entry;
+    public boolean isFill(Player player, Map<Integer, Button> buttons) {
+        return false;
+    }
+
+    public byte fillColor(){
+        return (byte) 15;
+    }
+
+    public void setAutoUpdate(boolean autoUpdate) {
+        this.autoUpdate = autoUpdate;
+    }
+
+    public void setUpdateAfterClick(boolean updateAfterClick) {
+        this.updateAfterClick = updateAfterClick;
+    }
+
+    public void setPlaceholder(boolean placeholder) {
+        this.placeholder = placeholder;
+    }
+
+    public void setNoncancellingInventory(boolean noncancellingInventory) {
+        this.noncancellingInventory = noncancellingInventory;
+    }
+
+    public boolean useNormalSize() {
+        return true;
+    }
+
+    public boolean isFillFiltered(int slot) {
+        return false;
+    }
+
+    public int size(Map<Integer, Button> buttons) {
+        int highest = 0;
+        Iterator var3 = buttons.keySet().iterator();
+
+        while(var3.hasNext()) {
+            int buttonValue = (Integer)var3.next();
+            if (buttonValue > highest) {
+                highest = buttonValue;
             }
         }
-        return 100;
+
+        return (int)(Math.ceil((double)(highest + 1) / 9.0) * 9.0);
+    }
+
+    static {
+        EruptionPlugin.getInstance().getServer().getPluginManager().registerEvents(new ButtonListener(), qLib.getInstance());
+        currentlyOpenedMenus = new HashMap();
+        checkTasks = new HashMap();
+        Button BLANK_BUTTON = Button.fromItem(ItemBuilder.of(Material.STAINED_GLASS_PANE).data((short)15).name(" ").build());
+        ItemStack var1 = ItemBuilder.of(Material.STAINED_GLASS_PANE).data((short)15).name(" ").build();
     }
 }

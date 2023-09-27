@@ -12,10 +12,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
-//Todo: recode this menu.
+//todo: recode this menu.
 public class LeaderboardMenu extends Menu {
 
     private int size = 9*6;
@@ -26,9 +27,39 @@ public class LeaderboardMenu extends Menu {
 
     @Override
     public Map<Integer, Button> getButtons(Player player) {
-        Map<Integer, Button> buttons = new HashMap<>();
+        final Map<Integer, Button> buttons = new HashMap<>();
+        int i = 0;
+        for(Kit kit : EruptionPlugin.getInstance().getKitManager().getKits()){
+            if(kit.isRanked()) {
+                buttons.put(i++, new Button() {
+                    @Override
+                    public String getName(Player player) {
+                        return ChatColor.RED + kit.getName() + ChatColor.GRAY + " (Top 10)";
+                    }
+
+                    @Override
+                    public List<String> getDescription(Player player) {
+                        List<String> lore = new ArrayList<>();
+                        lore.add("");
+                        return null;
+                    }
+
+                    @Override
+                    public Material getMaterial(Player player) {
+                        return null;
+                    }
+
+                    @Override
+                    public ItemStack getButtonItem(Player player) {
+                        return null;
+                    }
+                });
+            }
+        }
         return buttons;
     }
+
+
 
     /*
     @Override

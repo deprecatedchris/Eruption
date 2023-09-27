@@ -39,12 +39,7 @@ public final class ArenaCommands {
     @Command("arena event")
     @Permission("eruption.arena.event")
     @Description("Toggle arena's event mode")
-    public static void toggleEvent(@Sender Player player, String name) throws BladeExitMessage {
-        Arena arena = plugin.getArenaManager().getArena(name);
-        if (arena == null) {
-            throw new BladeExitMessage("An arena with that name doesn't exist");
-        }
-
+    public static void toggleEvent(@Sender Player player, Arena arena) throws BladeExitMessage {
         player.sendMessage(arena.isEvent() ? CC.RED + "Toggled event mode for arena " + arena.getName() : CC.GREEN + "Toggled event mode for arena" + arena.getName());
         arena.setEvent(!arena.isEvent());
     }
@@ -52,66 +47,53 @@ public final class ArenaCommands {
     @Command("arena type")
     @Permission("eruption.arena.event")
     @Description("Toggle arena's event mode")
-    public static void setType(@Sender Player player, String name ,String type) throws BladeExitMessage {
-        Arena arena = plugin.getArenaManager().getArena(name);
-
-        if (arena == null) {
-            throw new BladeExitMessage("An arena with that name doesn't exist");
-        }
-
-         switch (type.toLowerCase()) {
-                case "sumo":
-                    arena.setArenaType(ArenaType.SUMO);
-                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
-                    break;
-                case "lms":
-                    arena.setArenaType(ArenaType.LMS);
-                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
-                    break;
-                case "oitc":
-                    arena.setArenaType(ArenaType.OITC);
-                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
-                    break;
-                case "runner":
-                    arena.setArenaType(ArenaType.RUNNER);
-                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
-                    break;
-                case "corners":
-                    arena.setArenaType(ArenaType.CORNERS);
-                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
-                    break;
-                case "parkour":
-                    arena.setArenaType(ArenaType.PARKOUR);
-                    player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
-                    break;
-                default:
-                    player.sendMessage(CC.RED + "Types: sumo, lms, oitc, runner, corners, parkour.");
-                    break;
+    public static void setType(@Sender Player player, Arena arena ,String type) throws BladeExitMessage {
+        switch (type.toLowerCase()) {
+            case "sumo" -> {
+                arena.setArenaType(ArenaType.SUMO);
+                player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
             }
+            case "lms" -> {
+                arena.setArenaType(ArenaType.LMS);
+                player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+            }
+            case "oitc" -> {
+                arena.setArenaType(ArenaType.OITC);
+                player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+            }
+            case "runner" -> {
+                arena.setArenaType(ArenaType.RUNNER);
+                player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+            }
+            case "corners" -> {
+                arena.setArenaType(ArenaType.CORNERS);
+                player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+            }
+            case "parkour" -> {
+                arena.setArenaType(ArenaType.PARKOUR);
+                player.sendMessage(CC.GREEN + "Successfully changed the arena event type to " + type.toLowerCase());
+            }
+            default -> player.sendMessage(CC.RED + "Types: sumo, lms, oitc, runner, corners, parkour.");
+        }
     }
 
 
     @Command({"arena delete", "arena del", "arena remove", "arena rem"})
     @Permission("eruption.arena.delete")
     @Description("Delete an arena")
-    public static void deleteArena(@Sender Player player, String name) throws BladeExitMessage {
-        if (plugin.getArenaManager().getArena(name) == null) {
-            throw new BladeExitMessage("An arena with that name does not exist.");
-        }
-
-        plugin.getArenaManager().deleteArena(name);
-        player.sendMessage(CC.translate("&aDeleted arena &e" + name + "&a!"));
+    public static void deleteArena(@Sender Player player, Arena arena) throws BladeExitMessage {
+        plugin.getArenaManager().deleteArena(arena.getName());
+        player.sendMessage(CC.translate("&aDeleted arena &e" + arena.getName() + "&a!"));
     }
 
     @Command({"arena toggle", "arena enable", "arena disable"})
     @Permission("eruption.arena.toggle")
     @Description("Toggle an arena.")
-    public static void toggleArena(@Sender Player player, String name) throws BladeExitMessage {
-        Arena arena = plugin.getArenaManager().getArena(name);
+    public static void toggleArena(@Sender Player player, Arena arena) throws BladeExitMessage {
         if (arena == null) throw new BladeExitMessage("An arena with that name does not exist.");
 
         arena.setEnabled(!arena.isEnabled());
-        player.sendMessage((arena.isEnabled() ? GREEN : RED) + "Successfully " + (arena.isEnabled() ? "enabled" : "disabled") + " arena " + name + ".");
+        player.sendMessage((arena.isEnabled() ? GREEN : RED) + "Successfully " + (arena.isEnabled() ? "enabled" : "disabled") + " arena " + arena.getName() + ".");
     }
 
     @Command({"arena reload", "arena save", "arena rl"})
@@ -132,8 +114,7 @@ public final class ArenaCommands {
     @Command({"arena copy", "arena cp", "arena generate"})
     @Permission("eruption.arena.copy")
     @Description("Clone an arena.")
-    public static void copyArena(@Sender Player player, String name, int copies) throws BladeExitMessage {
-        Arena arena = plugin.getArenaManager().getArena(name);
+    public static void copyArena(@Sender Player player, Arena arena, int copies) throws BladeExitMessage {
         if (arena == null) throw new BladeExitMessage("An arena with that name does not exist.");
 
         plugin.getServer().getScheduler().runTask(plugin, new ArenaCommandRunnable(plugin, arena, copies));
@@ -144,30 +125,32 @@ public final class ArenaCommands {
     @Usage("/arena position <a|b|min|max> <name>")
     @Permission("eruption.arena.position")
     @Description("Set position for an arena.")
-    public static void arenaPosition(@Sender Player player, String argument, String name) throws BladeExitMessage {
-        Arena arena = plugin.getArenaManager().getArena(name);
+    public static void arenaPosition(@Sender Player player, String argument, Arena arena) throws BladeExitMessage {
         if (arena == null) throw new BladeExitMessage("An arena with that name does not exist.");
         LocationUtil location = LocationUtil.fromBukkitLocation(transformLocation(player.getLocation()));
 
         switch (argument.toLowerCase()) {
-            case "a":
+            case "a" -> {
                 arena.setA(location);
-                player.sendMessage(GREEN + "Successfully set position A for arena " + name + ".");
-                return;
-            case "b":
+                player.sendMessage(GREEN + "Successfully set position A for arena " + arena.getName() + ".");
+                break;
+            }
+            case "b" -> {
                 arena.setB(location);
-                player.sendMessage(GREEN + "Successfully set position B for arena " + name + ".");
-                return;
-            case "min":
+                player.sendMessage(GREEN + "Successfully set position B for arena " + arena.getName() + ".");
+                break;
+            }
+            case "min" -> {
                 arena.setMin(location);
-                player.sendMessage(GREEN + "Successfully set minimum position for arena " + name + ".");
-                return;
-            case "max":
+                player.sendMessage(GREEN + "Successfully set minimum position for arena " + arena.getName() + ".");
+                break;
+            }
+            case "max" -> {
                 arena.setMax(location);
-                player.sendMessage(GREEN + "Successfully set maximum position for arena " + name + ".");
-                return;
-            default:
-                throw new BladeUsageMessage();
+                player.sendMessage(GREEN + "Successfully set maximum position for arena " + arena.getName() + ".");
+                break;
+            }
+            default -> throw new BladeUsageMessage();
         }
     }
 

@@ -20,7 +20,6 @@ public class SaveCommand {
         for (PlayerData playerData : EruptionPlugin.getInstance().getPlayerManager().getAllData())
             EruptionPlugin.getInstance().getPlayerManager().saveData(playerData);
         EruptionPlugin.getInstance().getArenaManager().saveArenas();
-        EruptionPlugin.getInstance().getSpawnManager().saveConfig();
         EruptionPlugin.getInstance().getKitManager().saveKits();
         EruptionPlugin.getInstance().saveConfig();
     }

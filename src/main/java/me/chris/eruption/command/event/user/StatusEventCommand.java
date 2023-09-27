@@ -26,14 +26,14 @@ public class StatusEventCommand {
     @Command({"event status", "status"})
     @Usage("/event status")
     @Description("View the status of an event or tournament.")
-    public static void eventJoin(@Sender Player player, Player target, String[] args) throws BladeExitMessage {
+    public static void eventJoin(@Sender Player player) throws BladeExitMessage {
         PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 
         if (playerData.getPlayerState() != PlayerState.SPAWN) {
             throw new BladeExitMessage(CC.translate("&cCannot issue this command in your current state."));
         }
 
-        if (plugin.getTournamentManager().getTournaments().size() == 0) {
+        if (plugin.getTournamentManager().getTournaments().isEmpty()) {
             throw new BladeExitMessage(CC.translate("&cThere are no available tournaments."));
         }
 
@@ -49,7 +49,7 @@ public class StatusEventCommand {
             player.sendMessage(CC.translate("&e&lTournament (" + tournament.getTeamSize() + "v" + tournament.getTeamSize() + ") &67l" + tournament.getKitName()));
 
 
-            if (tournament.getMatches().size() == 0) {
+            if (tournament.getMatches().isEmpty()) {
                 player.sendMessage(ChatColor.RED + "There is no available matches.");
                 player.sendMessage(" ");
             }

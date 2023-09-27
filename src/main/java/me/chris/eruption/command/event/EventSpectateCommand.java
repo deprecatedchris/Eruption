@@ -26,14 +26,10 @@ public class EventSpectateCommand {
     @Command({"event spectate", "eventspec", "specevent"})
     @Usage("/event spectate <player>")
     @Description("Spectate an event.")
-    public static void eventSpectate(@Sender Player player, Player target, String[] args) throws BladeExitMessage {
+    public static void eventSpectate(@Sender Player player, Player target) throws BladeExitMessage {
         PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
         Party party = plugin.getPartyManager().getParty(playerData.getUniqueId());
-        PracticeEvent event = plugin.getEventManager().getByName(args[0]);
-
-        if (args.length < 1) {
-            throw new BladeUsageMessage();
-        }
+        PracticeEvent event = plugin.getEventManager().getByName(target.getName());
 
         if (party != null || (playerData.getPlayerState() != PlayerState.SPAWN && playerData.getPlayerState() != PlayerState.SPECTATING)) {
             throw new BladeExitMessage(CC.translate("&cCannot issue this command in your current state."));

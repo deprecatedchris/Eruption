@@ -4,8 +4,12 @@ import com.google.gson.JsonParser;
 import io.github.thatkawaiisam.assemble.Assemble;
 import io.github.thatkawaiisam.assemble.AssembleStyle;
 import lombok.Getter;
+import me.chris.eruption.arena.arena.Arena;
+import me.chris.eruption.command.parameter.ArenaParameter;
+import me.chris.eruption.command.parameter.KitParameter;
 import me.chris.eruption.database.DatabaseHandler;
 import me.chris.eruption.events.managers.EventManager;
+import me.chris.eruption.kit.Kit;
 import me.chris.eruption.kit.managers.EditorManager;
 import me.chris.eruption.kit.managers.KitManager;
 import me.chris.eruption.match.listeners.MatchListener;
@@ -94,6 +98,10 @@ public class EruptionPlugin extends JavaPlugin {
                     cfg.setFallbackPrefix("eruption");
                     cfg.setDefaultPermissionMessage(ChatColor.RED + "You do not have permission to execute this command.");
                     cfg.setHelpSorter(Comparator.comparing(Command::getUsageAlias));
+                })
+                .bind(binder -> {
+                    binder.bind(Arena.class, new ArenaParameter());
+                    binder.bind(Kit.class, new KitParameter());
                 })
                 .build()
                 .registerPackage(EruptionPlugin.class, "me.chris.eruption.commands");

@@ -11,7 +11,7 @@ public class LeaderboardsCommand {
     @Command({"leaderboard", "lb"})
     @Description("View leaderboards")
     public static void leaderboardCommand(@Sender Player player) {
-        new LeaderboardMenu(player).updateMenu();
+        new LeaderboardMenu().openMenu(player);
     }
 }
 

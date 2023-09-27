@@ -29,12 +29,8 @@ public class AcceptCommand {
 	@Command({"accept"})
 	@Usage("/accept <player>")
 	@Description("Accept a duel request to a player.")
-	public static void accept(@Sender Player player, Player target, String[] args) throws BladeExitMessage {
+	public static void accept(@Sender Player player, Player target) throws BladeExitMessage {
 		PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
-
-		if (args.length < 1) {
-			throw new BladeUsageMessage();
-		}
 
 		if (target == null) {
 			throw new BladeExitMessage(CC.translate("&cCannot find this player"));
@@ -56,13 +52,13 @@ public class AcceptCommand {
 
 		MatchRequest request = EruptionPlugin.getInstance().getMatchManager().getMatchRequest(target.getUniqueId(), player.getUniqueId());
 
-		if (args.length > 1) {
-			Kit kit = EruptionPlugin.getInstance().getKitManager().getKit(args[1]);
-
-			if (kit != null) {
-				request = EruptionPlugin.getInstance().getMatchManager().getMatchRequest(target.getUniqueId(), player.getUniqueId(), kit.getName());
-			}
-		}
+//		if (args.length > 1) {
+//			Kit kit = EruptionPlugin.getInstance().getKitManager().getKit(args[1]);
+//
+//			if (kit != null) {
+//				request = EruptionPlugin.getInstance().getMatchManager().getMatchRequest(target.getUniqueId(), player.getUniqueId(), kit.getName());
+//			}
+//		}
 		if (request == null) {
 			throw new BladeExitMessage(CC.translate("&cThis request has expired."));
 		}

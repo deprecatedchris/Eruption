@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SelectEventArenaMenu extends Menu {
@@ -62,6 +63,21 @@ public class SelectEventArenaMenu extends Menu {
         }
 
         @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.MAP)
                     .name(arena.getName())
@@ -73,15 +89,20 @@ public class SelectEventArenaMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, ClickType clickType) {
-
+        public void clicked(Player player, int slot, ClickType clickType) {
             EruptionPlugin.getInstance().getEventManager().hostEvent(EruptionPlugin.getInstance().getEventManager().getByName(event.getName()), player, arena);
             player.closeInventory();
         }
     }
 
     @Override
-    public int getSize() {
-        return 9 * 5;
+    public boolean useNormalSize() {
+        return false;
     }
+
+    @Override
+    public int size(Player player) {
+        return 9*5;
+    }
+
 }

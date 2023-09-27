@@ -1,23 +1,37 @@
 package me.chris.eruption.command.setting.menu;
 
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.events.EventState;
+import me.chris.eruption.events.menu.EventManagerMenu;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.scoreboard.ScoreboardState;
 import me.chris.eruption.setting.SettingsInfo;
 import me.chris.eruption.util.CC;
 import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
+import me.chris.eruption.util.other.ItemBuilder;
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-//Todo: recode this menu and add ping range button
+//Todo: Add ping range button and Time button
 public class SettingsMenu extends Menu {
-    private int size = 9*3;
+    @Override
+    public int size(Player player) {
+        return 9*3;
+    }
+
+    private static final PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+    private static final SettingsInfo settings = playerData.getSettings();
 
     @Override
     public String getTitle(Player player) {
@@ -27,118 +41,211 @@ public class SettingsMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
+
+        buttons.put(11, new SettingsMenu.AllowDuelsButton());
+        buttons.put(12, new SettingsMenu.SpectatorsButton());
+        buttons.put(13, new SettingsMenu.SpawnPlayersButton());
+        buttons.put(14, new SettingsMenu.ShowScoreboardButton());
+        buttons.put(15, new SettingsMenu.ScoreboardStyleButton());
+
         return buttons;
     }
 
-    /*
-    public SettingsMenu(Player player) {
-        super(player, CC.translate("&aSettings"), 26);
-        this.addFiller(FillingType.BORDER);
-        this.setFillerType(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.GRAY.getData()));
-    }
-
     @Override
-    public void tick() {
-        final PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
-        SettingsInfo settings = playerData.getSettings();
-
-        this.buttons[11] = new Button(Material.DIAMOND_SWORD)
-                .setDisplayName(CC.translate("&cAllow Duels"))
-                .setLore(new String[]{
-                        "",
-                        CC.translate("&7Would you like to allow"),
-                        CC.translate("&7players to duel you?"),
-                        "",
-                        (settings.isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
-                        (!settings.isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
-                }).setClickAction(event ->{
-                    event.setCancelled(true);
-                    this.getPlayer().performCommand("tdr");
-
-                    this.updateMenu();
-                });
-
-        this.buttons[12] = new Button(Material.BLAZE_POWDER)
-                .setDisplayName(CC.translate("&eScoreboard Style"))
-                .setLore(new String[]{
-                        "",
-                        CC.translate("&7Switch between which style is"),
-                        CC.translate("&7displayed on your scoreboard."),
-                        "",
-                        (settings.getScoreboardState().name().equals("PING") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fPing",
-                        (settings.getScoreboardState().name().equals("ARENA") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fArena",
-                        (settings.getScoreboardState().name().equals("LADDER") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fLadder",
-                        (settings.getScoreboardState().name().equals("DURATION") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fDuration"
-
-                }).setClickAction(event ->{
-                    event.setCancelled(true);
-
-                    switch (settings.getScoreboardState()) {
-                        case PING:
-                            settings.setScoreboardState(ScoreboardState.PING);
-                            break;
-                        case ARENA:
-                            settings.setScoreboardState(ScoreboardState.ARENA);
-                            break;
-                        case LADDER:
-                            settings.setScoreboardState(ScoreboardState.LADDER);
-                            break;
-                        default:
-                            settings.setScoreboardState(ScoreboardState.DURATION);
-                            break;
-                    }
-                    this.updateMenu();
-                });
-
-        this.buttons[13] = new Button(Material.PAINTING)
-                .setDisplayName(CC.translate("&dShow Scoreboard"))
-                .setLore(new String[]{
-                        "",
-                        CC.translate("&7Would you like to see"),
-                        CC.translate("&7your scoreboard?"),
-                        "",
-                        (settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
-                        (!settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
-                }).setClickAction(event ->{
-                    event.setCancelled(true);
-                    this.getPlayer().performCommand("tsb");
-
-                    this.updateMenu();
-                });
-
-        this.buttons[14] = new Button(Material.ENDER_PEARL)
-                .setDisplayName(CC.translate("&bAllow Spectators"))
-                .setLore(new String[]{
-                        "",
-                        CC.translate("&7Would you like to allow"),
-                        CC.translate("&7players to spectate?"),
-                        "",
-                        (settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
-                        (!settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
-                }).setClickAction(event ->{
-                    event.setCancelled(true);
-                    this.getPlayer().performCommand("tspec");
-
-                    this.updateMenu();
-                });
-
-        this.buttons[15] = new Button(Material.EYE_OF_ENDER)
-                .setDisplayName(CC.translate("&aSpawn Players"))
-                .setLore(new String[]{
-                        "",
-                        CC.translate("&7Would you like to see"),
-                        CC.translate("&7players at spawn?"),
-                        "",
-                        (settings.isPlayerVisibility() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ "),
-                        (!settings.isPlayerVisibility() ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ")
-                }).setClickAction(event ->{
-                    event.setCancelled(true);
-                    this.getPlayer().performCommand("tspec");
-
-                    this.updateMenu();
-                });
+    public boolean isFill(Player player, Map<Integer, Button> buttons) {
+        return true;
     }
-    */
 
+    private static class AllowDuelsButton extends Button {
+        @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
+        public ItemStack getButtonItem(Player player) {
+            return new ItemBuilder(Material.DIAMOND_SWORD)
+                    .name(CC.translate("&cAllow Duels"))
+                    .lore(Arrays.asList(
+                            "",
+                            CC.translate("&7Would you like to allow"),
+                            CC.translate("&7players to duel you?"),
+                            "",
+                            (settings.isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.RED + CC.BOLD + "■ ")
+                    )).build();
+        }
+
+        @Override
+        public void clicked(Player player, int slot, ClickType clickType) {
+            player.performCommand("tdr");
+            }
+        }
+
+    private static class SpectatorsButton extends Button {
+        @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
+        public ItemStack getButtonItem(Player player) {
+            return new ItemBuilder(Material.ENDER_PEARL)
+                    .name(CC.translate("&bAllow Spectators"))
+                    .lore(Arrays.asList(
+                            "",
+                            CC.translate("&7Would you like to allow"),
+                            CC.translate("&7spectators?"),
+                            "",
+                            (settings.isSpectatorsAllowed() ? CC.GREEN + CC.BOLD + "■ " : CC.RED + CC.BOLD + "■ ")
+                    )).build();
+        }
+
+        @Override
+        public void clicked(Player player, int slot, ClickType clickType) {
+            player.performCommand("tspec");
+        }
+    }
+
+
+    private static class SpawnPlayersButton extends Button {
+        @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
+        public ItemStack getButtonItem(Player player) {
+            return new ItemBuilder(Material.EYE_OF_ENDER)
+                    .name(CC.translate("&aSpawn Players"))
+                    .lore(Arrays.asList(
+                            "",
+                            CC.translate("&7Would you like to see"),
+                            CC.translate("&7players at spawn?"),
+                            "",
+                            (settings.isPlayerVisibility()  ? CC.GREEN + CC.BOLD + "■ " : CC.RED + CC.BOLD + "■ ")
+                    )).build();
+        }
+
+        @Override
+        public void clicked(Player player, int slot, ClickType clickType) {
+            player.performCommand("tpv");
+        }
+    }
+
+    private static class ShowScoreboardButton extends Button {
+        @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
+        public ItemStack getButtonItem(Player player) {
+            return new ItemBuilder(Material.PAINTING)
+                    .name(CC.translate("&dShow Scoreboard"))
+                    .lore(Arrays.asList(
+                            "",
+                            CC.translate("&7Would you like to see"),
+                            CC.translate("&7your scoreboard?"),
+                            "",
+                            (settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.RED + CC.BOLD + "■ ")
+                    )).build();
+        }
+
+        @Override
+        public void clicked(Player player, int slot, ClickType clickType) {
+            player.performCommand("tsb");
+        }
+    }
+
+    private static class ScoreboardStyleButton extends Button {
+        @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
+        public ItemStack getButtonItem(Player player) {
+            return new ItemBuilder(Material.BLAZE_POWDER)
+                    .name(CC.translate("&eScoreboard Style"))
+                    .lore(Arrays.asList(
+                            CC.translate("&7Switch between which style is"),
+                            CC.translate("&7displayed on your scoreboard."),
+                            "",
+                            (settings.getScoreboardState().name().equals("PING") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fPing",
+                            (settings.getScoreboardState().name().equals("ARENA") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fArena",
+                            (settings.getScoreboardState().name().equals("LADDER") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fLadder",
+                            (settings.getScoreboardState().name().equals("DURATION") ? CC.GREEN + CC.BOLD + "■ " : CC.DARK_GRAY + CC.BOLD + "■ ") + "&fDuration"
+                    )).build();
+        }
+
+        @Override
+        public void clicked(Player player, int slot, ClickType clickType) {
+            switch (settings.getScoreboardState()) {
+                case PING:
+                    settings.setScoreboardState(ScoreboardState.PING);
+                    break;
+                case ARENA:
+                    settings.setScoreboardState(ScoreboardState.ARENA);
+                    break;
+                case LADDER:
+                    settings.setScoreboardState(ScoreboardState.LADDER);
+                    break;
+                default:
+                    settings.setScoreboardState(ScoreboardState.DURATION);
+                    break;
+        }
+    }
+
+    }
 }
 

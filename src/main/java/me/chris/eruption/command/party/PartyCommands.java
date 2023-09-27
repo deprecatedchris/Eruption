@@ -197,7 +197,7 @@ public final class PartyCommands {
     @Command({"party setLimit", "p setLimit"})
     @Usage("/party limit <value>")
     @Description("Limit your party.")
-    public static void partyLimit(@Sender Player player, Integer limit, Player target) throws BladeExitMessage {
+    public static void partyLimit(@Sender Player player, Integer limit) throws BladeExitMessage {
         Party party = plugin.getPartyManager().getParty(player.getUniqueId());
 
         if (party == null) {
@@ -266,6 +266,7 @@ public final class PartyCommands {
 
     }
 
+    //todo: no /p settings?
 
     //hot
     @Command({"party allinvite", "p allinvite", "p allinv"})

@@ -21,7 +21,7 @@ public class LeaveEventCommand {
 	@Command({"event leave", "leave"})
 	@Usage("/event leave")
 	@Description("Leave an event or tournament.")
-	public void eventJoin(@Sender Player player, Player target, String[] args) throws BladeExitMessage {
+	public void eventJoin(@Sender Player player) throws BladeExitMessage {
 		PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 		Party party = plugin.getPartyManager().getParty(playerData.getUniqueId());
 
@@ -38,10 +38,10 @@ public class LeaveEventCommand {
 	}
 
 	private void leaveTournament(Player player) {
-		Tournament tournament = this.plugin.getTournamentManager().getTournament(player.getUniqueId());
+		Tournament tournament = plugin.getTournamentManager().getTournament(player.getUniqueId());
 
 		if (tournament != null) {
-			this.plugin.getTournamentManager().leaveTournament(player);
+			plugin.getTournamentManager().leaveTournament(player);
 		}
 	}
 

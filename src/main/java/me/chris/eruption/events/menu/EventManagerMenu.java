@@ -15,13 +15,26 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EventManagerMenu extends Menu {
 
-    private int size = 9*3;
     private static PracticeEvent event;
 
+
+    public EventManagerMenu(){
+    }
+
+    @Override
+    public boolean useNormalSize() {
+        return false;
+    }
+
+    @Override
+    public int size(Player player) {
+        return 9*3;
+    }
 
     public EventManagerMenu(String eventName) {
         event = EruptionPlugin.getInstance().getEventManager().getByName(eventName);
@@ -34,7 +47,6 @@ public class EventManagerMenu extends Menu {
 
     @Override
     public Map<Integer, Button> getButtons(Player player) {
-        Button BLACK_PANE = Button.placeholder(Material.STAINED_GLASS_PANE, (byte)15, " ");
         Map<Integer, Button> buttons = new HashMap<>();
 
         buttons.put(10, new StartButton());
@@ -43,15 +55,30 @@ public class EventManagerMenu extends Menu {
         buttons.put(13, new ResetCooldownButton());
 
 
-
-        for (int x=0; x<size; x++) {
-            buttons.putIfAbsent(x, BLACK_PANE);
-        }
-
         return buttons;
     }
 
+    @Override
+    public boolean isFill(Player player, Map<Integer, Button> buttons) {
+        return true;
+    }
+
     private static class StartButton extends Button {
+
+        @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -65,8 +92,7 @@ public class EventManagerMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, ClickType clickType) {
-
+        public void clicked(Player player, int slot, ClickType clickType) {
             if (event.getState() == EventState.WAITING) {
                 event.getCountdownTask().setTimeUntilStart(5);
                 player.sendMessage(ChatColor.GREEN + "Event was force started.");
@@ -81,6 +107,21 @@ public class EventManagerMenu extends Menu {
     private static class StopButton extends Button {
 
         @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.REDSTONE_ORE)
                     .name(CC.translate("Stop Event"))
@@ -92,8 +133,7 @@ public class EventManagerMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, ClickType clickType) {
-
+        public void clicked(Player player, int slot, ClickType clickType) {
             if (event != null) {
                 event.end();
                 player.sendMessage(ChatColor.RED + "Event was cancelled.");
@@ -106,6 +146,21 @@ public class EventManagerMenu extends Menu {
     }
 
     private static class StatusButton extends Button {
+
+        @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -125,6 +180,21 @@ public class EventManagerMenu extends Menu {
     private static class ResetCooldownButton extends Button {
 
         @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.REDSTONE_BLOCK)
                     .name(CC.translate("Reset global cooldown"))
@@ -136,12 +206,13 @@ public class EventManagerMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, ClickType clickType) {
-
+        public void clicked(Player player, int slot, ClickType clickType) {
             EruptionPlugin.getInstance().getEventManager().setCooldown(0L);
             player.sendMessage(ChatColor.RED + "Event cooldown was cancelled.");
             player.closeInventory();
-
         }
+
     }
- }
+
+
+}

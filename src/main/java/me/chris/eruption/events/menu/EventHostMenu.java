@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EventHostMenu extends Menu {
@@ -44,6 +45,21 @@ public class EventHostMenu extends Menu {
         }
 
         @Override
+        public String getName(Player player) {
+            return null;
+        }
+
+        @Override
+        public List<String> getDescription(Player player) {
+            return null;
+        }
+
+        @Override
+        public Material getMaterial(Player player) {
+            return null;
+        }
+
+        @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.EMERALD)
                     .name(CC.translate("&6Click to host" + practiceEvent.getName()))
@@ -54,9 +70,9 @@ public class EventHostMenu extends Menu {
                     )).build();
         }
 
-        @Override
-        public void clicked(Player player, ClickType clickType) {
 
+        @Override
+        public void clicked(Player player, int slot, ClickType clickType) {
             if (System.currentTimeMillis() < EruptionPlugin.getInstance().getEventManager().getCooldown()) {
                 player.sendMessage(ChatColor.RED + "There is a cooldown. Event can't start at this moment.");
                 return;
@@ -76,7 +92,6 @@ public class EventHostMenu extends Menu {
 
             new SelectEventArenaMenu(practiceEvent).openMenu(player);
             player.closeInventory();
-
         }
     }
 

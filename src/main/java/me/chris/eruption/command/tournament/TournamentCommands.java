@@ -25,8 +25,7 @@ public class TournamentCommands {
     public static void tournamentHost(@Sender Player sender, String[] args) throws BladeExitMessage {
 
         switch (args[0].toLowerCase()) {
-
-            case "start":
+            case "start" -> {
                 if (args.length == 5) {
                     try {
                         int id = Integer.parseInt(args[1]);
@@ -56,9 +55,8 @@ public class TournamentCommands {
                 } else {
                     sender.sendMessage(ChatColor.RED + "Usage: /tournament start <id> <kit> <team size> <tournament size> ");
                 }
-                break;
-            case "stop":
-
+            }
+            case "stop" -> {
                 if (args.length == 2) {
                     int id = Integer.parseInt(args[1]);
                     Tournament tournament = plugin.getTournamentManager().getTournament(id);
@@ -72,21 +70,21 @@ public class TournamentCommands {
                 } else {
                     sender.sendMessage(ChatColor.RED + "Usage: /tournament stop <id>");
                 }
-                break;
-
-            case "alert":
+            }
+            case "alert" -> {
                 String[] alertMessage = new String[]{
                         " ",
                         CC.translate("&e&lA Tournament is being hosted."),
                         " ",
                         CC.translate("&eTeam Size: &c" + plugin.getTournamentManager().getTournaments().get(0).getTeamSize()),
                         CC.translate("&eLadder: &c" + plugin.getTournamentManager().getTournaments().get(0).getKitName()),
-                        CC.translate("&eRequired Players: &c" +  plugin.getTournamentManager().getTournaments().get(0).getSize()),
+                        CC.translate("&eRequired Players: &c" + plugin.getTournamentManager().getTournaments().get(0).getSize()),
                         " ",
                 };
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     p.sendMessage(alertMessage);
                 }
+            }
         }
     }
 }

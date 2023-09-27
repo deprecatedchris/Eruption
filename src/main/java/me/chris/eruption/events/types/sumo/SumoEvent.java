@@ -194,7 +194,6 @@ public class SumoEvent extends PracticeEvent<SumoPlayer> {
     private void selectPlayers() {
 
 
-
         if (getByState(SumoPlayer.SumoState.WAITING).size() == 1) {
             Player winner = Bukkit.getPlayer(getByState(SumoPlayer.SumoState.WAITING).get(0));
             handleWin(winner);
