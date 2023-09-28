@@ -104,7 +104,7 @@ public class EruptionPlugin extends JavaPlugin {
                     binder.bind(Kit.class, new KitParameter());
                 })
                 .build()
-                .registerPackage(EruptionPlugin.class, "me.chris.eruption.commands");
+                .registerPackage(EruptionPlugin.class, "me.chris.eruption.command");
 
         Assemble board = new Assemble(this, new ScoreboardAdapter());
         board.setTicks(20);

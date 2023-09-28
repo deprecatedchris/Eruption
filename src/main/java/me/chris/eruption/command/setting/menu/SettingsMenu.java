@@ -27,18 +27,10 @@ import java.util.Map;
 //Todo: Add ping range button and Time button
 public class SettingsMenu extends Menu {
 
-    private static Player player;
-
-    public SettingsMenu(Player player) {
-        SettingsMenu.player = player;
-    }
-
     public int getSize() {
         return 9*3;
     }
 
-    private static final PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
-    private static final SettingsInfo settings = playerData.getSettings();
 
 
     @Override
@@ -60,8 +52,11 @@ public class SettingsMenu extends Menu {
     }
 
     private static class AllowDuelsButton extends Button {
+
         @Override
         public ItemStack getButtonItem(Player player) {
+            PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+            SettingsInfo settings = playerData.getSettings();
             return new ItemBuilder(Material.DIAMOND_SWORD)
                     .name(CC.translate("&cAllow Duels"))
                     .lore(Arrays.asList(
@@ -83,6 +78,8 @@ public class SettingsMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
+            PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+            SettingsInfo settings = playerData.getSettings();
             return new ItemBuilder(Material.ENDER_PEARL)
                     .name(CC.translate("&bAllow Spectators"))
                     .lore(Arrays.asList(
@@ -105,6 +102,8 @@ public class SettingsMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
+            PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+            SettingsInfo settings = playerData.getSettings();
             return new ItemBuilder(Material.EYE_OF_ENDER)
                     .name(CC.translate("&aSpawn Players"))
                     .lore(Arrays.asList(
@@ -126,6 +125,8 @@ public class SettingsMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
+            PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+            SettingsInfo settings = playerData.getSettings();
             return new ItemBuilder(Material.PAINTING)
                     .name(CC.translate("&dShow Scoreboard"))
                     .lore(Arrays.asList(
@@ -147,6 +148,8 @@ public class SettingsMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
+            PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+            SettingsInfo settings = playerData.getSettings();
             return new ItemBuilder(Material.BLAZE_POWDER)
                     .name(CC.translate("&eScoreboard Style"))
                     .lore(Arrays.asList(
@@ -162,6 +165,8 @@ public class SettingsMenu extends Menu {
 
         @Override
         public void clicked(Player player, ClickType clickType) {
+            PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+            SettingsInfo settings = playerData.getSettings();
             switch (settings.getScoreboardState()) {
                 case PING:
                     settings.setScoreboardState(ScoreboardState.PING);

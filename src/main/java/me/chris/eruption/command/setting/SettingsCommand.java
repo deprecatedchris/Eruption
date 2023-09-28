@@ -11,7 +11,7 @@ public class SettingsCommand {
 	@Command({"settings", "options"})
 	@Description("Edit your settings")
 	public static void settingsCommand(@Sender Player player) {
-		new SettingsMenu(player).openMenu(player);
+		new SettingsMenu().openMenu(player);
 
 	}
 }

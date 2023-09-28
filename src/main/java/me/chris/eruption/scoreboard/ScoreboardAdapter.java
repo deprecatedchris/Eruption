@@ -88,7 +88,7 @@ public class ScoreboardAdapter implements AssembleAdapter {
 
     @Override
     public String getTitle(Player player) {
-        return CC.translate("&c&lWay&6&lBack &7[Beta])");
+        return CC.translate(SCOREBOARD_TITLE.get());
     }
     @Override
     public List<String> getLines(Player player) {
