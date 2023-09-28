@@ -377,7 +377,6 @@ public class PlayerManager {
             this.plugin.getServer().getOnlinePlayers().forEach(player::showPlayer);
         }
 
-        //Todo: fix this
         player.teleport(this.plugin.getSpawnLocation());
 
     }

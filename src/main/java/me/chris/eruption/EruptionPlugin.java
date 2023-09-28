@@ -67,7 +67,7 @@ public class EruptionPlugin extends JavaPlugin {
     private ChunkManager chunkManager;
     private TimerManager timerManager;
 
-    private Location spawnLocation = Bukkit.getWorld("world").getSpawnLocation();
+    private Location spawnLocation;
 
     @Override
     public void onEnable() {

@@ -7,6 +7,6 @@ MONGO:
   USERNAME: root
   PASSWORD: root
 
-LOCATIONS:
+LOCATION:
 
 
