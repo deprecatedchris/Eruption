@@ -20,21 +20,6 @@ public class BackButton extends Button {
     private Menu back;
 
     @Override
-    public String getName(Player var1) {
-        return null;
-    }
-
-    @Override
-    public List<String> getDescription(Player var1) {
-        return null;
-    }
-
-    @Override
-    public Material getMaterial(Player var1) {
-        return null;
-    }
-
-    @Override
     public ItemStack getButtonItem(Player player) {
         return new ItemBuilder(Material.REDSTONE).name(Style.RED + Style.BOLD + "Back").lore(Arrays
                 .asList(Style.RED + "Click here to return to", Style.RED + "the previous menu.")).build();
@@ -42,7 +27,6 @@ public class BackButton extends Button {
 
     @Override
     public void clicked(Player player, int i, ClickType clickType, int hb) {
-        Button.playNeutral(player);
 
         this.back.openMenu(player);
     }

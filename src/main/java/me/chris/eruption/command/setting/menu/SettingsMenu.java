@@ -13,6 +13,7 @@ import me.chris.eruption.util.other.ItemBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -25,13 +26,20 @@ import java.util.Map;
 
 //Todo: Add ping range button and Time button
 public class SettingsMenu extends Menu {
-    @Override
-    public int size(Player player) {
+
+    private static Player player;
+
+    public SettingsMenu(Player player) {
+        SettingsMenu.player = player;
+    }
+
+    public int getSize() {
         return 9*3;
     }
 
     private static final PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
     private static final SettingsInfo settings = playerData.getSettings();
+
 
     @Override
     public String getTitle(Player player) {
@@ -51,27 +59,7 @@ public class SettingsMenu extends Menu {
         return buttons;
     }
 
-    @Override
-    public boolean isFill(Player player, Map<Integer, Button> buttons) {
-        return true;
-    }
-
     private static class AllowDuelsButton extends Button {
-        @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
-
         @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.DIAMOND_SWORD)
@@ -86,26 +74,12 @@ public class SettingsMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             player.performCommand("tdr");
             }
         }
 
     private static class SpectatorsButton extends Button {
-        @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -121,27 +95,13 @@ public class SettingsMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             player.performCommand("tspec");
         }
     }
 
 
     private static class SpawnPlayersButton extends Button {
-        @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -157,26 +117,12 @@ public class SettingsMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             player.performCommand("tpv");
         }
     }
 
     private static class ShowScoreboardButton extends Button {
-        @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -192,26 +138,12 @@ public class SettingsMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             player.performCommand("tsb");
         }
     }
 
     private static class ScoreboardStyleButton extends Button {
-        @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -229,7 +161,7 @@ public class SettingsMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             switch (settings.getScoreboardState()) {
                 case PING:
                     settings.setScoreboardState(ScoreboardState.PING);

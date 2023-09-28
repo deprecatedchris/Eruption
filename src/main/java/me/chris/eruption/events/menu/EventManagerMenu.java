@@ -26,15 +26,6 @@ public class EventManagerMenu extends Menu {
     public EventManagerMenu(){
     }
 
-    @Override
-    public boolean useNormalSize() {
-        return false;
-    }
-
-    @Override
-    public int size(Player player) {
-        return 9*3;
-    }
 
     public EventManagerMenu(String eventName) {
         event = EruptionPlugin.getInstance().getEventManager().getByName(eventName);
@@ -57,28 +48,9 @@ public class EventManagerMenu extends Menu {
 
         return buttons;
     }
-
-    @Override
-    public boolean isFill(Player player, Map<Integer, Button> buttons) {
-        return true;
-    }
-
     private static class StartButton extends Button {
 
-        @Override
-        public String getName(Player player) {
-            return null;
-        }
 
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -92,7 +64,7 @@ public class EventManagerMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             if (event.getState() == EventState.WAITING) {
                 event.getCountdownTask().setTimeUntilStart(5);
                 player.sendMessage(ChatColor.GREEN + "Event was force started.");
@@ -107,21 +79,6 @@ public class EventManagerMenu extends Menu {
     private static class StopButton extends Button {
 
         @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
-
-        @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.REDSTONE_ORE)
                     .name(CC.translate("Stop Event"))
@@ -133,7 +90,7 @@ public class EventManagerMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             if (event != null) {
                 event.end();
                 player.sendMessage(ChatColor.RED + "Event was cancelled.");
@@ -146,21 +103,6 @@ public class EventManagerMenu extends Menu {
     }
 
     private static class StatusButton extends Button {
-
-        @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
 
         @Override
         public ItemStack getButtonItem(Player player) {
@@ -180,21 +122,6 @@ public class EventManagerMenu extends Menu {
     private static class ResetCooldownButton extends Button {
 
         @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
-
-        @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.REDSTONE_BLOCK)
                     .name(CC.translate("Reset global cooldown"))
@@ -206,7 +133,7 @@ public class EventManagerMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             EruptionPlugin.getInstance().getEventManager().setCooldown(0L);
             player.sendMessage(ChatColor.RED + "Event cooldown was cancelled.");
             player.closeInventory();

@@ -2,6 +2,7 @@ package me.chris.eruption.kit.editor;
 
 import lombok.AllArgsConstructor;
 import me.chris.eruption.EruptionPlugin;
+import me.chris.eruption.util.menu.button.DisplayButton;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,7 +15,6 @@ import me.chris.eruption.util.other.ItemUtil;
 import me.chris.eruption.util.other.Style;
 import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
-import me.chris.eruption.util.menu.buttons.DisplayButton;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -146,7 +146,6 @@ public class KitEditorMenu extends Menu {
 
         @Override
         public void clicked(Player player, int i, ClickType clickType, int hb) {
-            Button.playNeutral(player);
             player.getInventory().clear();
             player.updateInventory();
         }
@@ -172,7 +171,6 @@ public class KitEditorMenu extends Menu {
 
         @Override
         public void clicked(Player player, int i, ClickType clickType, int hb) {
-            Button.playNeutral(player);
 
             PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
 
@@ -201,7 +199,6 @@ public class KitEditorMenu extends Menu {
 
         @Override
         public void clicked(Player player, int i, ClickType clickType, int hb) {
-            Button.playNeutral(player);
             player.closeInventory();
 
             PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
@@ -235,7 +232,6 @@ public class KitEditorMenu extends Menu {
 
         @Override
         public void clicked(Player player, int i, ClickType clickType, int hb) {
-            Button.playNeutral(player);
 
             PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
 

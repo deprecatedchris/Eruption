@@ -52,6 +52,10 @@ public class SelectEventArenaMenu extends Menu {
             }
         }
 
+        for (int q=0; q<getSize(); q++) {
+            buttons.putIfAbsent(q, BLACK_PANE);
+        }
+
         return buttons;
     }
     private static class SelectArenaButton extends Button {
@@ -60,21 +64,6 @@ public class SelectEventArenaMenu extends Menu {
 
         public SelectArenaButton(Arena arena) {
             this.arena = arena;
-        }
-
-        @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
         }
 
         @Override
@@ -89,18 +78,12 @@ public class SelectEventArenaMenu extends Menu {
         }
 
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             EruptionPlugin.getInstance().getEventManager().hostEvent(EruptionPlugin.getInstance().getEventManager().getByName(event.getName()), player, arena);
             player.closeInventory();
         }
     }
 
-    @Override
-    public boolean useNormalSize() {
-        return false;
-    }
-
-    @Override
     public int size(Player player) {
         return 9*5;
     }

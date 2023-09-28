@@ -15,7 +15,7 @@ public class SaveDataRunnable implements Runnable {
 			this.plugin.getPlayerManager().saveData(playerData);
 			this.plugin.getArenaManager().saveArenas();
 			this.plugin.getKitManager().saveKits();
-			this.plugin.getMainConfig().save();
+			this.plugin.saveConfig();
 		}
 	}
 }

@@ -12,6 +12,7 @@ public class SettingsInfo {
     private boolean playerVisibility = true;
     public boolean isPartyInvites = true;
     private boolean usingPingFactor = false;
+    private boolean altScoreboard = false;
 
 
     private ScoreboardState scoreboardState = ScoreboardState.DURATION;

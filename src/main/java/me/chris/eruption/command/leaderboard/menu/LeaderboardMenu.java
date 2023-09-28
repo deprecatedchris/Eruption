@@ -6,6 +6,7 @@ import me.chris.eruption.kit.Kit;
 import me.chris.eruption.util.CC;
 import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
+import me.chris.eruption.util.other.ItemBuilder;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -31,76 +32,57 @@ public class LeaderboardMenu extends Menu {
         int i = 0;
         for(Kit kit : EruptionPlugin.getInstance().getKitManager().getKits()){
             if(kit.isRanked()) {
-                buttons.put(i++, new Button() {
-                    @Override
-                    public String getName(Player player) {
-                        return ChatColor.RED + kit.getName() + ChatColor.GRAY + " (Top 10)";
-                    }
-
-                    @Override
-                    public List<String> getDescription(Player player) {
-                        List<String> lore = new ArrayList<>();
-                        lore.add("");
-                        return null;
-                    }
-
-                    @Override
-                    public Material getMaterial(Player player) {
-                        return null;
-                    }
-
-                    @Override
-                    public ItemStack getButtonItem(Player player) {
-                        return null;
-                    }
-                });
+                buttons.put(i++, new LeaderboardButton(kit));
             }
         }
         return buttons;
     }
 
 
+    private static class LeaderboardButton extends Button {
 
-    /*
-    @Override
-    public void tick() {
-        int i = 0;
-        final List<String> lore = new ArrayList<>();
+        Kit kit;
 
-        for (Kit kit : EruptionPlugin.getInstance().getKitManager().getKits()) {
-            if (kit.isRanked()) {
-                lore.add("");
+        public LeaderboardButton(Kit kit) {
+            this.kit = kit;
+        }
 
-                try (MongoCursor<Document> iterator = EruptionPlugin.getInstance().getPlayerManager().getPlayersSortByLadderElo(kit)) {
-                    while (iterator.hasNext()) {
-                        try {
-                            final Document document = iterator.next();
-                            final UUID uuid = UUID.fromString(document.getString("uuid"));
+        @Override
+        public ItemStack getButtonItem(Player player) {
+            List<String> lore = new ArrayList<>();
+            lore.add("");
 
-                            if (!document.containsKey("statistics")) {
-                                continue;
-                            }
+            try (MongoCursor<Document> iterator = EruptionPlugin.getInstance().getPlayerManager().getPlayersSortByLadderElo(kit)) {
+                while (iterator.hasNext()) {
+                    try {
+                        final Document document = iterator.next();
+                        final UUID uuid = UUID.fromString(document.getString("uuid"));
 
-                            final Document statistics = (Document) document.get("statistics");
-                            final Document ladder = (Document) statistics.get(kit.getName());
-                            int amount = ladder.getInteger("ranked-elo");
+                        if (!document.containsKey("statistics")) {
+                            continue;
+                        }
 
-                            final OfflinePlayer target = Bukkit.getOfflinePlayer(uuid);
+                        final Document statistics = (Document) document.get("statistics");
+                        final Document ladder = (Document) statistics.get(kit.getName());
+                        int amount = ladder.getInteger("ranked-elo");
 
-                            final String text = ChatColor.RED.toString()  + ChatColor.WHITE + target.getName() + ChatColor.GRAY + " - " + ChatColor.RED + amount;
+                        final OfflinePlayer target = Bukkit.getOfflinePlayer(uuid);
 
-                            lore.add(text);
-                        } catch (Exception ignored) {}
+                        final String text = ChatColor.RED.toString()  + ChatColor.WHITE + target.getName() + ChatColor.GRAY + " - " + ChatColor.RED + amount;
+
+                        lore.add(text);
+                    } catch (Exception ignored) {
+
                     }
                 }
-
-                lore.add("");
-
-                this.buttons[i] = new Button(kit.getIcon().getType())
-                        .setDisplayName(ChatColor.RED + kit.getName() + ChatColor.GRAY + " (Top 10)")
-// idk this is broke?              .setLore(lore)
-                        .setClickAction(event -> event.setCancelled(true));
             }
+
+            lore.add("");
+
+        return new ItemBuilder(kit.getIcon())
+                    .name(ChatColor.RED + kit.getName() + ChatColor.GRAY + " (Top 10)")
+                    .lore(CC.translate(lore))
+                    .build();
         }
-    }*/
+    }
 }

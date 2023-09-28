@@ -27,7 +27,7 @@ public class EventHostMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
-        int size=EruptionPlugin.getInstance().getEventManager().getEvents().size();
+        int size = EruptionPlugin.getInstance().getEventManager().getEvents().size();
         for (PracticeEvent event : EruptionPlugin.getInstance().getEventManager().getEvents().values()) {
             buttons.put(size, new EventButton(event));
             size++;
@@ -45,21 +45,6 @@ public class EventHostMenu extends Menu {
         }
 
         @Override
-        public String getName(Player player) {
-            return null;
-        }
-
-        @Override
-        public List<String> getDescription(Player player) {
-            return null;
-        }
-
-        @Override
-        public Material getMaterial(Player player) {
-            return null;
-        }
-
-        @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.EMERALD)
                     .name(CC.translate("&6Click to host" + practiceEvent.getName()))
@@ -70,9 +55,8 @@ public class EventHostMenu extends Menu {
                     )).build();
         }
 
-
         @Override
-        public void clicked(Player player, int slot, ClickType clickType) {
+        public void clicked(Player player, ClickType clickType) {
             if (System.currentTimeMillis() < EruptionPlugin.getInstance().getEventManager().getCooldown()) {
                 player.sendMessage(ChatColor.RED + "There is a cooldown. Event can't start at this moment.");
                 return;
@@ -93,6 +77,7 @@ public class EventHostMenu extends Menu {
             new SelectEventArenaMenu(practiceEvent).openMenu(player);
             player.closeInventory();
         }
+
     }
 
 
