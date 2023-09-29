@@ -23,7 +23,6 @@ public class EventSpectateCommand {
 
     private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
-
     @Command({"event spectate", "eventspec", "specevent"})
     @Usage("/event spectate <player>")
     @Description("Spectate an event.")

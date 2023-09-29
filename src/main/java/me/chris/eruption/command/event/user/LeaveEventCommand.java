@@ -16,44 +16,42 @@ import org.bukkit.entity.Player;
 
 public class LeaveEventCommand {
 
-	private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
-
 	@Command({"event leave", "leave"})
 	@Usage("/event leave")
 	@Description("Leave an event or tournament.")
-	public void eventJoin(@Sender Player player) throws BladeExitMessage {
-		PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
-		Party party = plugin.getPartyManager().getParty(playerData.getUniqueId());
+	public static void eventJoin(@Sender Player player) throws BladeExitMessage {
+		PlayerData playerData = EruptionPlugin.getInstance().getPlayerManager().getPlayerData(player.getUniqueId());
+		Party party = EruptionPlugin.getInstance().getPartyManager().getParty(playerData.getUniqueId());
 
-		boolean inTournament = plugin.getTournamentManager().isInTournament(player.getUniqueId());
-		boolean inEvent = plugin.getEventManager().getEventPlaying(player) != null;
+		boolean inTournament = EruptionPlugin.getInstance().getTournamentManager().isInTournament(player.getUniqueId());
+		boolean inEvent = EruptionPlugin.getInstance().getEventManager().getEventPlaying(player) != null;
 
 		if (inEvent) {
-			this.leaveEvent(player);
+			leaveEvent(player);
 		} else if (inTournament) {
-			this.leaveTournament(player);
+			leaveTournament(player);
 		} else {
 			throw new BladeExitMessage(CC.translate("&cThere is nothing to leave."));
 		}
 	}
 
-	private void leaveTournament(Player player) {
-		Tournament tournament = plugin.getTournamentManager().getTournament(player.getUniqueId());
+	private static void leaveTournament(Player player) {
+		Tournament tournament = EruptionPlugin.getInstance().getTournamentManager().getTournament(player.getUniqueId());
 
 		if (tournament != null) {
-			plugin.getTournamentManager().leaveTournament(player);
+			EruptionPlugin.getInstance().getTournamentManager().leaveTournament(player);
 		}
 	}
 
-	private void leaveEvent(Player player) {
-		PracticeEvent event = plugin.getEventManager().getEventPlaying(player);
+	private static void leaveEvent(Player player) {
+		PracticeEvent event = EruptionPlugin.getInstance().getEventManager().getEventPlaying(player);
 
 		if(event == null) {
 			player.sendMessage(ChatColor.RED + "That commands doesn't exist.");
 			return;
 		}
 
-		if(!this.plugin.getEventManager().isPlaying(player, event)) {
+		if(!EruptionPlugin.getInstance().getEventManager().isPlaying(player, event)) {
 			player.sendMessage(ChatColor.RED + "You are not in an commands.");
 			return;
 		}

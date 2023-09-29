@@ -9,10 +9,11 @@ import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.entity.Player;
 
 public class HostCommand  {
+
     @Command("host")
     @Description("Host an event")
     @Permission("practice.host")
-    private void host(@Sender Player player) throws BladeExitMessage {
+    private static void host(@Sender Player player) throws BladeExitMessage {
         new EventHostMenu().openMenu(player);
     }
 }

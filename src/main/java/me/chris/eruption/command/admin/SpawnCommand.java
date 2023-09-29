@@ -16,7 +16,7 @@ public class SpawnCommand {
     @Command("setspawn")
     @Permission("eruption.setspawn")
     @Description("Setup spawns.")
-    public void spawn(@Sender Player player)  {
+    public static void spawn(@Sender Player player)  {
         FileConfiguration config = EruptionPlugin.getInstance().getConfig();
 
         config.set("LOCATION", LocationUtil.locationToString(LocationUtil.fromBukkitLocation(player.getLocation())));
