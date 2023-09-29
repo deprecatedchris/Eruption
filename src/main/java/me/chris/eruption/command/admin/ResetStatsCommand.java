@@ -3,13 +3,13 @@ package me.chris.eruption.command.admin;
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Kit;
 import me.chris.eruption.profile.PlayerData;
-import me.chris.eruption.util.CC;
-import me.chris.eruption.util.other.StringUtil;
 import me.vaperion.blade.annotation.argument.Sender;
-import me.vaperion.blade.annotation.command.*;
+import me.vaperion.blade.annotation.command.Command;
+import me.vaperion.blade.annotation.command.Description;
+import me.vaperion.blade.annotation.command.Permission;
+import me.vaperion.blade.annotation.command.Usage;
 import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ResetStatsCommand {
@@ -29,5 +29,4 @@ public class ResetStatsCommand {
 
 		sender.sendMessage(ChatColor.GREEN + target.getName() + "'s stats have been wiped.");
 	}
-
 }

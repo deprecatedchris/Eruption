@@ -13,8 +13,6 @@ public class HostCommand  {
     @Description("Host an event")
     @Permission("practice.host")
     private void host(@Sender Player player) throws BladeExitMessage {
-
         new EventHostMenu().openMenu(player);
     }
-
 }

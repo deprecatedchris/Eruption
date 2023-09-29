@@ -22,6 +22,5 @@ public class SpawnCommand {
         config.set("LOCATION", LocationUtil.locationToString(LocationUtil.fromBukkitLocation(player.getLocation())));
         player.sendMessage(CC.translate("&aSpawn location set."));
         EruptionPlugin.getInstance().saveConfig();
-
     }
 }

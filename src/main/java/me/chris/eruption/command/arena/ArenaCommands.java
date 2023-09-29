@@ -47,7 +47,7 @@ public final class ArenaCommands {
     @Command("arena type")
     @Permission("eruption.arena.event")
     @Description("Toggle arena's event mode")
-    public static void setType(@Sender Player player, Arena arena ,String type) throws BladeExitMessage {
+    public static void setType(@Sender Player player, Arena arena, String type) throws BladeExitMessage {
         switch (type.toLowerCase()) {
             case "sumo" -> {
                 arena.setArenaType(ArenaType.SUMO);
@@ -90,7 +90,9 @@ public final class ArenaCommands {
     @Permission("eruption.arena.toggle")
     @Description("Toggle an arena.")
     public static void toggleArena(@Sender Player player, Arena arena) throws BladeExitMessage {
-        if (arena == null) throw new BladeExitMessage("An arena with that name does not exist.");
+        if (arena == null) {
+            throw new BladeExitMessage("An arena with that name does not exist.");
+        }
 
         arena.setEnabled(!arena.isEnabled());
         player.sendMessage((arena.isEnabled() ? GREEN : RED) + "Successfully " + (arena.isEnabled() ? "enabled" : "disabled") + " arena " + arena.getName() + ".");
@@ -115,7 +117,9 @@ public final class ArenaCommands {
     @Permission("eruption.arena.copy")
     @Description("Clone an arena.")
     public static void copyArena(@Sender Player player, Arena arena, int copies) throws BladeExitMessage {
-        if (arena == null) throw new BladeExitMessage("An arena with that name does not exist.");
+        if (arena == null) {
+            throw new BladeExitMessage("An arena with that name does not exist.");
+        }
 
         plugin.getServer().getScheduler().runTask(plugin, new ArenaCommandRunnable(plugin, arena, copies));
         plugin.getArenaManager().setGeneratingArenaRunnables(plugin.getArenaManager().getGeneratingArenaRunnables() + 1);
@@ -126,29 +130,28 @@ public final class ArenaCommands {
     @Permission("eruption.arena.position")
     @Description("Set position for an arena.")
     public static void arenaPosition(@Sender Player player, String argument, Arena arena) throws BladeExitMessage {
-        if (arena == null) throw new BladeExitMessage("An arena with that name does not exist.");
+        if (arena == null) {
+            throw new BladeExitMessage("An arena with that name does not exist.");
+        }
+
         LocationUtil location = LocationUtil.fromBukkitLocation(transformLocation(player.getLocation()));
 
         switch (argument.toLowerCase()) {
             case "a" -> {
                 arena.setA(location);
                 player.sendMessage(GREEN + "Successfully set position A for arena " + arena.getName() + ".");
-                break;
             }
             case "b" -> {
                 arena.setB(location);
                 player.sendMessage(GREEN + "Successfully set position B for arena " + arena.getName() + ".");
-                break;
             }
             case "min" -> {
                 arena.setMin(location);
                 player.sendMessage(GREEN + "Successfully set minimum position for arena " + arena.getName() + ".");
-                break;
             }
             case "max" -> {
                 arena.setMax(location);
                 player.sendMessage(GREEN + "Successfully set maximum position for arena " + arena.getName() + ".");
-                break;
             }
             default -> throw new BladeUsageMessage();
         }

@@ -34,7 +34,7 @@ public class InvCommand {
 		if (snapshot == null) {
 			throw new BladeExitMessage(InvCommand.INVENTORY_NOT_FOUND);
 		} else {
-			((Player) sender).openInventory(snapshot.getInventoryUI().getCurrentPage());
+			sender.openInventory(snapshot.getInventoryUI().getCurrentPage());
 		}
 	}
 }

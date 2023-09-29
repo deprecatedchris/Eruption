@@ -60,27 +60,9 @@ public class KitCommands {
     @Usage("/kit flag <kit> <flag>")
     @Permission("eruption.kit")
     @Description("Add a flag to a kit.")
-    public static void flagKit(@Sender Player player, Kit kit, String[] args) throws BladeExitMessage {
-        if (kit != null) {
-            if (args.length < 3) {
-                throw new BladeUsageMessage();
-            }
-
-            if (args.length == 3) {
-                final String flagString = args[2];
-
-                try {
-                    final Flag flag = Flag.valueOf(flagString);
-                    kit.setFlag(flag);
-
-                    player.sendMessage(CC.GREEN + "Updated the flag to " + flag.name());
-                } catch (Exception ignored) {
-                    player.sendMessage(CC.RED + "Invalid flag, here are some below:");
-                    player.sendMessage(CC.GREEN + Arrays.stream(Flag.values()).map(Flag::name).collect(Collectors.joining(ChatColor.WHITE + ", " + ChatColor.GREEN)));
-                }
-            }
-        } else {
-            throw new BladeExitMessage("A kit with that name does not exists."); }
+    public static void flagKit(@Sender Player player, Kit kit, Flag flag) throws BladeExitMessage {
+        kit.setFlag(flag);
+        player.sendMessage(CC.GREEN + "Updated the flag to " + flag.name());
     }
 
     @Command({"kit icon"})
@@ -88,22 +70,22 @@ public class KitCommands {
     @Permission("eruption.kit")
     @Description("Set icon for a kit.")
     public static void iconKit(@Sender Player player, Kit kit) throws BladeExitMessage {
+        if (player.getItemInHand() == null) {
+            throw new BladeExitMessage("You must be holding an item to set the kit icon!");
+        }
 
         if (player.getItemInHand().getType() != Material.AIR) {
             ItemStack icon = ItemUtil.renameItem(player.getItemInHand().clone(), CC.GREEN + kit.getName());
             kit.setIcon(icon);
             player.sendMessage(CC.GREEN + "Successfully set icon for kit " + kit.getName() + ".");
-
-        } else {
-            player.sendMessage(CC.RED + "You must be holding an item to set the kit icon!"); }
+        }
     }
 
     @Command({"kit setinv"})
     @Usage("/kit setinv <kit>")
     @Permission("eruption.kit")
     @Description("Set inventory of a kit.")
-    public static void setInvKit(@Sender Player player, Kit kit) throws BladeExitMessage {
-
+    public static void setInvKit(@Sender Player player, Kit kit) {
         if (player.getGameMode() == GameMode.CREATIVE) {
             player.sendMessage(CC.RED + "You can't set item contents in creative mode!");
         } else {
@@ -117,7 +99,7 @@ public class KitCommands {
     @Usage("/kit getinv <kit>")
     @Permission("eruption.kit")
     @Description("Get inventory of a kit.")
-    public static void getInvKit(@Sender Player player, Kit kit) throws BladeExitMessage {
+    public static void getInvKit(@Sender Player player, Kit kit) {
         player.getInventory().setContents(kit.getContents());
         player.getInventory().setArmorContents(kit.getArmor());
         player.updateInventory();
@@ -129,8 +111,7 @@ public class KitCommands {
     @Usage("/kit setedit <kit>")
     @Permission("eruption.kit")
     @Description("Set edit inventory of a kit.")
-    public static void setEditKit(@Sender Player player, Kit kit) throws BladeExitMessage {
-
+    public static void setEditKit(@Sender Player player, Kit kit) {
         if (player.getGameMode() == GameMode.CREATIVE) {
             player.sendMessage(CC.RED + "You can't set item contents in creative mode!");
         } else {
@@ -144,8 +125,7 @@ public class KitCommands {
     @Usage("/kit getedit <kit>")
     @Permission("eruption.kit")
     @Description("Get edit inventory of a kit.")
-    public static void getEditKit(@Sender Player player, Kit kit) throws BladeExitMessage {
-
+    public static void getEditKit(@Sender Player player, Kit kit) {
         player.getInventory().setContents(kit.getKitEditContents());
         player.updateInventory();
         player.sendMessage(CC.GREEN + "Successfully retrieved edit kit contents from " + kit.getName() + ".");
@@ -155,7 +135,7 @@ public class KitCommands {
     @Usage("/kit ranked <kit>")
     @Permission("eruption.kit")
     @Description("Toggle ranked for a kit.")
-    public static void rankedKit(@Sender Player player, Kit kit) throws BladeExitMessage {
+    public static void rankedKit(@Sender Player player, Kit kit) {
         kit.setRanked(!kit.isRanked());
         player.sendMessage(kit.isRanked() ? CC.GREEN + "Successfully enabled ranked mode for kit " + kit.getName() + "." : CC.RED + "Successfully disabled ranked mode for kit " + kit.getName() + ".");
     }
@@ -164,7 +144,7 @@ public class KitCommands {
     @Usage("/kit name <kit>")
     @Permission("eruption.kit")
     @Description("Set display name of a kit.")
-    public static void nameKit(@Sender Player player, String[] args) throws BladeExitMessage {
+    public static void nameKit(@Sender Player player, String[] args) {
         Kit kit = plugin.getKitManager().getKit(args[1]);
         String displayName = StringUtils.join(args, ' ', 2, args.length);
         kit.setDisplayName(CC.translate(displayName));
@@ -175,20 +155,18 @@ public class KitCommands {
     @Usage("/kit exclude <kit> <arena>")
     @Permission("eruption.kit")
     @Description("Exclude all kits from an arena except selected kit.")
-    public static void excludeKit(@Sender Player player, Kit kit, Arena arena) throws BladeExitMessage {
+    public static void excludeKit(@Sender Player player, Kit kit, Arena arena) {
         kit.excludeArena(arena.getName());
         player.sendMessage(kit.getExcludedArenas().contains(arena.getName()) ?
                 CC.GREEN + "Arena " + arena.getName() + " is now excluded from the kit " + kit.getName() + "." : CC.GREEN + "Arena " + arena.getName() + " is no longer excluded from the kit " + kit.getName() + ".");
-
             }
 
     @Command({"kit excludeall"})
     @Usage("/kit excludeall <kit> <arena>")
     @Permission("eruption.kit")
     @Description("Exclude all kits from an arena except selected kit.")
-    public static void excludeAllKit(@Sender Player player, Kit kit, Arena arena) throws BladeExitMessage {
-
-        for(Kit loopKit : plugin.getKitManager().getKits()){
+    public static void excludeAllKit(@Sender Player player, Kit kit, Arena arena) {
+        for (Kit loopKit : plugin.getKitManager().getKits()){
             if(!loopKit.equals(kit)){
                 player.performCommand("kit excludearena " + loopKit.getName() + " " + arena.getName());
             }
@@ -204,5 +182,4 @@ public class KitCommands {
         player.sendMessage(kit.getArenaWhiteList().contains(arena.getName()) ?
                 ChatColor.GREEN + "Arena " + arena.getName() + " is now whitelisted to kit " + kit.getName() + "." : ChatColor.GREEN + "Arena " + arena.getName() + " is no longer whitelisted to kit " + kit.getName() + ".");
     }
-
 }

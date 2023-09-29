@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class WarpCommand {
+
     private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
     @Command({"spawn"})
@@ -20,7 +21,5 @@ public class WarpCommand {
         if (args.length == 0) {
             plugin.getPlayerManager().sendToSpawnAndReset(player);
         }
-
     }
-
 }

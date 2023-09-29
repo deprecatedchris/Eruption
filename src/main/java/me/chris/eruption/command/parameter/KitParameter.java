@@ -9,29 +9,27 @@ import me.vaperion.blade.exception.BladeExitMessage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class KitParameter implements ArgumentProvider<Kit> {
+
     @Override
     public @Nullable Kit provide(@NotNull Context context, @NotNull Argument argument) throws BladeExitMessage {
         Kit kit = EruptionPlugin.getInstance().getKitManager().getKit(argument.getString());
 
-        if(kit == null){
+        if (kit == null) {
             throw new BladeExitMessage("A kit with the name " + argument.getString() + " does not exists.");
         }
 
         return kit;
-
     }
 
     @Override
     public @NotNull List<String> suggest(@NotNull Context context, @NotNull Argument argument) throws BladeExitMessage {
-       final List<String> kits = new ArrayList<>();
-        for(Kit kit : EruptionPlugin.getInstance().getKitManager().getKits()){
-            kits.add(kit.getName());
-        }
-
-        return kits;
+        return EruptionPlugin.getInstance().getKitManager().getKits()
+                .stream()
+                .map(Kit::getName)
+                .collect(Collectors.toList());
     }
 }

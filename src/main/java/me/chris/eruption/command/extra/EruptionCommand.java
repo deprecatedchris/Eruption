@@ -7,6 +7,7 @@ import me.vaperion.blade.annotation.command.Description;
 import org.bukkit.entity.Player;
 
 public class EruptionCommand {
+
     @Command({"eruption"})
     @Description("Show core details")
     public static void eruptionCommand(@Sender Player player) {

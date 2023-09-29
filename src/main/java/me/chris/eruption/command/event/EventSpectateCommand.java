@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 
 public class EventSpectateCommand {
+
     private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
 

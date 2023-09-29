@@ -13,7 +13,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class TogglePlayerVisibilityCommand {
-   //Hopefully this works lol
 
     @Command({"TogglePlayerVisibility", "tpv"})
     @Permission("practice.donator")
@@ -33,7 +32,6 @@ public class TogglePlayerVisibilityCommand {
             EruptionPlugin.getInstance().getServer().getOnlinePlayers().forEach(player::showPlayer);
         }
     }
-
 }
 
 

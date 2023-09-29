@@ -25,26 +25,18 @@ public class JoinEventCommand {
 
 	private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
-
 	@Command({"event join", "joinevent"})
 	@Usage("/event join <id>")
 	@Description("Join an event or tournament.")
-	public static void eventJoin(@Sender Player player, String[] args) throws BladeExitMessage {
+	public static void eventJoin(@Sender Player player) throws BladeExitMessage {
 		PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 		Party party = plugin.getPartyManager().getParty(playerData.getUniqueId());
-
-		//Events
-		if (args.length < 1) {
-			throw new BladeUsageMessage();
-		}
 
 		if (party != null || (playerData.getPlayerState() != PlayerState.SPAWN && playerData.getPlayerState() != PlayerState.SPECTATING)) {
 			throw new BladeExitMessage(CC.translate("&cCannot issue this command in your current state."));
 		}
 
-		String eventId = args[0].toLowerCase();
 		if(!NumberUtils.isNumber(eventId)) {
-
 			PracticeEvent event = plugin.getEventManager().getByName(eventId);
 
 			if(event == null) {
@@ -96,6 +88,5 @@ public class JoinEventCommand {
 		} else {
 			throw new BladeExitMessage(CC.translate("&cThat tournament doesn't exist."));
 		}
-
 	}
 }

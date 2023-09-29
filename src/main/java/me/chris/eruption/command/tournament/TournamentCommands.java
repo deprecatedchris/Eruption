@@ -22,54 +22,38 @@ public class TournamentCommands {
     @Usage("/tournament <start|stop|alert>")
     @Permission("eruption.tournament.host")
     @Description("Host a tournament")
-    public static void tournamentHost(@Sender Player sender, String[] args) throws BladeExitMessage {
-
-        switch (args[0].toLowerCase()) {
+    public static void host(@Sender Player player, String type) throws BladeExitMessage {
+        switch (type) {
             case "start" -> {
-                if (args.length == 5) {
-                    try {
-                        int id = Integer.parseInt(args[1]);
-                        int teamSize = Integer.parseInt(args[3]);
-                        int size = Integer.parseInt(args[4]);
-                        String kitName = args[2];
-
-                        if (size % teamSize != 0) {
-                            throw new BladeExitMessage(CC.translate("&cTournament size & team sizes are invalid. Please try again."));
-                        }
-
-                        if (plugin.getTournamentManager().getTournament(id) != null) {
-                            throw new BladeExitMessage(CC.translate("&cThis tournament already exists."));
-                        }
-
-                        Kit kit = plugin.getKitManager().getKit(kitName);
-
-                        if (kit == null) {
-                            throw new BladeExitMessage(CC.translate("&cA kit with that name does not exists."));
-                        }
-
-                        plugin.getTournamentManager().createTournament(sender, id, teamSize, size, kitName);
-
-                    } catch (NumberFormatException e) {
-                        sender.sendMessage(ChatColor.RED + "Usage: /tournament start <id> <kit> <team size> <tournament size>");
-                    }
-                } else {
-                    sender.sendMessage(ChatColor.RED + "Usage: /tournament start <id> <kit> <team size> <tournament size> ");
+                if (plugin.getTournamentManager().getTournaments().isEmpty()) {
+                    throw new BladeExitMessage(CC.translate("&cThere is no tournament to start."));
                 }
+
+                Tournament tournament = plugin.getTournamentManager().getTournaments().get(0);
+
+                if (tournament.getPlayers().size() < tournament.getSize()) {
+                    throw new BladeExitMessage(CC.translate("&cThere are not enough players to start the tournament."));
+                }
+
+                plugin.getTournamentManager().createTournament(
+                        player,
+                        tournament.getId(),
+                        tournament.getTeamSize(),
+                        tournament.getSize(),
+                        tournament.getKitName());
             }
             case "stop" -> {
-                if (args.length == 2) {
-                    int id = Integer.parseInt(args[1]);
-                    Tournament tournament = plugin.getTournamentManager().getTournament(id);
-
-                    if (tournament != null) {
-                        plugin.getTournamentManager().removeTournament(id);
-                        sender.sendMessage(ChatColor.RED + "Successfully removed tournament " + id + ".");
-                    } else {
-                        sender.sendMessage(ChatColor.RED + "This tournament does not exist.");
-                    }
-                } else {
-                    sender.sendMessage(ChatColor.RED + "Usage: /tournament stop <id>");
+                if (plugin.getTournamentManager().getTournaments().isEmpty()) {
+                    throw new BladeExitMessage(CC.translate("&cThere is no tournament to stop."));
                 }
+
+                Tournament tournament = plugin.getTournamentManager().getTournaments().get(0);
+
+                if (tournament.getPlayers().size() < tournament.getSize()) {
+                    throw new BladeExitMessage(CC.translate("&cThere are not enough players to stop the tournament."));
+                }
+
+                plugin.getTournamentManager().removeTournament(tournament.getId());
             }
             case "alert" -> {
                 String[] alertMessage = new String[]{
@@ -81,8 +65,8 @@ public class TournamentCommands {
                         CC.translate("&eRequired Players: &c" + plugin.getTournamentManager().getTournaments().get(0).getSize()),
                         " ",
                 };
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    p.sendMessage(alertMessage);
+                for (Player online : Bukkit.getOnlinePlayers()) {
+                    online.sendMessage(alertMessage);
                 }
             }
         }

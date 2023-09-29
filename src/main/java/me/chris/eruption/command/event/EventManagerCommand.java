@@ -16,6 +16,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class EventManagerCommand {
+
     private final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
     @Command("eventmanager")
@@ -23,7 +24,6 @@ public class EventManagerCommand {
     @Description("Opens the event manager menu")
     @Usage("Wrong usage: /eventamanger <event>")
     private void eventManager(@Sender Player player, String eventName) throws BladeExitMessage {
-
         if (plugin.getEventManager().getByName(eventName) == null) {
             throw new BladeExitMessage(CC.RED + "Types: Sumo, LMS, OITC, Runner, 4Corners, Parkour.");
         }
@@ -31,5 +31,4 @@ public class EventManagerCommand {
         new EventManagerMenu(eventName).openMenu(player);
 
     }
-
 }
