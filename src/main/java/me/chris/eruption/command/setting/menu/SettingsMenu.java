@@ -1,8 +1,6 @@
 package me.chris.eruption.command.setting.menu;
 
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.events.EventState;
-import me.chris.eruption.events.menu.EventManagerMenu;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.scoreboard.ScoreboardState;
 import me.chris.eruption.setting.SettingsInfo;
@@ -10,18 +8,13 @@ import me.chris.eruption.util.CC;
 import me.chris.eruption.util.menu.Button;
 import me.chris.eruption.util.menu.Menu;
 import me.chris.eruption.util.other.ItemBuilder;
-import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 //Todo: Add ping range button and Time button
@@ -64,7 +57,8 @@ public class SettingsMenu extends Menu {
                             CC.translate("&7Would you like to allow"),
                             CC.translate("&7players to duel you?"),
                             "",
-                            (settings.isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.RED + CC.BOLD + "■ ")
+                            (settings.isDuelRequests() ? CC.GREEN + CC.BOLD + "■ " : CC.GRAY + CC.BOLD + "■ "),
+                            (!settings.isDuelRequests() ? CC.RED + CC.BOLD + "■ " : CC.GRAY + CC.BOLD + "■ ")
                     )).build();
         }
 
@@ -87,7 +81,8 @@ public class SettingsMenu extends Menu {
                             CC.translate("&7Would you like to allow"),
                             CC.translate("&7spectators?"),
                             "",
-                            (settings.isSpectatorsAllowed() ? CC.GREEN + CC.BOLD + "■ " : CC.RED + CC.BOLD + "■ ")
+                            (settings.isSpectatorsAllowed() ? CC.GREEN + CC.BOLD + "■ " : CC.GRAY + CC.BOLD + "■ "),
+                            (!settings.isSpectatorsAllowed() ? CC.RED + CC.BOLD + "■ " : CC.GRAY + CC.BOLD + "■ ")
                     )).build();
         }
 
@@ -111,7 +106,8 @@ public class SettingsMenu extends Menu {
                             CC.translate("&7Would you like to see"),
                             CC.translate("&7players at spawn?"),
                             "",
-                            (settings.isPlayerVisibility()  ? CC.GREEN + CC.BOLD + "■ " : CC.RED + CC.BOLD + "■ ")
+                            (settings.isPlayerVisibility()  ? CC.GREEN + CC.BOLD + "■ " : CC.GRAY + CC.BOLD + "■ "),
+                            (!settings.isPlayerVisibility() ? CC.RED + CC.BOLD + "■ " : CC.GRAY + CC.BOLD + "■ ")
                     )).build();
         }
 
@@ -134,7 +130,8 @@ public class SettingsMenu extends Menu {
                             CC.translate("&7Would you like to see"),
                             CC.translate("&7your scoreboard?"),
                             "",
-                            (settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.RED + CC.BOLD + "■ ")
+                            (settings.isScoreboardToggled() ? CC.GREEN + CC.BOLD + "■ " : CC.GRAY + CC.BOLD + "■ "),
+                            (!settings.isScoreboardToggled() ? CC.RED + CC.BOLD + "■ " : CC.GRAY + CC.BOLD + "■ ")
                     )).build();
         }
 

@@ -67,7 +67,7 @@ public class EruptionPlugin extends JavaPlugin {
     private ChunkManager chunkManager;
     private TimerManager timerManager;
 
-    private Location spawnLocation;
+    private Location spawnLocation = null ;
 
     @Override
     public void onEnable() {
@@ -108,7 +108,7 @@ public class EruptionPlugin extends JavaPlugin {
 
         Assemble board = new Assemble(this, new ScoreboardAdapter());
         board.setTicks(20);
-        board.setAssembleStyle(AssembleStyle.MODERN);
+        board.setAssembleStyle(AssembleStyle.VIPER);
 
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new SaveDataRunnable(), 20L * 60L * 5L, 20L * 60L * 5L);
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new ExpBarRunnable(), 2L, 2L);

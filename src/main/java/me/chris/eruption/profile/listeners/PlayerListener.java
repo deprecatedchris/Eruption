@@ -2,6 +2,7 @@ package me.chris.eruption.profile.listeners;
 
 import me.chris.eruption.EruptionPlugin;
 import me.chris.eruption.kit.Flag;
+import me.chris.eruption.kit.editor.SelectLadderKitMenu;
 import me.chris.eruption.util.CC;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -105,8 +106,8 @@ public class PlayerListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onPlayerTeleportToSpawn(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         this.plugin.getPlayerManager().createPlayerData(player);
         this.plugin.getPlayerManager().sendToSpawnAndReset(player);
@@ -316,9 +317,8 @@ public class PlayerListener implements Listener {
                             break;
                         case EMERALD:
                             if(item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "View Leaderboards" + ChatColor.GRAY + " (Right-Click)")){
-                                player.performCommand("leaderboards");
+                                player.performCommand("lb");
                             }
-                            //EruptionPlugin.getInstance().getLeaderboardsManager().openInventory(profile);
                             break;
 
                         case DIAMOND_SWORD:
@@ -341,7 +341,7 @@ public class PlayerListener implements Listener {
                             this.plugin.getPartyManager().createParty(player);
                             break;
                         case BOOK:
-                            //new SelectLadderKitMenu().openMenu(player);
+                            new SelectLadderKitMenu().openMenu(player);
                             break;
                         case PAPER:
                             player.performCommand("party info");

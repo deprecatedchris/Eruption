@@ -19,6 +19,8 @@ import me.chris.eruption.util.other.InventoryUtil;
 import me.chris.eruption.util.other.PlayerUtil;
 import me.chris.eruption.util.timer.impl.EnderpearlTimer;
 import org.bson.Document;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -28,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
 
 //Todo: Recode this mess holy shit
 public class PlayerManager {
@@ -126,7 +129,10 @@ public class PlayerManager {
         playerData.getSettings().setDuelRequests(settingsDocument.getBoolean("duelRequests"));
         playerData.getSettings().setPartyInvites(settingsDocument.getBoolean("partyInvites"));
         playerData.getSettings().setScoreboardToggled(settingsDocument.getBoolean("scoreboardToggled"));
-        playerData.getSettings().setScoreboardState(ScoreboardState.valueOf(settingsDocument.getString("scoreboardState")));
+        String scoreboardState = settingsDocument.getString("scoreboardState");
+        if (scoreboardState != null) {
+            playerData.getSettings().setScoreboardState(ScoreboardState.valueOf(settingsDocument.getString("scoreboardState")));
+        }
         playerData.getSettings().setSpectatorsAllowed(settingsDocument.getBoolean("spectatorsAllowed"));
         playerData.getSettings().setPlayerVisibility(settingsDocument.getBoolean("playerVisibility"));
 
@@ -377,7 +383,14 @@ public class PlayerManager {
             this.plugin.getServer().getOnlinePlayers().forEach(player::showPlayer);
         }
 
-        player.teleport(this.plugin.getSpawnLocation());
+        //Todo: this doesnt work mate
+        Location spawn = this.plugin.getSpawnLocation();
+
+        if (spawn != null) {
+            player.teleport(spawn);
+        } else {
+            Bukkit.getLogger().log(Level.CONFIG, "You must setup the spawn location in order to teleport a player to it!");
+        }
 
     }
 

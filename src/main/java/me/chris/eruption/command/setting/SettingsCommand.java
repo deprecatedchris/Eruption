@@ -1,7 +1,6 @@
 package me.chris.eruption.command.setting;
 
 import me.chris.eruption.command.setting.menu.SettingsMenu;
-import me.chris.eruption.events.menu.EventHostMenu;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;

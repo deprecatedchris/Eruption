@@ -14,21 +14,19 @@ import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
 import me.vaperion.blade.annotation.command.Usage;
 import me.vaperion.blade.exception.BladeExitMessage;
-import me.vaperion.blade.exception.BladeUsageMessage;
 import org.apache.commons.lang.math.NumberUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class JoinEventCommand {
 
 	private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
+	//Todo: recode this command to fix it
 	@Command({"event join", "joinevent"})
 	@Usage("/event join <id>")
 	@Description("Join an event or tournament.")
-	public static void eventJoin(@Sender Player player) throws BladeExitMessage {
+	public static void eventJoin(@Sender Player player, String eventId) throws BladeExitMessage {
 		PlayerData playerData = plugin.getPlayerManager().getPlayerData(player.getUniqueId());
 		Party party = plugin.getPartyManager().getParty(playerData.getUniqueId());
 

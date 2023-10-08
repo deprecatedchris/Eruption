@@ -4,7 +4,149 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11311912-4b9b-4ea7-9f28-51fb7bee4afe" name="Changes" comment="command updates" />
+    <list default="true" id="11311912-4b9b-4ea7-9f28-51fb7bee4afe" name="Changes" comment="Added command parameters and slightly edited commands, Edited Menu api to add fill, Started LeaderboardMenu and SettingsMenu.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/EruptionPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SpawnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/SpawnCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/WarpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/admin/WarpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/arena/ArenaCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/arena/ArenaCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/duel/AcceptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/duel/AcceptCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/EventSpectateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/EventSpectateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/user/JoinEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/user/JoinEventCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/user/StatusEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/event/user/StatusEventCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/kit/KitCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/kit/KitCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/leaderboard/menu/LeaderboardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/leaderboard/menu/LeaderboardMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/party/PartyCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/party/PartyCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/setting/SettingsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/setting/SettingsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/setting/menu/SettingsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/setting/menu/SettingsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/tournament/TournamentCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/command/tournament/TournamentCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/PlayerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/listeners/PlayerListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/chris/eruption/profile/managers/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/Assemble.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/Assemble.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleBoardEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleBoardEntry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleStyle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleStyle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/AssembleThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/events/AssembleBoardCreatedEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/thatkawaiisam/assemble/events/AssembleBoardCreatedEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/EruptionPlugin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/EruptionPlugin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/Arena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/Arena.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/StandaloneArena.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/StandaloneArena.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/managers/ArenaManager$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/managers/ArenaManager$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/managers/ArenaManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/managers/ArenaManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/managers/ArenaManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/managers/ArenaManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/type/ArenaType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/arena/type/ArenaType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/managers/ChunkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/arena/managers/ChunkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/command/admin/SaveCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/command/admin/SaveCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/command/duel/DuelCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/command/duel/DuelCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/command/match/menu/InventorySnapshot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/command/match/menu/InventorySnapshot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/command/toggleable/ToggleScoreboardCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/command/toggleable/ToggleScoreboardCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/EventCountdownTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/EventCountdownTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/EventPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/EventPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/EventState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/EventState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/PracticeEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/PracticeEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/managers/EventManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/managers/EventManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/menu/SelectEventArenaMenu$SelectArenaButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/menu/SelectEventArenaMenu$SelectArenaButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/menu/SelectEventArenaMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/menu/SelectEventArenaMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/corners/FourCornersCountdownTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/corners/FourCornersCountdownTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/parkour/ParkourCountdownTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/parkour/ParkourCountdownTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerCountdownTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerCountdownTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerEvent$MoveTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerEvent$MoveTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerEvent$PlayerPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerEvent$PlayerPosition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerEvent$RunnerGameTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerEvent$RunnerGameTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerPlayer$RunnerState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerPlayer$RunnerState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/events/types/runner/RunnerPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/Flag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/Flag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/Kit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/Kit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/PlayerKit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/PlayerKit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/editor/SelectLadderKitMenu$LadderKitDisplayButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/editor/SelectLadderKitMenu$LadderKitDisplayButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/editor/SelectLadderKitMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/editor/SelectLadderKitMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/managers/EditorManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/managers/EditorManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/managers/KitManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/kit/managers/KitManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/Match.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/Match.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/MatchRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/MatchRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/MatchState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/MatchState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/MatchTeam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/MatchTeam.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/managers/MatchManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/match/managers/MatchManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/party/Party.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/party/Party.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/party/managers/PartyManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/party/managers/PartyManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/party/managers/PartyManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/party/managers/PartyManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/PlayerData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/PlayerState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/PlayerState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/listeners/WorldListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/listeners/WorldListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/HotbarManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/HotbarManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$12$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$12$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$12$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$12$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$12$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$12$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/InventoryManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/PlayerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/profile/managers/PlayerManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/queue/QueueEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/queue/QueueEntry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/queue/QueueType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/queue/QueueType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/queue/managers/QueueManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/queue/managers/QueueManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/runnable/BlockRemoveRunnable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/runnable/BlockRemoveRunnable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/runnable/MatchResetRunnable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/runnable/MatchResetRunnable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/scoreboard/ScoreboardState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/scoreboard/ScoreboardState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/setting/SettingsInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/setting/SettingsInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/tournament/Tournament.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/tournament/Tournament.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/tournament/TournamentState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/tournament/TournamentState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/tournament/TournamentTeam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/tournament/TournamentTeam.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/tournament/managers/TournamentManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/tournament/managers/TournamentManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/Callback.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/Callback.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/config/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/config/Config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/Cuboid$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/Cuboid$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/Cuboid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/Cuboid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/CuboidDirection$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/CuboidDirection$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/CuboidDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/CuboidDirection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/CuboidLocationIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/cuboid/CuboidLocationIterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$AbstractClickableItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$AbstractClickableItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$ClickableItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$ClickableItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$EmptyClickableItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$EmptyClickableItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$Inventory2D.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$Inventory2D.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$InventoryUIHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI$InventoryUIHolder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/InventoryUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/UtilItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/inventory/UtilItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/Button$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/Button$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/Button.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/Button.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/InvListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/InvListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/Menu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/Menu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/pagination/JumpToPageButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/pagination/JumpToPageButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/pagination/PaginatedMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/pagination/PaginatedMenu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/pagination/PaginatedMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/menu/pagination/PaginatedMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/other/Clickable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/other/Clickable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/other/KFactor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/other/KFactor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/other/LocationUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/other/LocationUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/other/TtlHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/other/TtlHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/team/KillableTeam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/team/KillableTeam.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/timer/Timer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/timer/Timer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/timer/TimerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/timer/TimerManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/timer/event/TimerStartEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/chris/eruption/util/timer/event/TimerStartEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,25 +171,25 @@
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/jhuggins/Downloads/Eruption 2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "AtomSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/depre/Documents/code/Eruption&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AtomSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -59,6 +201,11 @@
       <workItem from="1695777423372" duration="3740000" />
       <workItem from="1695781834481" duration="3413000" />
       <workItem from="1696007635794" duration="1231000" />
+      <workItem from="1696029486288" duration="28000" />
+      <workItem from="1696034414941" duration="956000" />
+      <workItem from="1696035550628" duration="638000" />
+      <workItem from="1696279737977" duration="249000" />
+      <workItem from="1696804290450" duration="1085000" />
     </task>
     <task id="LOCAL-00001" summary="command updates">
       <option name="closed" value="true" />

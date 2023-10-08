@@ -9,16 +9,12 @@ import me.chris.eruption.util.other.ItemUtil;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.*;
 import me.vaperion.blade.exception.BladeExitMessage;
-import me.vaperion.blade.exception.BladeUsageMessage;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class KitCommands {
     private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
@@ -41,7 +37,7 @@ public class KitCommands {
     @Usage("/kit delete <kit>")
     @Permission("eruption.kit")
     @Description("Delete a kit.")
-    public static void deleteKit(@Sender Player player, Kit kit) throws BladeExitMessage {
+    public static void deleteKit(@Sender Player player, Kit kit)  {
             plugin.getKitManager().deleteKit(kit.getName());
             player.sendMessage(CC.GREEN + "Successfully deleted kit " + kit.getName() + ".");
         }
@@ -50,7 +46,7 @@ public class KitCommands {
     @Usage("/kit toggle <kit>")
     @Permission("eruption.kit")
     @Description("Toggle a kit.")
-    public static void toggleKit(@Sender Player player, Kit kit) throws BladeExitMessage {
+    public static void toggleKit(@Sender Player player, Kit kit) {
 
         kit.setEnabled(!kit.isEnabled());
         player.sendMessage(kit.isEnabled() ? CC.GREEN + "Successfully enabled kit " + kit.getName() + "." : CC.RED + "Successfully disabled kit " + kit.getName() + ".");
@@ -60,7 +56,7 @@ public class KitCommands {
     @Usage("/kit flag <kit> <flag>")
     @Permission("eruption.kit")
     @Description("Add a flag to a kit.")
-    public static void flagKit(@Sender Player player, Kit kit, Flag flag) throws BladeExitMessage {
+    public static void flagKit(@Sender Player player, Kit kit, Flag flag) {
         kit.setFlag(flag);
         player.sendMessage(CC.GREEN + "Updated the flag to " + flag.name());
     }

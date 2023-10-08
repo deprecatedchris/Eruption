@@ -7,7 +7,6 @@ import me.chris.eruption.party.managers.PartyManager;
 import me.chris.eruption.profile.PlayerData;
 import me.chris.eruption.profile.PlayerState;
 import me.chris.eruption.util.CC;
-import me.chris.eruption.util.other.Clickable;
 import me.vaperion.blade.annotation.argument.Optional;
 import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
@@ -15,9 +14,6 @@ import me.vaperion.blade.annotation.command.Description;
 import me.vaperion.blade.annotation.command.Usage;
 import me.vaperion.blade.annotation.command.UsageAlias;
 import me.vaperion.blade.exception.BladeExitMessage;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -255,9 +251,9 @@ public final class PartyCommands {
                     " ",
                     CC.translate("&c&lParty Information"),
                     " ",
-                    ChatColor.YELLOW + "Leader&7: " + ChatColor.RED + plugin.getServer().getPlayer(party.getLeader()).getName(),
-                    ChatColor.YELLOW + "Party State&7: " + ChatColor.RED + (party.isOpen() ? "Open" : "Locked"),
-                    ChatColor.YELLOW + "All Invite&7: " + ChatColor.RED + (party.isAllInvite() ? ChatColor.GREEN + "Enabled" : ChatColor.RED + "Disabled"),
+                    ChatColor.YELLOW + "Leader: " + ChatColor.RED + plugin.getServer().getPlayer(party.getLeader()).getName(),
+                    ChatColor.YELLOW + "Party State: " + ChatColor.RED + (party.isOpen() ? "Open" : "Locked"),
+                    ChatColor.YELLOW + "All Invite: " + ChatColor.RED + (party.isAllInvite() ? ChatColor.GREEN + "Enabled" : ChatColor.RED + "Disabled"),
                     " ",
                     ChatColor.WHITE + builder.toString(),
             };

@@ -14,7 +14,6 @@ import me.vaperion.blade.annotation.command.Description;
 import me.vaperion.blade.annotation.command.Usage;
 import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;

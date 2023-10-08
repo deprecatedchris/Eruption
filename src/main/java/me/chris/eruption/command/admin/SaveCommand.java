@@ -6,11 +6,7 @@ import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
 import me.vaperion.blade.annotation.command.Permission;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.Arrays;
 
 public class SaveCommand {
     @Command({"save"})

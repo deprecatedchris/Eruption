@@ -1,7 +1,6 @@
 package me.chris.eruption.command.tournament;
 
 import me.chris.eruption.EruptionPlugin;
-import me.chris.eruption.kit.Kit;
 import me.chris.eruption.tournament.Tournament;
 import me.chris.eruption.util.CC;
 import me.vaperion.blade.annotation.argument.Sender;
@@ -11,7 +10,6 @@ import me.vaperion.blade.annotation.command.Permission;
 import me.vaperion.blade.annotation.command.Usage;
 import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class TournamentCommands {

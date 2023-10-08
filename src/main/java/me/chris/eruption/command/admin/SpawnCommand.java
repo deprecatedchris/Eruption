@@ -7,7 +7,6 @@ import me.vaperion.blade.annotation.argument.Sender;
 import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
 import me.vaperion.blade.annotation.command.Permission;
-import me.vaperion.blade.exception.BladeExitMessage;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 

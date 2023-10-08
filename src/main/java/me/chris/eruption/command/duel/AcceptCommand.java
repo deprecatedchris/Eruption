@@ -15,7 +15,6 @@ import me.vaperion.blade.annotation.command.Command;
 import me.vaperion.blade.annotation.command.Description;
 import me.vaperion.blade.annotation.command.Usage;
 import me.vaperion.blade.exception.BladeExitMessage;
-import me.vaperion.blade.exception.BladeUsageMessage;
 import org.bukkit.ChatColor;
 import me.chris.eruption.party.managers.PartyManager;
 

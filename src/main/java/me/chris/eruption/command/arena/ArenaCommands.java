@@ -25,6 +25,7 @@ public final class ArenaCommands {
     private static final EruptionPlugin plugin = EruptionPlugin.getInstance();
 
     @Command({"arena create", "arena add"})
+    @Usage("/arena create <name>")
     @Permission("eruption.arena.create")
     @Description("Create an arena")
     public static void createArena(@Sender Player player, String name) throws BladeExitMessage {
@@ -37,17 +38,19 @@ public final class ArenaCommands {
     }
 
     @Command("arena event")
+    @Usage("/arena event <name>")
     @Permission("eruption.arena.event")
     @Description("Toggle arena's event mode")
-    public static void toggleEvent(@Sender Player player, Arena arena) throws BladeExitMessage {
+    public static void toggleEvent(@Sender Player player, Arena arena) {
         player.sendMessage(arena.isEvent() ? CC.RED + "Toggled event mode for arena " + arena.getName() : CC.GREEN + "Toggled event mode for arena" + arena.getName());
         arena.setEvent(!arena.isEvent());
     }
 
     @Command("arena type")
+    @Usage("/arena type <arena> <event>")
     @Permission("eruption.arena.event")
     @Description("Toggle arena's event mode")
-    public static void setType(@Sender Player player, Arena arena, String type) throws BladeExitMessage {
+    public static void setType(@Sender Player player, Arena arena, String type) {
         switch (type.toLowerCase()) {
             case "sumo" -> {
                 arena.setArenaType(ArenaType.SUMO);
@@ -79,14 +82,16 @@ public final class ArenaCommands {
 
 
     @Command({"arena delete", "arena del", "arena remove", "arena rem"})
+    @Usage("/arena delete <name>")
     @Permission("eruption.arena.delete")
     @Description("Delete an arena")
-    public static void deleteArena(@Sender Player player, Arena arena) throws BladeExitMessage {
+    public static void deleteArena(@Sender Player player, Arena arena) {
         plugin.getArenaManager().deleteArena(arena.getName());
         player.sendMessage(CC.translate("&aDeleted arena &e" + arena.getName() + "&a!"));
     }
 
     @Command({"arena toggle", "arena enable", "arena disable"})
+    @Usage("/arena toggle <name>")
     @Permission("eruption.arena.toggle")
     @Description("Toggle an arena.")
     public static void toggleArena(@Sender Player player, Arena arena) throws BladeExitMessage {
@@ -99,21 +104,24 @@ public final class ArenaCommands {
     }
 
     @Command({"arena reload", "arena save", "arena rl"})
+    @Usage("/arena reload")
     @Permission("eruption.arena.reload")
     @Description("Toggle an arena.")
-    public static void reloadArena(@Sender Player player) throws BladeExitMessage {
+    public static void reloadArena(@Sender Player player) {
         plugin.getArenaManager().reloadArenas();
         player.sendMessage(ChatColor.GREEN + "Successfully reloaded the arenas.");
     }
 
     @Command({"arena manage"})
+    @Usage("/arena manage")
     @Permission("eruption.arena.manage")
     @Description("Open the management menu for an arena.")
-    public static void manageArena(@Sender Player player) throws BladeExitMessage {
+    public static void manageArena(@Sender Player player) {
         plugin.getArenaManager().openArenaSystemUI(player);
     }
 
     @Command({"arena copy", "arena cp", "arena generate"})
+    @Usage("/arena copy <name> <copies>")
     @Permission("eruption.arena.copy")
     @Description("Clone an arena.")
     public static void copyArena(@Sender Player player, Arena arena, int copies) throws BladeExitMessage {
@@ -129,7 +137,7 @@ public final class ArenaCommands {
     @Usage("/arena position <a|b|min|max> <name>")
     @Permission("eruption.arena.position")
     @Description("Set position for an arena.")
-    public static void arenaPosition(@Sender Player player, String argument, Arena arena) throws BladeExitMessage {
+    public static void arenaPosition(@Sender Player player, String argument, Arena arena)  {
         if (arena == null) {
             throw new BladeExitMessage("An arena with that name does not exist.");
         }

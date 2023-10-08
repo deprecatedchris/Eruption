@@ -10,7 +10,6 @@ import me.chris.eruption.util.other.ItemBuilder;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
