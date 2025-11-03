@@ -114,7 +114,7 @@
         <dependency>
             <groupId>com.github.vaperion.blade</groupId>
             <artifactId>bukkit</artifactId>
-            <version>3.0.8</version>
+            <version>3.0.25</version>
             <scope>compile</scope>
         </dependency>
 
